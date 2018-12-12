@@ -29,7 +29,7 @@ class controlAcceso extends Controller
         try {
             $email = $request->only('usrName')['usrName'];
             $data = (Empleados::whereHas('Usuario',function($query) use ($email) {
-                $query->where('email', $email);
+                $query->where('email_contacto', $email);
             })->first());
             if ($data != null) {
                 $nombre = (explode('/', $data['nombre_Empleado']))[2] . ' ' . (explode('/', $data['nombre_Empleado']))[0];

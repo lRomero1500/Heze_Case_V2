@@ -39,19 +39,24 @@
                 <input type="text" value="" placeholder="" class="tel" name="telf_Corporativo_Empleado" id="telf_Corporativo_Empleado">
             </div>
             <div class="campoCorto"><h5>Email de Contacto</h5>
-                <input type="text" value="" placeholder="">
+                <input type="text" value="" placeholder="" name="email_contacto" id="email_contacto">
             </div>
             <div class="campoCorto"><h5>Email Corporativo</h5>
-                <input type="text" value="" placeholder="">
+                <input type="text" value="" placeholder="" name="email_corporativo" id="email_corporativo">
+            </div>
+            <div class="campoCorto"><h5>Asociado a:</h5>
+                <select title="Seleccione un empresa" name="cod_Companias" id="cod_Companias">
+                    <option value="">--Seleccione--</option>
+                </select>
             </div>
             <div class="campoCorto"><h5>Procentaje de Descuento</h5>
-                <input type="text" value="" placeholder="" onkeypress="return validaEntero(this.value);" maxlength="3">
+                <input type="text" value="" placeholder="" onkeypress="return validaEntero(this.value);" maxlength="3" id="porc_Descuento" name="porc_Descuento">
             </div>
             <div class="campoCorto"><h5>Procentaje de Descuento</h5>
-                <input type="text" value="" placeholder="" onkeypress="return validaEntero(this.value);" maxlength="3">
+                <input type="text" value="" placeholder="" onkeypress="return validaEntero(this.value);" maxlength="3" id="porc_Ganacia" name="porc_Ganacia">
             </div>
             <div class="campoCorto">
-                <label class="labelChek"><input type="checkbox"> Crear Usuario de Portal</label>
+                <label class="labelChek"><input type="checkbox" name="crearUsrHezeCase"> Crear Usuario de Portal</label>
             </div>
         </div>
     </div>
