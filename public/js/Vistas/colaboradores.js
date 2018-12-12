@@ -1,19 +1,14 @@
-/**
- * Created by luisd on 28/04/2018.
- */
+var form;
 function guardar(e) {
     InicioCarando();
-    var msj = ValidaFormulario($('#empresa')[0]);
-    if (msj.fallo) {
+    form = $('#colaborador');
+    form.validate();
+    if (!form.valid()) {
         e.preventDefault();
-        var re = msj.mensajes[0];
-        $('#errores').css('visibility', '');
-        $('#errores').html('');
-        $('#errores').html(re);
         FinCarando();
     }
     else {
-        var data = $('#empresa').serialize();
+       /* var data = $('#colaborador').serialize();
         var url = baseUrl + 'CreaEditEmpresa';
         $.post({
             url: url,
@@ -72,11 +67,12 @@ function guardar(e) {
                 $('#errores').html('');
                 $('#errores').html('Error' + resp.msg);
             }
-        });
+        });*/
     }
 
 }
 
+/*
 function editEmpresa(idEmpresa) {
     InicioCarando();
     var url = baseUrl + 'getEmpresa/';
@@ -201,4 +197,4 @@ function eliminarEmpresa(idEmpresa) {
 
     $("#Confirm").dialog("open");
 
-}
+}*/

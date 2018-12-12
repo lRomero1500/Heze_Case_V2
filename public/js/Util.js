@@ -57,6 +57,20 @@ var bootstrap = function (evt) {
 $(document).ready()
 {
     document.addEventListener('readystatechange', bootstrap, false);
+    $.fn.datepicker.languages['es-ES'] = {
+        format: 'dd/mm/yyyy',
+        days: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+        daysShort: ['Dom','Lun','Mar','Mie','Jue','Vie','Sab'],
+        daysMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sa'],
+        weekStart: 1,
+        months: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+        monthsShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic']
+    };
+    var options={
+        language: 'es-ES',
+        format: 'dd/mm/yyyy'
+    }
+    $.fn.datepicker.setDefaults(options)
 }
 $(window).bind('beforeunload', function () {
     if(!$('body').is(':loading') ){
@@ -166,10 +180,10 @@ Date.prototype.convertir = function (fecha, formato) {
     var fecha = new Date(año, mes - 1, dia)
     return fecha
 }
-function validaEntero(txt) {//Valida para una caja de texto que solamente se digiten números
-    if (isNaN(String.fromCharCode(event.keyCode)) && !(String.fromCharCode(event.keyCode) == "-" && txt.value.indexOf("-") < 0))
+function validaEntero(txt,e) {//Valida para una caja de texto que solamente se digiten números
+    if (isNaN(String.fromCharCode(e.keyCode)) && !(String.fromCharCode(e.keyCode) == "-" && txt.value.indexOf("-") < 0))
         return false;
-    if (String.fromCharCode(event.keyCode) == "-") {
+    if (String.fromCharCode(e.keyCode) == "-") {
         txt.value = "-" + txt.value;
         return false;
     }
@@ -198,9 +212,9 @@ function validaFloat(txt, sepDecimal) {//Valida para una caja de texto que solam
     return true;
 }
 
-function validaTexto() {//Solo Permite digitar letras y los caracteres especificados en el arreglo caracteres
-    var car = String.fromCharCode(event.keyCode).toUpperCase();
-    if ((event.keyCode >= 65 && event.keyCode <= 90) || (event.keyCode >= 97 && event.keyCode <= 122) || caracteres.encontrar(car))
+function validaTexto(e) {//Solo Permite digitar letras y los caracteres especificados en el arreglo caracteres
+    var car = String.fromCharCode(e.keyCode).toUpperCase();
+    if ((e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 97 && e.keyCode <= 122) || caracteres.encontrar(car))
         return true;
     return false;
 }
@@ -346,7 +360,14 @@ function crearMask(cls) {
 function destruirMask(cls) {
     $('.' + cls + '').inputmask('remove');
 }
-
+function crearDatePick(cls){
+    $('.' + cls + '').datepicker({
+        language: 'es-ES'
+    });
+}
+function destruirDatePick(cls){
+    $('.' + cls + '').datepicker('destroy');
+}
 $(document).ready(function () {
     $('#iconoMenuTop').mouseover(function () {
         $('#menuTop').attr('class', '');
@@ -370,6 +391,8 @@ $(document).ready(function () {
     $('#AddColaborador').click(function (e) {
         if ($('#formulario').css('display') == 'none') {
             $('#formulario').css('display', '');
+            crearMask('tel');
+            crearDatePick('dat');
         }
     })
 });

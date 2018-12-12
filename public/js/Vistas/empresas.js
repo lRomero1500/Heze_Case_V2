@@ -49,8 +49,8 @@ function guardar(e) {
                         $.each(resp.table, function (index, item) {
                             tb += '<tr><td><input type="checkbox"/></td><td>' + item.nomb_Companias +
                                 '<div class="OpcionesTabla">' +
-                                '<a onclick="editEmpresa(' + item.cod_Companias + ');">Editar</a>' +
-                                '<span class="SeparadorOpcionesTablas">|</span><a href="#">Eliminar</a>' +
+                                '<a onclick="editEmpresa(' + item.cod_Companias + ',event);">Editar</a>' +
+                                '<span class="SeparadorOpcionesTablas">|</span><a onclick="eliminarEmpresa( '+item.cod_Companias+' )">Eliminar</a>' +
                                 '</div></td><td>' + item.nit_Companias + '</td>' +
                                 '<td>' + item.tel_Companias + '</td>' +
                                 '<td>' + item.correo_companias + '</td>' +
@@ -128,9 +128,16 @@ function eliminarEmpresa(idEmpresa) {
     InicioCarando();
     var url = baseUrl + 'deleteEmpresa/';
     var parametros = {id: idEmpresa};
-    $("#Confirm").dialog({
+    $.confirm({
+        title: 'Confirmación!',
+        typeAnimated: true,
+        useBootstrap: false,
+        type: 'orange',
+        icon: 'fa fa-exclamation-circle',
+        boxWidth: '20%',
+        content: "¿Desea eliminar este registro?",
         buttons: {
-            "Aceptar": function () {
+            Ok: function () {
                 $.ajax({
                     type: 'POST',
                     url: url + idEmpresa,
@@ -153,7 +160,7 @@ function eliminarEmpresa(idEmpresa) {
                                     tb += '<tr><td><input type="checkbox"/></td><td>' + item.nomb_Companias +
                                         '<div class="OpcionesTabla">' +
                                         '<a onclick="editEmpresa(' + item.cod_Companias + ');">Editar</a>' +
-                                        '<span class="SeparadorOpcionesTablas">|</span><a href="#">Eliminar</a>' +
+                                        '<span class="SeparadorOpcionesTablas">|</span><a onclick="eliminarEmpresa( '+item.cod_Companias+' )">Eliminar</a>' +
                                         '</div></td><td>' + item.nit_Companias + '</td>' +
                                         '<td>' + item.tel_Companias + '</td>' +
                                         '<td>' + item.correo_companias + '</td>' +
@@ -161,7 +168,6 @@ function eliminarEmpresa(idEmpresa) {
 
                                 });
                                 $('#tbCompanias').html(tb);
-                                $("#Confirm").dialog("close");
                                 FinCarando();
                             }
                             else {
@@ -175,7 +181,6 @@ function eliminarEmpresa(idEmpresa) {
                                     '<p style="text-wrap: none">' + resp.msg + '</p>' +
                                     '</td></tr></table></div>'
                                 );
-                                $("#Confirm").dialog("close");
                                 FinCarando();
                             }
                         }
@@ -191,25 +196,14 @@ function eliminarEmpresa(idEmpresa) {
                             '<p style="text-wrap: none">' + errorThrown + '</p>' +
                             '</td></tr></table></div>'
                         );
-                        $("#Confirm").dialog("close");
                         FinCarando();
 
                     }
                 });
             },
-            "Cancelar": function () {
-                $("#Confirm").dialog("close");
+            cancelar: function () {
                 FinCarando();
-                //this.attr("style", "background-color:blue")
             }
-        },
-        open: function (event, ui) {
-            $(".ui-dialog-titlebar-close", ui.dialog).hide();
-        },
-        resizable: false,
-        draggable: false
+        }
     });
-
-    $("#Confirm").dialog("open");
-
 }
