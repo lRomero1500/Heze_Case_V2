@@ -18,7 +18,6 @@
 </body>
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/jquery.form-validator.min.js') }}"></script>
-<script src="{{ asset('js/loading.js') }}"></script>
 <script src="{{asset('js/Util.js')}}"></script>
 @yield('scripts')
 </html>

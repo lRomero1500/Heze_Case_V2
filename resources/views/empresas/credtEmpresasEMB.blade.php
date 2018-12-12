@@ -15,7 +15,7 @@
                        data-rule-required="true" data-msg-required="Ingrese el nit de la compañia">
             </div>
             <div class="campoCorto"><h5>Correo</h5>
-                <input id="correo_companias" name="correo_companias" type="mail" value="" placeholder="" required
+                <input id="correo_companias" name="correo_companias" type="text" value="" placeholder="" required
                        data-rule-required="true" data-msg-required="Ingrese un correo de la compañia"
                        data-rule-email="true" data-msg-email="Igrese un correo valido">
             </div>
