@@ -2,26 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Companias;
+use App\Models\Empleados;
 use Illuminate\Http\Request;
 
-class companiasController extends Controller
+class colaboradores extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $title_page = 'Mantenimiento de Compañias';
-        $Companias = Companias::all();
-        return view('empresas/credtEmpresasnoEMB')->with([
+        $title_page = 'Mantenimiento de Colaboradores';
+        $Colaboradores = Empleados::all();
+        return view('colaboradores/credtColaboradoresnoEMB')->with([
             'title_page' => $title_page,
-            'Companias' => $Companias
+            'Colabors' => $Colaboradores
         ]);
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -31,10 +25,10 @@ class companiasController extends Controller
      */
     public function store(Request $request)
     {
-        $companias = new Companias();
-        $companias->fill($request->all());
-        $order = array('(', ')', '-');
-        $companias->tel_Companias = str_replace($order, '', $companias->tel_Companias);
+        $clbrdrs = new Empleados();
+        $clbrdrs->fill($request->all());
+        /*$order = array('(', ')', '-');
+        $clbrdrs->tel_Companias = str_replace($order, '', $clbrdrs->tel_Companias);
         try {
             if ($companias->cod_Companias == '0') {
                 $x = $companias->save();
@@ -66,7 +60,7 @@ class companiasController extends Controller
                 'msg' => 'Error: ' . $e,
                 'error' => true
             ]);
-        }
+        }*/
     }
 
     /**
@@ -77,7 +71,7 @@ class companiasController extends Controller
      */
     public function show($id)
     {
-        $data = Companias::find($id);
+        $data = Empleados::find($id);
         return \Response::json($data);
     }
 
@@ -113,25 +107,31 @@ class companiasController extends Controller
     public function destroy($id)
     {
         try {
-            $companias = Companias::where('cod_Companias', $id)->first();;
-            if($companias){
-                Companias::destroy($id);
-                $dat=Companias::all();
+            $empleado = Empleados::where('cod_Empleado', $id)->get();
+            if (!$empleado->isEmpty()) {
+                if (((Empleados::whereHas('Usuario', function ($query) use ($id) {
+                        $query->where('cod_Empleado', $id);
+                    })->get())->count()) > 0) {
+                    Usuarios::destroy(($empleado->first())->Usuario->id_Usuarios);
+                    Empleados::destroy($id);
+                } else
+                    Empleados::destroy($id);
+                $dat = Empleados::all();
+                $nombre = (explode('/', ($empleado->first())['nombre_Empleado']))[2] . ' ' . (explode('/', ($empleado->first())['nombre_Empleado']))[0];
                 return response()->json([
-                    'msg' => 'La empresa ' . $companias->nomb_Companias . ' se eliminó correctamente!',
+                    'msg' => 'El Colaborador ' . $nombre. ' se eliminó correctamente!',
                     'error' => false,
-                    'table'=>$dat
+                    'table' => $dat
                 ]);
-            }
-            else{
+            } else {
                 return response()->json([
-                    'msg' => 'La empresa seleccionada no existe!',
+                    'msg' => 'el colaborador seleccionado no existe!',
                     'error' => true
                 ]);
             }
 
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return response()->json([
                 'msg' => 'Error! ' . $e->getMessage(),
                 'error' => true

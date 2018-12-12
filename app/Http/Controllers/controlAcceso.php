@@ -25,9 +25,12 @@ class controlAcceso extends Controller
 
     public function validaUsr(Request $request)
     {
-        $email = $request->only('usrName')['usrName'];
+
         try {
-            $data = (Empleados::where('email', $email)->first());
+            $email = $request->only('usrName')['usrName'];
+            $data = (Empleados::whereHas('Usuario',function($query) use ($email) {
+                $query->where('email', $email);
+            })->first());
             if ($data != null) {
                 $nombre = (explode('/', $data['nombre_Empleado']))[2] . ' ' . (explode('/', $data['nombre_Empleado']))[0];
                 $ini = mb_substr((explode('/', $data['nombre_Empleado']))[2], 0, 1) . mb_substr((explode('/', $data['nombre_Empleado']))[0], 0, 1);

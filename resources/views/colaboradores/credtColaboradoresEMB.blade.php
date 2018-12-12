@@ -5,29 +5,38 @@
             <h2>Datos de la empresa</h2>
         </div>
         <div class="contenedorDeCampos">
-            <div class="campoCorto"><h5>Nombres</h5>
-                <input type="text" value="" placeholder="" title="Ingrese nombres del colaborador"
+            <input id="idEmpleado" name="cod_Empleado" type="hidden" value="0"/>
+            <div class="campoCorto"><h5>Primer Nombre</h5>
+                <input id="nombre1" name="nombre1" type="text" value="" placeholder="" title="Ingrese primer nombres del colaborador"
                        onkeypress="return validaTexto();">
             </div>
-            <div class="campoCorto"><h5>Apellidos</h5>
-                <input type="text" value="" placeholder="" title="Ingrese apellidos del colaborador"
+            <div class="campoCorto"><h5>Segundo Nombre</h5>
+                <input id="nombre2" name="nombre2" type="text" value="" placeholder="" title="Ingrese segundo nombre del colaborador"
+                       onkeypress="return validaTexto();">
+            </div>
+            <div class="campoCorto"><h5>Primer Apellido</h5>
+                <input id="apellido1" name="apellido1" type="text" value="" placeholder="" title="Ingrese primer apellido del colaborador"
+                       onkeypress="return validaTexto();">
+            </div>
+            <div class="campoCorto"><h5>Segundo Apellido</h5>
+                <input id="apellido2" name="apellido2" type="text" value="" placeholder="" title="Ingrese segundo apellido del colaborador"
                        onkeypress="return validaTexto();">
             </div>
             <div class="campoCorto"><h5>Genero</h5>
-                <select title="Seleccione un genero para el colaborador">
-                    <option value="-1">--Seleccione--</option>
-                    <option value="M">Masculino</option>
-                    <option value="F">Femenino</option>
+                <select title="Seleccione un genero para el colaborador" name="sexo_Empleado" id="sexo_Empleado">
+                    <option value="">--Seleccione--</option>
+                    <option value="1">Masculino</option>
+                    <option value="0">Femenino</option>
                 </select>
             </div>
             <div class="campoCorto"><h5>Fecha de Nacimiento</h5>
-                <input rel="fecha" type="text" value="" placeholder="">
+                <input rel="fecha" type="text" value="" placeholder="" name="fecha_Nac_Empleado" id="fecha_Nac_Empleado">
             </div>
             <div class="campoCorto"><h5>Telefono de Contacto</h5>
-                <input type="text" value="" placeholder="" onkeypress="return validaEntero(this.value);" maxlength="10">
+                <input type="text" value="" placeholder="" class="tel" name="telf_Celular_Empleado" id="telf_Celular_Empleado">
             </div>
             <div class="campoCorto"><h5>Telefono Coporativo</h5>
-                <input type="text" value="" placeholder="" onkeypress="return validaEntero(this.value);" maxlength="10">
+                <input type="text" value="" placeholder="" class="tel" name="telf_Corporativo_Empleado" id="telf_Corporativo_Empleado">
             </div>
             <div class="campoCorto"><h5>Email de Contacto</h5>
                 <input type="text" value="" placeholder="">

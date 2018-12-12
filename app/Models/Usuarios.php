@@ -15,6 +15,7 @@ class Usuarios extends Authenticatable
     protected $table='cotz_usuarios';
     protected $fillable=['cod_Empleado','email','password','cod_Rol'];
     protected $hidden=['id_Usuarios','cod_Empleado',];
+
     public function empleados(){
         return $this->hasOne(Empleados::class,'cod_Empleado','cod_Empleado');
     }
