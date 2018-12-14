@@ -75,6 +75,12 @@ $(document).ready()
     {
         return this.optional(element) || /^[a-z," "]+$/i.test(value);
     }, "Letters and spaces only please");
+    jQuery.validator.addMethod("dateCustom",
+        function(value, element) {
+            return value.match(/^(0?[1-9]|[12][0-9]|3[0-1])[/., -](0?[1-9]|1[0-2])[/., -](19|20)?\d{2}$/);
+        },
+        "Please enter a date in the format!"
+    );
 }
 $(window).bind('beforeunload', function () {
     if(!$('body').is(':loading') ){

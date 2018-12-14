@@ -103,7 +103,7 @@
                                         class="SeparadorOpcionesTablas">|</span>
                                 <a onclick="eliminarColabors({!! $colaborador->cod_Companias !!});">Eliminar</a></div>
                         </td>
-                        <td>Grupo Arcia S.A.S</td>
+                        <td>{{$colaborador->compania->nomb_Companias}}</td>
                         <td>Desarrollo Web</td>
                     </tr>
                 @endforeach

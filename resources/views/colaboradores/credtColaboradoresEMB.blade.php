@@ -50,7 +50,7 @@
                        id="fecha_Nac_Empleado"
                        required data-rule-required="true"
                        data-msg-required="Seleccione fecha de nacimiento del colaborador"
-                       data-rule-date="true" data-msg-date="Ingrese una fecha valida" class="dat"
+                       data-rule-dateCustom="true" data-msg-dateCustom="Ingrese una fecha valida" class="dat"
                        onchange="limpiarErrorFecha(this)"
                 />
             </div>

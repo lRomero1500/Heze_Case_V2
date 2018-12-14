@@ -29,20 +29,22 @@ function guardar(e) {
                             " class='CerrarAlertasAreaNoError fa fa-times fa-fw' aria-hidden='true'></i>" +
                             "<p>" + resp.msg + " </p></div>"
                         );
-                        $('#tbCompanias').html('');
+                        $('#tbColaboradores').html('');
                         var tb = "";
                         $.each(resp.table, function (index, item) {
-                            tb += '<tr><td><input type="checkbox"/></td><td>' + item.nomb_Companias +
+                            var arrNombre=item.nombre_Empleado.split('/');
+                            tb += '<tr>' +
+                                '<td><input type="checkbox"/></td>\n' +
+                                '<td>' +arrNombre[2]+' '+arrNombre[3]+' '+arrNombre[0]+' '+arrNombre[1]+
                                 '<div class="OpcionesTabla">' +
-                                '<a onclick="editEmpresa(' + item.cod_Companias + ');">Editar</a>' +
-                                '<span class="SeparadorOpcionesTablas">|</span><a href="#">Eliminar</a>' +
-                                '</div></td><td>' + item.nit_Companias + '</td>' +
-                                '<td>' + item.tel_Companias + '</td>' +
-                                '<td>' + item.correo_companias + '</td>' +
-                                '<td>' + item.direccion_companias + '</td></tr>';
-
+                                '<a onclick="editColabors('+item.cod_Empleado+');">Editar</a><span class="SeparadorOpcionesTablas">|</span>' +
+                                '<a onclick="eliminarColabors('+item.cod_Empleado+');">Eliminar</a></div>' +
+                                '</td>'+
+                                '<td>'+item.compania.nomb_Companias+'</td>' +
+                                '<td>Desarrollo Web</td>' +
+                                '</tr>';
                         });
-                        $('#tbCompanias').html(tb);
+                        $('#tbColaboradores').html(tb);
                         FinCarando();
                     }
                     else {
