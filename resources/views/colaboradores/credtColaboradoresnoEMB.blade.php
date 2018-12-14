@@ -98,7 +98,7 @@
                 @foreach($Colabors as $colaborador)
                     <tr>
                         <td><input type="checkbox"/></td>
-                        <td>{!! $colaborador->nombre_Empleado !!}
+                        <td>{!! (explode('/', $colaborador->nombre_Empleado))[2] . ' ' .(explode('/', $colaborador->nombre_Empleado))[3] . ' ' .(explode('/', $colaborador->nombre_Empleado))[0] . ' ' . (explode('/', $colaborador->nombre_Empleado))[1] !!}
                             <div class="OpcionesTabla"><a onclick="editColabors({!! $colaborador->cod_Companias !!});">Editar</a> <span
                                         class="SeparadorOpcionesTablas">|</span>
                                 <a onclick="eliminarColabors({!! $colaborador->cod_Companias !!});">Eliminar</a></div>

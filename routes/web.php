@@ -28,6 +28,7 @@ Route::get('dashboard/mant/empresas','companiasController@index')->middleware('a
 Route::get('dashboard/mant/colaboradores','colaboradores@index')->middleware('auth');
 Route::get('getEmpresa/{id}','companiasController@show');
 Route::post('CreaEditEmpresa','companiasController@store');
+Route::post('CreaEditColaborador', 'colaboradores@store');
 Route::post('deleteEmpresa/{id}','companiasController@destroy');
-/*Route::get('dashboard/mant/colaboradores','companiasController@index')->middleware('auth');*/
+
 /*----------------------------Fin-Mantenimiento----------------------------*/

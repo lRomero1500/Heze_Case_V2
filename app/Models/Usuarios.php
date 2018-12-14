@@ -10,6 +10,7 @@ class Usuarios extends Authenticatable
 {
     use Notifiable;
 
+    public $timestamps = true;
     protected $guard = 'usuarios';
     protected $primaryKey = 'id_Usuarios';
     protected $table='cotz_usuarios';

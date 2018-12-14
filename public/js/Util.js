@@ -70,7 +70,11 @@ $(document).ready()
         language: 'es-ES',
         format: 'dd/mm/yyyy'
     }
-    $.fn.datepicker.setDefaults(options)
+    $.fn.datepicker.setDefaults(options);
+    jQuery.validator.addMethod("lettersonly", function(value, element)
+    {
+        return this.optional(element) || /^[a-z," "]+$/i.test(value);
+    }, "Letters and spaces only please");
 }
 $(window).bind('beforeunload', function () {
     if(!$('body').is(':loading') ){

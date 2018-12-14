@@ -8,20 +8,21 @@ function guardar(e) {
         FinCarando();
     }
     else {
-       /* var data = $('#colaborador').serialize();
-        var url = baseUrl + 'CreaEditEmpresa';
+        var data = $('#colaborador').serialize();
+        var url = baseUrl + 'CreaEditColaborador';
         $.post({
             url: url,
             data: data,
             success: function (resp) {
                 if (resp.msg != null) {
                     if (!resp.error) {
-                        ResetForm($('#empresa')[0], event);
+                        $(form).trigger("reset");
                         $('#errores').css('color', '#37474F');
                         $('#errores').html('');
                         $('#errores').css('visibility', 'none');
                         $('#formulario').css('display', 'none');
                         destruirMask('tel');
+                        destruirDatePick('dat');
                         $('#ContenedorAltertas').append(
                             "<div id='AlertResp' class='AlertasAreaNoError'>" +
                             "<i onclick='cerrarResp();' style='cursor: pointer;'" +
@@ -67,7 +68,7 @@ function guardar(e) {
                 $('#errores').html('');
                 $('#errores').html('Error' + resp.msg);
             }
-        });*/
+        });
     }
 
 }
@@ -198,3 +199,10 @@ function eliminarEmpresa(idEmpresa) {
     $("#Confirm").dialog("open");
 
 }*/
+
+function limpiarErrorFecha(obj) {
+    if(obj.value!=""){
+       $($(obj).siblings('label')[0]).remove();
+        $(obj).removeClass('error');
+    }
+}

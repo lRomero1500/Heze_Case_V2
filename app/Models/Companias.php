@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Companias extends Model
 {
+    public $timestamps = true;
     protected $primaryKey = 'cod_Companias';
 
     protected $table = 'cotz-companias';
