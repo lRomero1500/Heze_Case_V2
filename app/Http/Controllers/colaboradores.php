@@ -54,8 +54,8 @@ class colaboradores extends Controller
                     ]);
                     if($usuarioCreado->id_Usuarios!=0){
                         $objMail = new \stdClass();
-                        $objMail->demo_one = 'Demo One Value';
-                        $objMail->demo_two = 'Demo Two Value';
+                        $objMail->usuario = $clbrdrs->email_contacto;
+                        $objMail->pass = $clave;
                         $objMail->sender = 'Heze Case';
                         $objMail->receiver = $request->only('nombre1')['nombre1'].' '.$request->only('apellido1')['apellido1'];
 

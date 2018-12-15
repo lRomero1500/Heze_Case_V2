@@ -74,23 +74,22 @@ function guardar(e) {
     }
 
 }
-
-/*
-function editEmpresa(idEmpresa) {
+function editColaborador(idUsuario) {
     InicioCarando();
-    var url = baseUrl + 'getEmpresa/';
+    var url = baseUrl + 'getColaborador/';
     $.ajax({
         type: "GET",
-        url: url + idEmpresa,
+        url: url + idUsuario,
         success: function (resp) {
             if (resp != null && resp != undefined) {
                 if ($('#formulario').css('display') == 'none') {
                     $('#formulario').css('display', '');
                     crearMask('tel');
+                    crearDatePick('dat');
                 }
-                ResetForm($('#empresa')[0], event);
-                $('#idcompanias').prop('value', resp.cod_Companias);
-                $('#nomb_Companias').val(resp.nomb_Companias);
+                $('#colaborador').reset();
+                $('#idEmpleado').prop('value', resp.cod_Companias);
+                $('#nombre_Empleado').val(resp.nomb_Companias);
                 $('#nit_Companias').val(resp.nit_Companias);
                 $('#correo_companias').val(resp.correo_companias);
                 $('#tel_Companias').val(resp.tel_Companias);
@@ -112,17 +111,24 @@ function editEmpresa(idEmpresa) {
     });
 }
 
-function eliminarEmpresa(idEmpresa) {
+function eliminarColaborador(idColaborador) {
     InicioCarando();
-    var url = baseUrl + 'deleteEmpresa/';
-    var parametros = {id: idEmpresa};
-    $("#Confirm").dialog({
+    var url = baseUrl + 'deleteColaborador/';
+    var parametros = {id: idColaborador};
+    $.confirm({
+        title: 'Confirmación!',
+        typeAnimated: true,
+        useBootstrap: false,
+        type: 'orange',
+        icon: 'fa fa-exclamation-circle',
+        boxWidth: '20%',
+        content: "¿Desea eliminar este registro?",
         buttons: {
-            "Aceptar": function () {
+            Ok: function () {
                 $.ajax({
                     type: 'POST',
-                    url: url + idEmpresa,
-                    headers:{'X-CSRF-TOKEN':token},
+                    url: url + idColaborador,
+                    headers: {'X-CSRF-TOKEN': token},
                     data: JSON.stringify(parametros),
                     contentType: 'application/json; charset=UTF-8',
                     dataType: 'json',
@@ -135,21 +141,22 @@ function eliminarEmpresa(idEmpresa) {
                                     " class='CerrarAlertasAreaNoError fa fa-times fa-fw' aria-hidden='true'></i>" +
                                     "<p>" + resp.msg + " </p></div>"
                                 );
-                                $('#tbCompanias').html('');
+                                $('#tbColaboradores').html('');
                                 var tb = "";
                                 $.each(resp.table, function (index, item) {
-                                    tb += '<tr><td><input type="checkbox"/></td><td>' + item.nomb_Companias +
+                                    var arrNombre=item.nombre_Empleado.split('/');
+                                    tb += '<tr>' +
+                                        '<td><input type="checkbox"/></td>\n' +
+                                        '<td>' +arrNombre[2]+' '+arrNombre[3]+' '+arrNombre[0]+' '+arrNombre[1]+
                                         '<div class="OpcionesTabla">' +
-                                        '<a onclick="editEmpresa(' + item.cod_Companias + ');">Editar</a>' +
-                                        '<span class="SeparadorOpcionesTablas">|</span><a href="#">Eliminar</a>' +
-                                        '</div></td><td>' + item.nit_Companias + '</td>' +
-                                        '<td>' + item.tel_Companias + '</td>' +
-                                        '<td>' + item.correo_companias + '</td>' +
-                                        '<td>' + item.direccion_companias + '</td></tr>';
-
+                                        '<a onclick="editColabors('+item.cod_Empleado+');">Editar</a><span class="SeparadorOpcionesTablas">|</span>' +
+                                        '<a onclick="eliminarColabors('+item.cod_Empleado+');">Eliminar</a></div>' +
+                                        '</td>'+
+                                        '<td>'+item.compania.nomb_Companias+'</td>' +
+                                        '<td>Desarrollo Web</td>' +
+                                        '</tr>';
                                 });
-                                $('#tbCompanias').html(tb);
-                                $("#Confirm").dialog("close");
+                                $('#tbColaboradores').html(tb);
                                 FinCarando();
                             }
                             else {
@@ -160,10 +167,9 @@ function eliminarEmpresa(idEmpresa) {
                                     '<span style="color:#FFF" class="fa fa-exclamation fa-2x" aria-hidden="true"></span>' +
                                     '</td>' +
                                     '<td style="padding: 20px;text-align: justify;vertical-align: middle">' +
-                                    '<p style="text-wrap: none">'+resp.msg+'</p>' +
+                                    '<p style="text-wrap: none">' + resp.msg + '</p>' +
                                     '</td></tr></table></div>'
                                 );
-                                $("#Confirm").dialog("close");
                                 FinCarando();
                             }
                         }
@@ -176,31 +182,20 @@ function eliminarEmpresa(idEmpresa) {
                             '<span style="color:#FFF" class="fa fa-exclamation fa-2x" aria-hidden="true"></span>' +
                             '</td>' +
                             '<td style="padding: 20px;text-align: justify;vertical-align: middle">' +
-                            '<p style="text-wrap: none">'+errorThrown+'</p>' +
+                            '<p style="text-wrap: none">' + errorThrown + '</p>' +
                             '</td></tr></table></div>'
                         );
-                        $("#Confirm").dialog("close");
                         FinCarando();
 
                     }
                 });
             },
-            "Cancelar": function () {
-                $("#Confirm").dialog("close");
+            cancelar: function () {
                 FinCarando();
-                //this.attr("style", "background-color:blue")
             }
-        },
-        open: function (event, ui) {
-            $(".ui-dialog-titlebar-close", ui.dialog).hide();
-        },
-        resizable: false,
-        draggable: false
+        }
     });
-
-    $("#Confirm").dialog("open");
-
-}*/
+}
 
 function limpiarErrorFecha(obj) {
     if(obj.value!=""){

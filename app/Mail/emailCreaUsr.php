@@ -29,14 +29,14 @@ class emailCreaUsr extends Mailable
      */
     public function build()
     {
-        return $this->from('haze_case@arciait.com')
-            ->view('mails.creaUsario')
-            ->text('mails.creaUsuario_plano')
+        return $this->from('heze_case@arciait.com')
+            ->view('mails.creaUsuario')
+            ->text('mails.creaUsuario_plano')/*
             ->with(
                 [
                     'testVarOne' => '1',
                     'testVarTwo' => '2',
-                ])/*
+                ])*//*
             ->attach(public_path('/images').'/demo.jpg', [
                 'as' => 'demo.jpg',
                 'mime' => 'image/jpeg',

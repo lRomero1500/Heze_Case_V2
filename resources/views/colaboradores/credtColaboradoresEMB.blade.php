@@ -36,6 +36,23 @@
                        data-rule-minlength="2" data-msg-minlength="ingrese minimo 2 caracteres"
                 />
             </div>
+            <div class="campoCorto"><h5>Tipo Documento*</h5>
+                <select title="Seleccione un tipo de documento" name="tipo_Doc_Empleado" id="tipo_Doc_Empleado"
+                        required data-rule-required="true" data-msg-required="Seleccione el tipo de documento del colaborador del colaborador">
+                    <option value="">--Seleccione--</option>
+                    @foreach($tiposDoc as $tipoDoc)
+                        <option value="{{$tipoDoc->tipo_Doc_Empleado}}">{{$tipoDoc->nom_Tipo_Documento}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="campoCorto"><h5>Nro. Documento*</h5>
+                <input id="documentoEmpleado" name="documentoEmpleado" type="text" value="" placeholder=""
+                       title="Ingrese documento de identidad del colaborador"
+                       data-rule-minlength="6" data-msg-minlength="ingrese minimo 6 caracteres"
+                       data-rule-number="true" data-msg-number="Ingrese solo caracteres numericos"
+                       required data-rule-required="true" data-msg-required="Ingrese documento de identidad del colaborador"
+                />
+            </div>
             <div class="campoCorto"><h5>Genero*</h5>
                 <select title="Seleccione un genero para el colaborador" name="sexo_Empleado" id="sexo_Empleado"
                         required data-rule-required="true" data-msg-required="Seleccione el genero del colaborador">

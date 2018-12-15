@@ -99,9 +99,9 @@
                     <tr>
                         <td><input type="checkbox"/></td>
                         <td>{!! (explode('/', $colaborador->nombre_Empleado))[2] . ' ' .(explode('/', $colaborador->nombre_Empleado))[3] . ' ' .(explode('/', $colaborador->nombre_Empleado))[0] . ' ' . (explode('/', $colaborador->nombre_Empleado))[1] !!}
-                            <div class="OpcionesTabla"><a onclick="editColabors({!! $colaborador->cod_Companias !!});">Editar</a> <span
+                            <div class="OpcionesTabla"><a onclick="editColaborador({!! $colaborador->cod_Empleado !!});">Editar</a> <span
                                         class="SeparadorOpcionesTablas">|</span>
-                                <a onclick="eliminarColabors({!! $colaborador->cod_Companias !!});">Eliminar</a></div>
+                                <a onclick="eliminarColaborador({!! $colaborador->cod_Empleado !!});">Eliminar</a></div>
                         </td>
                         <td>{{$colaborador->compania->nomb_Companias}}</td>
                         <td>Desarrollo Web</td>
