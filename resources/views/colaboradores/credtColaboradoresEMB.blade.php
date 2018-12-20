@@ -125,7 +125,7 @@
             </div>
             <div class="campoCorto">
                 <label class="labelChek">
-                    <input type="checkbox" name="crearUsrHezeCase"
+                    <input type="checkbox" name="crearUsrHezeCase" id="crearUsrHezeCase"
                            title="Seleccione esta opcion en caso de que desee que este colaborador ingrese a la plataforma"
                     />
                     Crear Usuario de Portal

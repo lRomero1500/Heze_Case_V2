@@ -87,13 +87,28 @@ function editColaborador(idUsuario) {
                     crearMask('tel');
                     crearDatePick('dat');
                 }
-                $('#colaborador').reset();
-                $('#idEmpleado').prop('value', resp.cod_Companias);
-                $('#nombre_Empleado').val(resp.nomb_Companias);
-                $('#nit_Companias').val(resp.nit_Companias);
-                $('#correo_companias').val(resp.correo_companias);
-                $('#tel_Companias').val(resp.tel_Companias);
-                $('#direccion_companias').val(resp.direccion_companias);
+                document.getElementById("colaborador").reset();
+                var nombres= (resp.nombre_Empleado).split('/');
+                $('#idEmpleado').prop('value', resp.cod_Empleado);
+                $('#nombre1').val(nombres[2]);
+                $('#nombre2').val(nombres[3]);
+                $('#apellido1').val(nombres[0]);
+                $('#apellido2').val(nombres[1]);
+                $('#tipo_Doc_Empleado').val(resp.tipo_Doc_Empleado);
+                $('#documentoEmpleado').val(resp.documentoEmpleado);
+                $('#sexo_Empleado').val(resp.sexo_Empleado);
+                $('#fecha_Nac_Empleado').val(resp.fecha_Nac_Empleado);
+                $('#telf_Celular_Empleado').val(resp.telf_Celular_Empleado);
+                $('#telf_Corporativo_Empleado').val(resp.telf_Corporativo_Empleado);
+                $('#email_contacto').val(resp.email_contacto);
+                $('#email_corporativo').val(resp.email_corporativo);
+                $('#cod_Companias').val(resp.cod_Companias);
+                $('#porc_Descuento').val(resp.porc_Descuento);
+                $('#porc_Ganacia').val(resp.porc_Ganacia);
+                if(resp.usuario!=null)
+                    document.getElementById('crearUsrHezeCase').checked=true;
+
+
             }
             else {
                 $('#errores').css('visibility', '');
