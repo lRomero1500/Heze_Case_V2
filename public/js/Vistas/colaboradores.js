@@ -37,8 +37,8 @@ function guardar(e) {
                                 '<td><input type="checkbox"/></td>\n' +
                                 '<td>' +arrNombre[2]+' '+arrNombre[3]+' '+arrNombre[0]+' '+arrNombre[1]+
                                 '<div class="OpcionesTabla">' +
-                                '<a onclick="editColabors('+item.cod_Empleado+');">Editar</a><span class="SeparadorOpcionesTablas">|</span>' +
-                                '<a onclick="eliminarColabors('+item.cod_Empleado+');">Eliminar</a></div>' +
+                                '<a onclick="editColaborador('+item.cod_Empleado+');">Editar</a><span class="SeparadorOpcionesTablas">|</span>' +
+                                '<a onclick="eliminarColaborador('+item.cod_Empleado+');">Eliminar</a></div>' +
                                 '</td>'+
                                 '<td>'+item.compania.nomb_Companias+'</td>' +
                                 '<td>Desarrollo Web</td>' +
@@ -97,7 +97,7 @@ function editColaborador(idUsuario) {
                 $('#tipo_Doc_Empleado').val(resp.tipo_Doc_Empleado);
                 $('#documentoEmpleado').val(resp.documentoEmpleado);
                 $('#sexo_Empleado').val(resp.sexo_Empleado);
-                $('#fecha_Nac_Empleado').val(resp.fecha_Nac_Empleado);
+                $('#fecha_Nac_Empleado').datepicker('setDate', resp.fecha_Nac_Empleado.ConvertirFecha());
                 $('#telf_Celular_Empleado').val(resp.telf_Celular_Empleado);
                 $('#telf_Corporativo_Empleado').val(resp.telf_Corporativo_Empleado);
                 $('#email_contacto').val(resp.email_contacto);
@@ -164,8 +164,8 @@ function eliminarColaborador(idColaborador) {
                                         '<td><input type="checkbox"/></td>\n' +
                                         '<td>' +arrNombre[2]+' '+arrNombre[3]+' '+arrNombre[0]+' '+arrNombre[1]+
                                         '<div class="OpcionesTabla">' +
-                                        '<a onclick="editColabors('+item.cod_Empleado+');">Editar</a><span class="SeparadorOpcionesTablas">|</span>' +
-                                        '<a onclick="eliminarColabors('+item.cod_Empleado+');">Eliminar</a></div>' +
+                                        '<a onclick="editColaborador('+item.cod_Empleado+');">Editar</a><span class="SeparadorOpcionesTablas">|</span>' +
+                                        '<a onclick="eliminarColaborador('+item.cod_Empleado+');">Eliminar</a></div>' +
                                         '</td>'+
                                         '<td>'+item.compania.nomb_Companias+'</td>' +
                                         '<td>Desarrollo Web</td>' +

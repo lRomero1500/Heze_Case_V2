@@ -10,11 +10,9 @@
     @yield('headers')
 </head>
 <body style="text-align: center">
-{{--<div id="app">--}}
-    <div class="contenedor">
+    <div id="app" class="contenedor">
         @yield('content')
     </div>
-{{--</div>--}}
 </body>
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/jquery.form-validator.min.js') }}"></script>

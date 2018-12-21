@@ -102,7 +102,7 @@
             </div>
         </div>
     </div>
-    <div class="ContenedorAreaTrabajo">
+    <div id="app" class="ContenedorAreaTrabajo">
         @yield('content')
     </div>
 

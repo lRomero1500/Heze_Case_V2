@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\emailCreaUsr;
 use App\Models\Empleados;
 use App\Models\Usuarios;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -36,6 +37,7 @@ class colaboradores extends Controller
             2 => $request->only('nombre1')['nombre1'],
             3 => $request->only('nombre2')['nombre2']);
         $clbrdrs->nombre_Empleado = implode("/", $nombArr);
+        $clbrdrs->fecha_Nac_Empleado = Carbon::createFromFormat('d/m/Y', $clbrdrs->fecha_Nac_Empleado);
         $order = array('(', ')', '-');
         $clbrdrs->telf_Celular_Empleado = str_replace($order, '', $clbrdrs->telf_Celular_Empleado);
         $clbrdrs->telf_Corporativo_Empleado = str_replace($order, '', $clbrdrs->telf_Corporativo_Empleado);
@@ -72,7 +74,7 @@ class colaboradores extends Controller
                     'table' => $dat
                 ]);
             } else {
-                $clbrdrsUP = Companias::find($clbrdrs->cod_Empleado);
+                $clbrdrsUP = Empleados::find($clbrdrs->cod_Empleado);
                 $clbrdrsUP->documentoEmpleado = $clbrdrs->documentoEmpleado;
                 $clbrdrsUP->tipo_Doc_Empleado = $clbrdrs->tipo_Doc_Empleado;
                 $clbrdrsUP->nombre_Empleado = $clbrdrs->nombre_Empleado;

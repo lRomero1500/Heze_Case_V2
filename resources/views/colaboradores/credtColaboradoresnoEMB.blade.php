@@ -17,7 +17,8 @@
                 @include('colaboradores.credtColaboradoresEMB')
             </div>
         </div>
-        <div class="ConetendorAlertasArea">
+        <div id="ContenedorAltertas" class="ConetendorAlertasArea">
+
             <div id="AlertNoError" class="AlertasAreaNoError">
                 <i id="btnCerrarAlert" style="cursor: pointer;" class="CerrarAlertasAreaNoError fa fa-times fa-fw"
                    aria-hidden="true"></i>
@@ -44,7 +45,6 @@
                         </td>
                     </tr>
                 </table>
-
             </div>
         </div>
         <div class="ContenedorOpcionesFIltroArea">
