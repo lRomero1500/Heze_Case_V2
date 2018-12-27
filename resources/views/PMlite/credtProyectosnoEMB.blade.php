@@ -18,7 +18,7 @@
         </div>
         <div id="formulario" class="contenedorFormsEditCrea" style="display: none">
             <div class="formsCreaEdit">
-                @include('PMlite.credtProjectosEMB')
+                @include('PMlite.credtProyectosEMB')
             </div>
         </div>
         <div id="ContenedorAltertas" class="ConetendorAlertasArea">
