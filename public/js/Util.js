@@ -1,8 +1,8 @@
 var baseUrl = document.getElementsByTagName('base')[0].href;
-var token= $('meta[name="token"]').attr('content');
-var Traduccion={
+var token = $('meta[name="token"]').attr('content');
+var Traduccion = {
     errorTitle: 'Envio de formulario fallido!',
-    requiredField:"Este Campo es requerido",
+    requiredField: "Este Campo es requerido",
     requiredFields: 'No ha completado todos los campos requeridos',
     badTime: 'No ha proporcionado un tiempo correcto',
     badEmail: 'No ha proporcionado una direccion de correo valida',
@@ -42,42 +42,52 @@ var Traduccion={
     max: 'max',
     imageRatioNotAccepted: 'Image ratio is not accepted'
 }
+
 function InicioCarando() {
     $('body').loading({
         message: '<p style="color:#151515 !important;"class="saving">Procesando<span>.</span><span>.</span><span>.</span></p>',
         stoppable: false
     });
 }
+
 function FinCarando() {
     $('body').loading('stop');
 }
+
 var bootstrap = function (evt) {
-    if (evt.target.readyState === "complete") { FinCarando(); }
+    if (evt.target.readyState === "complete") {
+        FinCarando();
+    }
 }
 $(document).ready()
 {
     document.addEventListener('readystatechange', bootstrap, false);
     $.fn.datepicker.languages['es-ES'] = {
         format: 'dd/mm/yyyy',
-        days: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
-        daysShort: ['Dom','Lun','Mar','Mie','Jue','Vie','Sab'],
-        daysMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sa'],
+        days: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+        daysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+        daysMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
         weekStart: 1,
-        months: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
-        monthsShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic']
+        months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
     };
-    var options={
+    var options = {
         language: 'es-ES',
         format: 'dd/mm/yyyy'
     }
     $.fn.datepicker.setDefaults(options);
-    jQuery.validator.addMethod("lettersonly", function(value, element)
-    {
+    jQuery.validator.addMethod("lettersonly", function (value, element) {
         return this.optional(element) || /^[a-z," "]+$/i.test(value);
     }, "Letters and spaces only please");
+    jQuery.validator.addMethod("dateCustom",
+        function (value, element) {
+            return value.match(/^(0?[1-9]|[12][0-9]|3[0-1])[/., -](0?[1-9]|1[0-2])[/., -](19|20)?\d{2}$/);
+        },
+        "Please enter a date in the format!"
+    );
 }
 $(window).bind('beforeunload', function () {
-    if(!$('body').is(':loading') ){
+    if (!$('body').is(':loading')) {
         InicioCarando();
     }
 });
@@ -175,6 +185,23 @@ String.prototype.pad = function (l, s, t) {
 String.prototype.toFloat = function () {
     return isNaN(parseFloat(this.replace(/,/gi, ""))) ? 0 : parseFloat(this.replace(/,/gi, ""));
 }
+/**
+ * @return {string}
+ */
+String.prototype.ConvertirFecha = function () {
+    if (this === "") {
+        return this;
+    }
+    else {
+        var prts = this.split('-')
+        return [prts[2], prts[1], prts[0]].join("/");
+    }
+}
+
+function convertDate(dateString) {
+    var p = dateString.split(/\D/g)
+    return [p[2], p[1], p[0]].join("-")
+}
 
 Date.prototype.convertir = function (fecha, formato) {
     var dia, mes, año
@@ -184,7 +211,8 @@ Date.prototype.convertir = function (fecha, formato) {
     var fecha = new Date(año, mes - 1, dia)
     return fecha
 }
-function validaEntero(txt,e) {//Valida para una caja de texto que solamente se digiten números
+
+function validaEntero(txt, e) {//Valida para una caja de texto que solamente se digiten números
     if (isNaN(String.fromCharCode(e.keyCode)) && !(String.fromCharCode(e.keyCode) == "-" && txt.value.indexOf("-") < 0))
         return false;
     if (String.fromCharCode(e.keyCode) == "-") {
@@ -222,12 +250,14 @@ function validaTexto(e) {//Solo Permite digitar letras y los caracteres especifi
         return true;
     return false;
 }
+
 function validaValorEnt(objTxt) {
     if (isNaN(parseInt(objTxt.value)))
         objTxt.value = ""
     else
         objTxt.value = parseInt(objTxt.value)
 }
+
 function validaValorFlo(objTxt) {
     objTxt.value = objTxt.value.replace(/,/, ".")
     if (isNaN(parseFloat(objTxt.value)))
@@ -294,6 +324,7 @@ function ValidaFormulario(form) {
     }
 
 }
+
 function ResetForm(form, e) {
     e.preventDefault();
     try {
@@ -353,25 +384,31 @@ function ResetForm(form, e) {
         alert(err);
     }
 }
+
 function mensajeValidacion(fallo) {
     this.fallo = fallo;
     this.mensajes = [];
 }
+
 function crearMask(cls) {
 
-    $('.' + cls + '').inputmask({ mask: "+57(999)999-9999", clearIncomplete:true });
+    $('.' + cls + '').inputmask({mask: "+57(999)999-9999", clearIncomplete: true});
 }
+
 function destruirMask(cls) {
     $('.' + cls + '').inputmask('remove');
 }
-function crearDatePick(cls){
+
+function crearDatePick(cls) {
     $('.' + cls + '').datepicker({
         language: 'es-ES'
     });
 }
-function destruirDatePick(cls){
+
+function destruirDatePick(cls) {
     $('.' + cls + '').datepicker('destroy');
 }
+
 $(document).ready(function () {
     $('#iconoMenuTop').mouseover(function () {
         $('#menuTop').attr('class', '');
@@ -400,9 +437,11 @@ $(document).ready(function () {
         }
     })
 });
+
 function cerrarResp() {
     $('#AlertResp').remove();
 }
+
 function alertaError(msg) {
     $.alert({
         title: 'Error!',

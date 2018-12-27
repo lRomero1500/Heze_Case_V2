@@ -1,20 +1,24 @@
 @extends('layouts/layoutGeneral')
 
+@section('headers')
+
+@endsection
+
 @section('content')
     <div class="AreaTrabajo">
         <div class="ContenedorAreaTop">
             <div class="tituloAreaTrabajo">
-                <h3>Mantenimiento/Colaboradores</h3>
+                <h3>Mantenimiento/Proyectos</h3>
             </div>
             <div class="conteedorIconoAreatrabajo">
-                <a id="AddColaborador" style="cursor: pointer;"><i class="iconoAreatrabajo fa fa-plus fa-fw"
-                                                                   aria-hidden="true"></i><h4 class="textIcono">Añadir
+                <a id="AddEmpresa" style="cursor: pointer;"><i class="iconoAreatrabajo fa fa-plus fa-fw"
+                                                               aria-hidden="true"></i><h4 class="textIcono">Añadir
                         Nuevo</h4></a>
             </div>
         </div>
         <div id="formulario" class="contenedorFormsEditCrea" style="display: none">
             <div class="formsCreaEdit">
-                @include('colaboradores.credtColaboradoresEMB')
+                @include('PMlite.credtProyectosEMB')
             </div>
         </div>
         <div id="ContenedorAltertas" class="ConetendorAlertasArea">
@@ -89,22 +93,27 @@
                 <thead>
                 <tr>
                     <th width="2%"><input type="checkbox"/></th>
-                    <th>Colaborador</th>
-                    <th>Cliente</th>
-                    <th>Servicio</th>
+                    <th width="20%">Proyecto</th>
+                    <th width="19%">Empresa</th>
+                    <th width="19%">Telefono</th>
+                    <th width="20%">Correo</th>
+                    <th width="20%">Direccion</th>
                 </tr>
                 </thead>
-                <tbody id="tbColaboradores">
-                @foreach($Colabors as $colaborador)
+                <tbody id="tbCompanias">
+                @foreach($Companias as $compania)
                     <tr>
                         <td><input type="checkbox"/></td>
-                        <td>{!! (explode('/', $colaborador->nombre_Empleado))[2] . ' ' .(explode('/', $colaborador->nombre_Empleado))[3] . ' ' .(explode('/', $colaborador->nombre_Empleado))[0] . ' ' . (explode('/', $colaborador->nombre_Empleado))[1] !!}
-                            <div class="OpcionesTabla"><a onclick="editColaborador({!! $colaborador->cod_Empleado !!});">Editar</a> <span
-                                        class="SeparadorOpcionesTablas">|</span>
-                                <a onclick="eliminarColaborador({!! $colaborador->cod_Empleado !!});">Eliminar</a></div>
+                        <td>{!! $compania->nomb_Companias !!}
+                            <div class="OpcionesTabla"><a onclick="editEmpresa({!! $compania->cod_Companias.',event' !!});">Editar</a>
+                                <span class="SeparadorOpcionesTablas">|</span>
+                                <a onclick="eliminarEmpresa({!! $compania->cod_Companias !!});">Eliminar</a>
+                            </div>
                         </td>
-                        <td>{{$colaborador->compania->nomb_Companias}}</td>
-                        <td>Desarrollo Web</td>
+                        <td>{!! $compania->nit_Companias !!}</td>
+                        <td>{!! $compania->tel_Companias !!}</td>
+                        <td>{!! $compania->correo_companias !!}</td>
+                        <td>{!! $compania->direccion_companias !!}</td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -112,6 +121,12 @@
         </div>
     </div>
 @endsection
+
 @section('scripts')
-    <script src="{{asset('js/Vistas/colaboradores.js')}}"></script>
+
 @endsection
+
+@section('scriptsEMB')
+
+@endsection
+

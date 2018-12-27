@@ -74,7 +74,7 @@ function guardar(e) {
     }
 
 }
-function editColaborador(idUsuario) {
+/*function editColaborador(idUsuario) {
     InicioCarando();
     var url = baseUrl + 'getColaborador/';
     $.ajax({
@@ -124,8 +124,8 @@ function editColaborador(idUsuario) {
             $('#errores').html('Error' + textStatus);
         }
     });
-}
-
+}*/
+/*
 function eliminarColaborador(idColaborador) {
     InicioCarando();
     var url = baseUrl + 'deleteColaborador/';
@@ -210,11 +210,4 @@ function eliminarColaborador(idColaborador) {
             }
         }
     });
-}
-
-function limpiarErrorFecha(obj) {
-    if(obj.value!=""){
-       $($(obj).siblings('label')[0]).remove();
-        $(obj).removeClass('error');
-    }
-}
+}*/

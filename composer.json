@@ -13,6 +13,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
+        "reliese/laravel": "^0.0.13",
         "sven/artisan-view": "3.0.x-dev"
     },
     "require-dev": {
