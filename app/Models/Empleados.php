@@ -11,7 +11,7 @@ class Empleados extends Model
     protected $table = 'cotz_empleados';
     protected $fillable = ['cod_Empleado', 'documentoEmpleado', 'tipo_Doc_Empleado', 'nombre_Empleado', 'sexo_Empleado',
         'fecha_Nac_Empleado','telf_Celular_Empleado', 'telf_Corporativo_Empleado', 'email_contacto', 'email_corporativo',
-        'cod_Companias','porc_Descuento', 'porc_Ganacia'];
+        'cod_Companias','porc_Descuento', 'porc_Ganacia',"departamento_id"];
 
     public function Usuario()
     {
@@ -21,6 +21,10 @@ class Empleados extends Model
     public function compania()
     {
         return $this->belongsTo(Companias::class, 'cod_Companias', 'cod_Companias');
+    }
+    public function departamentos()
+    {
+        return $this->belongsTo(CotzDepartamento::class, 'id', 'departamento_id');
     }
 
     public function tipoDoc()
