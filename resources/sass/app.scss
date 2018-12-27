@@ -35,6 +35,7 @@
   margin: 0px;
   list-style: none;
   font-style: unset;
+    text-decoration: none;
   outline-style: none;
   border: none;
 }
@@ -148,7 +149,7 @@ p{
   padding: 5px 40px 5px 40px;
   border:unset;
   color: #FFFFFF;
-  ffont-family: 'Patua One', cursive!important;
+  font-family: 'Patua One', cursive!important;
   font-size: 16px!important;
 }
 .passForgot{
@@ -234,13 +235,17 @@ p{
 /*Fin Loading*/
 /*estilos LayoutGeneral*/
 /*Cabezera****/
-.headerFrontEnd{
-  position: absolute;
-  top:0;
-  z-index: 9;
-  background: #f7f7f7;
-  width: 100%;
-  height: 60px;
+.headerFrontEnd {
+    position: fixed;
+    top: 0;
+    z-index: 99;
+    background: #f9f9f9;
+    width: 100%;
+    height: 60px;
+    box-shadow: 0 9px 10px -10px rgba(0,0,0,.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 /*Footer****/
 .FooterFrontEnd {
@@ -253,10 +258,12 @@ p{
 }
 
 /*Left*/
-.ContentLeftlogo{
-  float: left;
-  width: 180px;
-  text-align: center;
+.ContentLeftlogo {
+    width: 200px;
+    text-align: center;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
 }
 .ContenedorImgFooter{
   float: right;
@@ -272,29 +279,36 @@ p{
 .imgFooterLogo{
   opacity: 0.3;
 }
-.ContentlogoImg{
-  padding: 10px;
-  width: 85%;
+.ContentlogoImg {
+    max-width: calc(100% - 40px);
+    max-height: calc(100% - 20px);
 }
 /*Right*/
-.ContentRightInfoMenuHeader{
-  width: 220px;
-  float: right;
+.ContentRightInfoMenuHeader {
+    max-width: 320px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: #f9f9f9;
 }
-.Nombre{
-  margin-right: 10px;
-  margin-top: 24px;
-  width: 100px;
-  float: right;
-  text-align: right;
+.Nombre {
+    margin-right: 15px;
+    width: auto;
+    text-align: right;
+}
+.Nombre h5 {
+    line-height: .9;
 }
 .Avatar{
-  margin-top: 5px;
-  margin-right: 10px;
-  height: 50px;
-  width: 50px;
-  float: right;
-  border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
   background-image: -webkit-linear-gradient(top right, #b622b5 10%, #0097f6 90%);
   background-image:    -moz-linear-gradient(top right, #b622b5 10%, #0097f6 90%);
   background-image:      -o-linear-gradient(top right, #b622b5 10%, #0097f6 90%);
@@ -305,59 +319,65 @@ p{
   text-align: center;
   line-height: 0.6em !important;
 }
-.ContentMenuheader{
-  width: 50px;
-  float: right;
-}
-.ContentMenuheader i{
-  font-size: 50px;
+.ContentMenuheader {
+    width: 40px;
+    margin-right: 20px;
+    height: 40px;
 }
 .IconoMenuBar{
-  width: 50px;
-  height: 50px;
-  color: #212121 !important;
+  width: 40px;
+  height: 40px;
+  color: #5B5B5E;
   text-align: right;
 }
-.IconoMenuBar i{
-  position: relative;
-  right: 5px;
-  top: 6px;
+.nav .iconoMenuNav {
+    color: #313539;
+    font-size: 30px;
+    padding: 5px;
+    border-radius: 6px;
+    border: 2px solid #0097F6;
+    transition: 0.3s;
 }
-.nav li ul{
-  display: none;
-  max-height: 0;
-  transition-duration: .3s;
-}
-.nav li:hover ul{
-  display: block;
-  max-height: 500px;
-}
-.nav>li>div>a>i{
-  color: #212121 !important;
-}
-.ContentNavheader{
-  width: 190px;
-  position: relative;
-  right: 140px;
-  top: -3px;
+.ContentMenuheader:hover .iconoMenuNav {
+    background: #313539;
+    color: #F9F9F9;
+    box-shadow: 2px -2px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 6px 6px 0 0;
+    padding-bottom: 18px;
+    border-bottom: 0px solid transparent;
+    transition: 0.3s;
 }
 
-.Flecha{
-  width: 1px;
-  height: 5px;
-  border-bottom: 8px solid #333333;
-  border-top: 0px solid rgba(0,0,0,0.0);
-  border-left: 20px solid rgba(0,0,0,0.0);
-  border-right: 20px solid rgba(0,0,0,0.0);
-  position: relative;
-  margin: auto;
-  left: 66px;
-  transition-duration: .4s;
-  -webkit-transition-duration: .4s;
+.ContentMenuheader:hover .nav > li > ul{
+    top: 57px;
+    transition: 0.3s;
 }
-.Navheader{
-  padding: 10px 10px 10px 20px;
-  background: #333333;
+.nav > li > ul {
+    transition: 0.3s;
+    position: absolute;
+    right: 0;
+    top: -500px;
+    z-index: -1;
+    width: 190px;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+}
+.nav li:hover ul{
+  max-height: 500px;
+}
+.ContentNavheader {
+    display: block;
+    position: relative;
+    width: auto;
+    top: 6px;
+    right: 20px;
+}
+.Navheader {
+    padding: 10px 10px 10px 20px;
+    background: #313539;
+    position: absolute;
+    border-radius: 7px 0 6px 6px;
+    border: 2px solid #0097F6;
+    box-shadow: 2px -2px 4px rgba(0, 0, 0, 0.3);
 }
 .Navheader li i{
   padding-top: 10px;
@@ -420,6 +440,16 @@ p{
 .Navheader li:hover i{
   left: -32px;
 }
+
+
+
+
+
+
+
+
+
+
 @media only screen and (max-width: 500px){
   .Nombre{
     width: 60px;
@@ -448,7 +478,7 @@ p{
   font-size: 50px;
 }
 .ContentLatNav{
-  width: 190px;
+  width: 200px;
   position: relative;
   left: 0px;
 }
@@ -457,23 +487,23 @@ p{
   background: transparent;
 }
 .LatNav li ul:first-of-type{
-  margin: 5px 0 0 0;
+  margin: 2px 0 0 0;
 }
-.LatNav li i{
-  padding-top: 10px;
-  margin: auto;
-  position: relative;
-  z-index: 2;
-  left: -12px;
-  top: -5px;
-  float: left;
-  font-size: 18px;
-  border:2px solid #f7f7f7;
-  border-radius: 50%;
-  background: #212121;
-  height: 30px;
-  width: 40px;
-  text-align: center;
+.LatNav li i {
+    padding-top: 10px;
+    margin: auto;
+    position: relative;
+    z-index: 2;
+    left: -15px;
+    top: -5px;
+    float: left;
+    font-size: 18px;
+    border: 2px solid #f7f7f7;
+    border-radius: 50% 50% 0 0;
+    background: #313539;
+    height: 30px;
+    width: 40px;
+    text-align: center;
 }
 .LatNav li{
   margin: 12px 0px;
@@ -493,28 +523,23 @@ p{
   background: linear-gradient(to right, #b622b5 20%, #0097f6 98%);
 }
 .LatNavpadre {
-  background: #1a2e35;
-  height: 36px;
-}
-.LatNavpadre:hover,.LatNavpadre:active{
-  background: -o-linear-gradient(right, #0288d1, #0097a7);
-  background: -moz-linear-gradient(right, #0288d1, #0097a7);
-  background: linear-gradient(to right, #0288d1 , #0097a7);
-
+    background: #313539;
+    height: auto;
+    z-index: 9;
+    position: relative;
+    width: calc(100% + 13px);
+    left: -13px;
 }
 .LatNavpadre li {
-  margin: 0px 0px;
+  margin: 0px;
   padding: 1px;
-  /*text-align: center;*/
+    position: relative;
 }
 .LatNavpadre li h4{
   position: relative;
   z-index: 1;
   padding: 7px 5px 7px 43px;
   background: transparent;
-  /*background: -o-linear-gradient(right, #0288d1, #0097a7);
-  background: -moz-linear-gradient(right, #0288d1, #0097a7);
-  background: linear-gradient(to right, #0288d1 , #0097a7);*/
 }
 .LatNavpadre li ul{
   visibility: hidden;
@@ -529,22 +554,24 @@ p{
 }
 .LatNavHijo {
   position: relative;
-  top: -40px;
-  left: 9.8em;
-  background: #88a6b0;
+  left: 0;
+  background: #000000;
 
 }
 .LatNavHijo:hover,.LatNavHijo:active{
-  background: -o-linear-gradient(right, #0097a7, #0288d1);
-  background: -moz-linear-gradient(right, #0097a7, #0288d1);
-  background: linear-gradient(to right, #0097a7, #0288d1);
+    background: #333333;
 }
-.LatNavAletasPadres{
-  margin-top: 0.8em!important;
-  position: absolute!important;
-  left: 35px !important;
-  color: #FF5012;
-  font-size: 9pt!important;
+.LatNavAletasPadres {
+    position: absolute;
+    right: 0;
+    color: transparent;
+    font-size: 9pt !important;
+    background: #FF5012;
+    height: 90%;
+    top: 5%;
+    width: 10px;
+    border-radius: 100px 0 0 100px;
+    box-shadow: inset 1px 0px 3px rgba(0,0,0,.6);
 }
 .LatNavAletashijos{
   position: relative;
