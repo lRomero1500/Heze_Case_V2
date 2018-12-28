@@ -22,6 +22,7 @@ Route::get('front/cotizador','frontController@index')->middleware('auth');
 
 //region Control de Acceso
 Route::get('acceso/login','controlAcceso@index')->name('login');
+Route::get('acceso/logout','controlAcceso@logout');
 Route::post('valida', 'controlAcceso@validaUsr');
 Route::post('ingresa','controlAcceso@ingresaUsr');
 //endregion

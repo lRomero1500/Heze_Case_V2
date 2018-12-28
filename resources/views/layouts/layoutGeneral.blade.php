@@ -29,7 +29,7 @@
                 <i class="fas fa-angle-down"></i>
                 <div class="itemMenu">
                     <label>Ver mis datos</label>
-                    <label>Cerrar sesión</label>
+                    <label onclick="window.location.href='acceso/logout'">Cerrar sesión</label>
                 </div>
             </div>
         </div>

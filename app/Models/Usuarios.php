@@ -26,5 +26,13 @@ class Usuarios extends Authenticatable
     public function detalle(){
         return $this->hasMany(RolDetalle::class,'cod_Rol','cod_Rol');
     }
+    public function setAttribute($key, $value)
+    {
+        $isRememberTokenAttribute = $key == $this->getRememberTokenName();
+        if (!$isRememberTokenAttribute)
+        {
+            parent::setAttribute($key, $value);
+        }
+    }
 }
 
