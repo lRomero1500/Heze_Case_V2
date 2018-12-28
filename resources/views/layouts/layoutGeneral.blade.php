@@ -22,6 +22,13 @@
                 echo $nombre;
                 ?>
             </h5>
+            <div class="contMenuUsuario">
+                <i class="fas fa-angle-down"></i>
+                <div class="itemMenu">
+                    <label>Ver mis datos</label>
+                    <label>Cerrar sesión</label>
+                </div>
+            </div>
         </div>
         <div class="Avatar">
             <h1>
@@ -61,7 +68,7 @@
         </div>
     </div>
 </header>
-<div style="width: 100%;position: relative;	top:3.8em">
+<div class="contGeneral">
     <div class="ContenedorMenuLateral">
         <div class="ContentMenuLat">
             <div class="ContentLatNav">
@@ -108,7 +115,7 @@
 
 </div>
 
-<footer style="position: absolute!important" class="FooterFrontEnd">
+<footer class="FooterFrontEnd">
     <div class="ContenedorTextDerechosFooter">
         <p class="TextDerechosFooter">&copy {!! date('Y') !!} Creado por Grupo Arcia S.A.S- Prohibida su reproducción
             total o parcial | <a href="https://arciait.com" class="red">Arciait</a></p>
