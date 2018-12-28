@@ -38,6 +38,6 @@
 @endsection
 
 @section('scripts')
-    <script src="{!! URL::to('js/Vistas/login.js') !!}"></script>
+    <script src="{!! asset('js/Vistas/ControlAcceso/login.js')!!}"></script>
 @endsection
 

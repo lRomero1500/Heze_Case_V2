@@ -9,7 +9,7 @@ function guardar(e) {
     }
     else {
         var data = $('#colaborador').serialize();
-        var url = baseUrl + 'CreaEditColaborador';
+        var url = baseUrl + 'mantenimiento/creaEditColaboradores';
         $.post({
             url: url,
             data: data,
@@ -76,7 +76,7 @@ function guardar(e) {
 }
 function editColaborador(idUsuario) {
     InicioCarando();
-    var url = baseUrl + 'getColaborador/';
+    var url = baseUrl + 'mantenimiento/getColaborador';
     $.ajax({
         type: "GET",
         url: url + idUsuario,
@@ -128,7 +128,7 @@ function editColaborador(idUsuario) {
 
 function eliminarColaborador(idColaborador) {
     InicioCarando();
-    var url = baseUrl + 'deleteColaborador/';
+    var url = baseUrl + 'mantenimiento/delColaborador/';
     var parametros = {id: idColaborador};
     $.confirm({
         title: 'Confirmación!',

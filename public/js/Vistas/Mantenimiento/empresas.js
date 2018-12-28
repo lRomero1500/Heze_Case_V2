@@ -25,7 +25,7 @@ function guardar(e) {
     }
     else {
         var data = $('#empresa').serialize();
-        var url = baseUrl + 'CreaEditEmpresa';
+        var url = baseUrl + 'mantenimiento/creaEditEmpresas';
         $.post({
             url: url,
             data: data,
@@ -90,7 +90,7 @@ function guardar(e) {
 
 function editEmpresa(idEmpresa, e) {
     InicioCarando();
-    var url = baseUrl + 'getEmpresa/';
+    var url = baseUrl + 'mantenimiento/getEmpresa/';
     $.ajax({
         type: "GET",
         url: url + idEmpresa,
@@ -126,7 +126,7 @@ function editEmpresa(idEmpresa, e) {
 
 function eliminarEmpresa(idEmpresa) {
     InicioCarando();
-    var url = baseUrl + 'deleteEmpresa/';
+    var url = baseUrl + 'mantenimiento/delEmpresa/';
     var parametros = {id: idEmpresa};
     $.confirm({
         title: 'Confirmación!',

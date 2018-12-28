@@ -1,4 +1,4 @@
-@extends('layouts/layoutGeneral')
+@extends('layouts.layoutGeneral')
 
 @section('content')
     <div class="AreaTrabajo">
@@ -14,7 +14,7 @@
         </div>
         <div id="formulario" class="contenedorFormsEditCrea" style="display: none">
             <div class="formsCreaEdit">
-                @include('colaboradores.credtColaboradoresEMB')
+                @include('Mantenimiento.colaboradores.credtColaboradoresEMB')
             </div>
         </div>
         <div id="ContenedorAltertas" class="ConetendorAlertasArea">
@@ -113,5 +113,5 @@
     </div>
 @endsection
 @section('scripts')
-    <script src="{{asset('js/Vistas/colaboradores.js')}}"></script>
+    <script src="{{asset('js/Vistas/Mantenimiento/colaboradores.js')}}"></script>
 @endsection
