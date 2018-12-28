@@ -8328,14 +8328,35 @@ p {
 
 /*Left*/
 .ContentLeftlogo {
-  width: 200px;
-  text-align: center;
-  height: 60px;
-  justify-content: center;
-  align-items: center;
+    width: auto;
+    text-align: center;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
     display: flex;
 }
-
+.contInBox {
+    margin-left: 29px;
+    position: relative;
+}
+.contInBox i {
+    font-size: 30px;
+    color: #313539;
+    cursor: pointer;
+}
+.contInBox:after {
+    content: '1';
+    width: 20px;
+    height: 20px;
+    background: #FE5012;
+    color: #fff;
+    display: block;
+    position: absolute;
+    bottom: -5px;
+    right: -8px;
+    border-radius: 50%;
+    cursor: pointer;
+}
 .ContenedorImgFooter {
     position: absolute;
     padding: 0 10px 10px 0;
@@ -8470,7 +8491,7 @@ p {
 
 .nav .iconoMenuNav {
   color: #313539;
-  font-size: 30px;
+  font-size: 27px;
   padding: 5px;
   border-radius: 6px;
   border: 2px solid #0097F6;
@@ -8482,7 +8503,7 @@ p {
   color: #F9F9F9;
   box-shadow: 2px -2px 4px rgba(0, 0, 0, 0.3);
   border-radius: 6px 6px 0 0;
-  padding-bottom: 18px;
+  padding-bottom: 21px;
   border-bottom: 0px solid transparent;
   transition: 0.3s;
 }
@@ -8511,7 +8532,7 @@ p {
   position: relative;
   width: auto;
   top: 6px;
-  right: 20px;
+  right: 23px;
 }
 
 .Navheader {

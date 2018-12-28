@@ -13,6 +13,9 @@
 <header class="headerFrontEnd">
     <div class="ContentLeftlogo">
         <img class="ContentlogoImg" src="Img/Logo_Header_arcia.png">
+        <div class="contInBox">
+            <i class="fas fa-envelope"></i>
+        </div>
     </div>
     <div class="ContentRightInfoMenuHeader">
         <div class="Nombre">
