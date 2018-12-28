@@ -27,8 +27,16 @@ class AppServiceProvider extends ServiceProvider
             $menu = Session::get('menu');
             if ($ruta != 'acceso/login') {
                 $menuSelect= $menu->where('url_menu',$ruta)->first();
-                $menuFiltrado=$menu->where('pos_menu',1)->where('cod_menu_padre',$menuSelect->cod_menu);
-                $view->with('menuOpciones',$menuFiltrado);
+                if($menuSelect->cod_menu_padre!=0){
+                    $menuFiltrado=$menu->where('pos_menu',1)->where('cod_menu_padre',$menuSelect->cod_menu_padre);
+                    $view->with('menuOpciones',$menuFiltrado);
+                    $view->with('activo',$menuSelect->cod_menu);
+                }
+                else{
+                    $menuFiltrado=$menu->where('pos_menu',1)->where('cod_menu_padre',$menuSelect->cod_menu);
+                    $view->with('menuOpciones',$menuFiltrado);
+                    $view->with('activo',0);
+                }
             }
         });
     }
