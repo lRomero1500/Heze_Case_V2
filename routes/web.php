@@ -39,6 +39,7 @@ Route::post('mantenimiento/creaEditColaboradores', 'mantenimiento@creaEditColabo
 Route::post('mantenimiento/delEmpresa/{id}','mantenimiento@delEmpresa');
 Route::post('mantenimiento/delColaborador/{id}','mantenimiento@delColaborador');
 //endregion
+Route::get('pmlite','pmlite@index')->middleware('auth');
 //region Error
 Route::get('error','ErrorController@index');
 //endregion
