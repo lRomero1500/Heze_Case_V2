@@ -8547,6 +8547,7 @@ p {
 
 .Navheader > li > a {
     position: relative;
+    display: block;
 }
 
 .Navheader li i {
