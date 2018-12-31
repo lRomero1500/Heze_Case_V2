@@ -28,9 +28,14 @@ class AppServiceProvider extends ServiceProvider
             if ($ruta != 'acceso/login') {
                 $menuSelect = $menu->where('url_menu', $ruta)->first();
                 if ($menuSelect->cod_menu_padre != 0) {
+                    do{
+                        if($menuSelect->cod_menu_padre!=0){
+                            $menuSelect=$menu->where('cod_menu', $menuSelect->cod_menu_padre)->first();
+                        }
+                    }while($menuSelect->cod_menu_padre!=0);
                     $menuFiltrado = $menu->where('pos_menu', 1)
-                        ->where('cod_menu_padre', $menuSelect->cod_menu_padre);
-                    $menAdicionales = $menu->whereIn('cod_menu_padre', $menu->where('cod_menu_padre', $menuSelect->cod_menu_padre)->pluck('cod_menu'));
+                        ->where('cod_menu_padre', $menuSelect->cod_menu);
+                    $menAdicionales = $menu->whereIn('cod_menu_padre', $menu->where('cod_menu_padre', $menuSelect->cod_menu)->pluck('cod_menu'));
 
                     $view->with('menuOpciones', $menuFiltrado);
                     $view->with('menuOpcionesHijos', $menAdicionales);
@@ -58,4 +63,5 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register(CodersServiceProvider::class);
         }
     }
+
 }
