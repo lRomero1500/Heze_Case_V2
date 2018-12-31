@@ -26,19 +26,22 @@ class AppServiceProvider extends ServiceProvider
             $ruta = Route::getFacadeRoot()->current()->uri();
             $menu = Session::get('menu');
             if ($ruta != 'acceso/login') {
-                $menuSelect= $menu->where('url_menu',$ruta)->first();
-                if($menuSelect->cod_menu_padre!=0){
-                    $menuFiltrado= $menu->where('pos_menu',1)
-                                        ->where('cod_menu_padre',$menuSelect->cod_menu_padre);
-                    $menAdicionales=$menu->whereIn('cod_menu_padre',$menu->where('cod_menu_padre',$menuSelect->cod_menu_padre)->pluck('cod_menu'));
-                    $menuFiltrado = $menuFiltrado->union($menAdicionales);
-                    $view->with('menuOpciones',$menuFiltrado);
-                    $view->with('activo',$menuSelect->cod_menu);
-                }
-                else{
-                    $menuFiltrado=$menu->where('pos_menu',1)->where('cod_menu_padre',$menuSelect->cod_menu);
-                    $view->with('menuOpciones',$menuFiltrado);
-                    $view->with('activo',0);
+                $menuSelect = $menu->where('url_menu', $ruta)->first();
+                if ($menuSelect->cod_menu_padre != 0) {
+                    $menuFiltrado = $menu->where('pos_menu', 1)
+                        ->where('cod_menu_padre', $menuSelect->cod_menu_padre);
+                    $menAdicionales = $menu->whereIn('cod_menu_padre', $menu->where('cod_menu_padre', $menuSelect->cod_menu_padre)->pluck('cod_menu'));
+
+                    $view->with('menuOpciones', $menuFiltrado);
+                    $view->with('menuOpcionesHijos', $menAdicionales);
+                    $view->with('activo', $menuSelect->cod_menu);
+                } else {
+                    $menuFiltrado = $menu->where('pos_menu', 1)->where('cod_menu_padre', $menuSelect->cod_menu);
+                    $menAdicionales = $menu->whereIn('cod_menu_padre', $menu->where('cod_menu_padre', $menuSelect->cod_menu_padre)->pluck('cod_menu'));
+
+                    $view->with('menuOpciones', $menuFiltrado);
+                    $view->with('menuOpcionesHijos', $menAdicionales);
+                    $view->with('activo', $menuSelect->cod_menu);
                 }
             }
         });
