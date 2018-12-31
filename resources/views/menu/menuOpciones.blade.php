@@ -5,28 +5,35 @@
                         class="{!! $item2->url_icono !!}"></i>
                 <h4>{!! $item2->nom_menu !!}</h4></a>
             @if(($menuOpcionesHijos->where('cod_menu_padre',$item2->cod_menu)->where('pos_menu',1))->count()>0)
-                @foreach(($menuOpcionesHijos->where('cod_menu_padre',$item2->cod_menu)->where('pos_menu',1)) as $item3)
-                    <ul class="LatNavpadre">
+                <ul class="LatNavpadre">
+                    @foreach(($menuOpcionesHijos->where('cod_menu_padre',$item2->cod_menu)->where('pos_menu',1)) as $item3)
+
                         <li>
                             <p class="fa fa-circle fa-fw LatNavAletasPadres"></p><a
-                                    style="color: #f7f7f7 !important"  href="{!! $item3->url_menu !!}"><h4>{!! $item3->nom_menu !!}</h4></a>
+                                    style="color: #f7f7f7 !important" href="{!! $item3->url_menu !!}">
+                                <h4>{!! $item3->nom_menu !!}</h4></a>
                         </li>
-                    </ul>
-                @endforeach
+
+                    @endforeach
+                </ul>
             @endif
 
         @else
-            <a style="color: #f7f7f7 !important" href="{!! $item2->url_menu !!}"><i class="{!! $item2->url_icono !!}"></i>
+            <a style="color: #f7f7f7 !important" href="{!! $item2->url_menu !!}"><i
+                        class="{!! $item2->url_icono !!}"></i>
                 <h4>{!! $item2->nom_menu !!}</h4></a>
             @if(($menuOpcionesHijos->where('cod_menu_padre',$item2->cod_menu)->where('pos_menu',1))->count()>0)
-                @foreach(($menuOpcionesHijos->where('cod_menu_padre',$item2->cod_menu)->where('pos_menu',1)) as $item3)
-                    <ul class="LatNavpadre">
+                <ul class="LatNavpadre">
+                    @foreach(($menuOpcionesHijos->where('cod_menu_padre',$item2->cod_menu)->where('pos_menu',1)) as $item3)
+
                         <li>
                             <p class="fa fa-circle fa-fw LatNavAletasPadres"></p><a
-                                    style="color: #f7f7f7 !important"  href="{!! $item3->url_menu !!}"><h4>{!! $item3->nom_menu !!}</h4></a>
+                                    style="color: #f7f7f7 !important" href="{!! $item3->url_menu !!}">
+                                <h4>{!! $item3->nom_menu !!}</h4></a>
                         </li>
-                    </ul>
-                @endforeach
+
+                    @endforeach
+                </ul>
             @endif
         @endif
     </li>
