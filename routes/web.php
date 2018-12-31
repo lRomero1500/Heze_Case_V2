@@ -40,7 +40,13 @@ Route::post('mantenimiento/creaEditColaboradores', 'mantenimiento@creaEditColabo
 Route::post('mantenimiento/delEmpresa/{id}','mantenimiento@delEmpresa');
 Route::post('mantenimiento/delColaborador/{id}','mantenimiento@delColaborador');
 //endregion
+//region Pmlite
 Route::get('pmlite','pmlite@index')->middleware('auth');
+Route::get('pmlite/proyectos/ver','pmlite@proyectoVer')->middleware('auth');
+Route::get('pmlite/proyectos/crear','pmlite@proyectoCrear')->middleware('auth');
+Route::get('pmlite/tareas/ver','pmlite@tareaVer')->middleware('auth');
+Route::get('pmlite/tareas/crear','pmlite@tareaCrear')->middleware('auth');
+//endregion
 //region Error
 Route::get('error','ErrorController@index');
 //endregion
