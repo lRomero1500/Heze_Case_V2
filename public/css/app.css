@@ -8131,7 +8131,7 @@ h4 {
 
 h5 {
   font-size: 15px;
-  line-height: 40px;
+  line-height: 20px;
   font-weight: 300;
   color: #263238;
 }
@@ -8881,10 +8881,11 @@ p {
 }
 
 .formsCreaEdit {
-  padding: 20px;
-  width: calc(100% - 50px);
-  border: 1px solid #dddddd;
-  margin-bottom: 0.5em;
+    padding: 20px;
+    width: calc(100% - 52px);
+    border: 1px solid #dddddd;
+    margin-bottom: 30px;
+    position: relative;
 }
 
 .AlertasAreaNoError {
@@ -9172,13 +9173,26 @@ p {
 }
 
 .contenedorDeCampos {
-  padding: 10px;
-  width: 100%;
+    padding: 10px;
+    width: 100%;
+    font-size: 0;
 }
 
 .campoCorto {
-  width: 175px;
-  float: left;
+    width: 25%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.campoCorto label[for=logo_companias] {
+    border: 1px solid #999999 !important;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 2px;
+    width: calc(100% - 36px);
+    margin: 5px;
+    display: block;
 }
 
 .contenedorDeCampos h5 {
@@ -9186,10 +9200,13 @@ p {
 }
 
 .contenedorDeCampos input {
-  border: 1px solid #707070;
-  font-size: 13px;
-  font-weight: 700;
-  padding: 3px 2px 3px 8px;
+    border: 1px solid #999999;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 2px;
+    width: calc(100% - 36px);
+    margin: 5px;
 }
 
 .contenedorDeCampos select {
@@ -9198,25 +9215,26 @@ p {
 }
 
 .contentFormulario3Colomnas {
-  width: 525px;
-  padding: 20px 10px 10px 20px;
-  display: inline-block;
+    width: calc(100%);
+    padding: 20px 10px 10px 20px;
+    display: inline-block;
+    font-size: 0;
 }
 
 /*************Botones************/
 .btnGuardar {
-  display: inline-block;
-  bottom: -122px;
-  position: relative;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 .btnGuardar button {
-  background: linear-gradient(to right, #0097f6, #b622b5);
-  cursor: pointer;
-  border: none;
-  padding: 0px 2px;
-  transition-duration: 0.6s;
-  -webkit-transition-duration: 0.6s;
+    background: linear-gradient(to right, #0097f6, #b622b5);
+    cursor: pointer;
+    border: none;
+    padding: 6px 12px;
+    transition-duration: 0.6s;
+    -webkit-transition-duration: 0.6s;
 }
 
 .btnGuardar button:hover {
