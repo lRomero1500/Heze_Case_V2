@@ -8378,8 +8378,9 @@ p {
 }
 
 .ContentlogoImg {
-  max-width: calc(100% - 40px);
-  max-height: calc(100% - 20px);
+    max-width: calc(100% - 40px);
+    max-height: calc(100% - 20px);
+    margin-left: 30px;
 }
 
 /*Right*/
@@ -8811,6 +8812,7 @@ p {
     width: calc(100% - 210px);
     display: inline-block;
     vertical-align: top;
+    font-size: initial;
 }
 
 /*
