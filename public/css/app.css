@@ -8656,7 +8656,7 @@ p {
     left: 5px;
     top: -5px;
     float: left;
-    font-size: 18px;
+    font-size: 20px;
     border: 2px solid #f7f7f7;
     border-radius: 50%;
     background: #313539;
@@ -8665,6 +8665,9 @@ p {
     text-align: center;
     transition: .3s;
     transition-delay: .2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .LatNav > li {
