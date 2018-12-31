@@ -1,4 +1,4 @@
-@extends('layouts/layoutGeneral')
+@extends('layouts.layoutGeneral')
 
 @section('headers')
 

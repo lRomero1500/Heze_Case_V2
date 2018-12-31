@@ -1,14 +1,10 @@
-@extends('layouts/layoutGeneral')
-
-@section('headers')
-
-@endsection
+@extends('layouts.layoutGeneral')
 
 @section('content')
     <div class="AreaTrabajo">
         <div class="ContenedorAreaTop">
             <div class="tituloAreaTrabajo">
-                <h3>Mantenimiento/Departamentos</h3>
+                <h3>Mantenimiento/Empresas</h3>
             </div>
             <div class="conteedorIconoAreatrabajo">
                 <a id="AddEmpresa" style="cursor: pointer;"><i class="iconoAreatrabajo fa fa-plus fa-fw"
@@ -18,7 +14,7 @@
         </div>
         <div id="formulario" class="contenedorFormsEditCrea" style="display: none">
             <div class="formsCreaEdit">
-                @include('departamentos.credtDepartamentosEMB')
+                @include('Mantenimiento.empresas.credtEmpresasEMB')
             </div>
         </div>
         <div id="ContenedorAltertas" class="ConetendorAlertasArea">
@@ -63,7 +59,7 @@
             </div>
             <div class="GrupoOpcionesFiltro">
                 <select class="ControlesOpciones">
-                    <option>Todas los Departamentos</option>
+                    <option>Todas las Empresas</option>
                     <option>2</option>
                     <option>3</option>
                     <option>4</option>
@@ -93,12 +89,15 @@
                 <thead>
                 <tr>
                     <th width="2%"><input type="checkbox"/></th>
-                    <th width="20%">Departamento</th>
-                    <th width="19%">Empresa</th>
+                    <th width="20%">Empresa</th>
+                    <th width="19%">Nit</th>
+                    <th width="19%">Telefono</th>
+                    <th width="20%">Correo</th>
+                    <th width="20%">Direccion</th>
                 </tr>
                 </thead>
                 <tbody id="tbCompanias">
-               {{-- @foreach($Companias as $compania)
+                @foreach($Companias as $compania)
                     <tr>
                         <td><input type="checkbox"/></td>
                         <td>{!! $compania->nomb_Companias !!}
@@ -108,19 +107,16 @@
                             </div>
                         </td>
                         <td>{!! $compania->nit_Companias !!}</td>
+                        <td>{!! $compania->tel_Companias !!}</td>
+                        <td>{!! $compania->correo_companias !!}</td>
+                        <td>{!! $compania->direccion_companias !!}</td>
                     </tr>
-                @endforeach--}}
+                @endforeach
                 </tbody>
             </table>
         </div>
     </div>
 @endsection
-
 @section('scripts')
-
+    <script src="{{asset('js/Vistas/Mantenimiento/empresas.js')}}"></script>
 @endsection
-
-@section('scriptsEMB')
-
-@endsection
-

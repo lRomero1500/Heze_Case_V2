@@ -6,6 +6,7 @@ use App\Models\Empleados;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Support\Facades\Redirect;
@@ -94,6 +95,11 @@ class controlAcceso extends Controller
         }
     }
 
+    public function logout(){
+        Auth::logout();
+        Session::flush();
+        return Redirect::route('login');
+    }
     public function loginPath()
     {
         return route('/');
