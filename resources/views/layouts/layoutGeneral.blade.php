@@ -7,6 +7,7 @@
     <meta name="token" content="{{ csrf_token() }}">
     <base href="{!! URL::to('/').'/' !!}"/>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/freddy.css') }}" rel="stylesheet" type="text/css" />
     @yield('headers')
 </head>
 <body>
