@@ -42,10 +42,13 @@
             </div>
         </div>
     </div>
-    <div class="btnGuardar" style="display: inline-block;">
-        <button type="button" id="btnGuardar" style="color: #ffffff !important;" onclick="guardar(event);"><i
+    <div class="btnGuardar">
+        <button type="button" id="btnGuardar" onclick="guardar(event);"><i
                     class="fa fa-floppy-o btnIconComun"></i>
             <p> Guardar datos</p></button>
+    </div>
+    <div id="cerrarForm" class="btnCerrar">
+        <button type="button" id="btnCerrar"></button>
     </div>
     <div id="errores" style="visibility: hidden">
 

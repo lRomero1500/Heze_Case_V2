@@ -25,17 +25,18 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function ($view) {
             $ruta = Route::getFacadeRoot()->current()->uri();
             $menu = Session::get('menu');
-            if ($ruta != 'acceso/login') {
+            if ($ruta !== 'acceso/login' && $ruta !== 'Usuario/misdatos') {
+                $menuPadreReal = null;
                 $menuSelect = $menu->where('url_menu', $ruta)->first();
-                if ($menuSelect->cod_menu_padre != 0) {
-                    do{
-                        if($menuSelect->cod_menu_padre!=0){
-                            $menuSelect=$menu->where('cod_menu', $menuSelect->cod_menu_padre)->first();
-                        }
-                    }while($menuSelect->cod_menu_padre!=0);
+                if ($menuSelect->cod_menu_padre !== 0) {
+                    $menPadAnt = $menuSelect->cod_menu_padre;
+                    do {
+                        $menuPadreReal = $menu->where('cod_menu', $menPadAnt)->first();
+                        $menPadAnt =$menuPadreReal ->cod_menu_padre;
+                    } while ($menuPadreReal->cod_menu_padre !== 0);
                     $menuFiltrado = $menu->where('pos_menu', 1)
-                        ->where('cod_menu_padre', $menuSelect->cod_menu);
-                    $menAdicionales = $menu->whereIn('cod_menu_padre', $menu->where('cod_menu_padre', $menuSelect->cod_menu)->pluck('cod_menu'));
+                        ->where('cod_menu_padre', $menuPadreReal ->cod_menu);
+                    $menAdicionales = $menu->whereIn('cod_menu_padre', $menu->where('cod_menu_padre', $menuPadreReal->cod_menu)->pluck('cod_menu'));
 
                     $view->with('menuOpciones', $menuFiltrado);
                     $view->with('menuOpcionesHijos', $menAdicionales);
@@ -63,5 +64,4 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register(CodersServiceProvider::class);
         }
     }
-
 }

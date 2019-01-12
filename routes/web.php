@@ -26,6 +26,10 @@ Route::get('acceso/logout','controlAcceso@logout');
 Route::post('valida', 'controlAcceso@validaUsr');
 Route::post('ingresa','controlAcceso@ingresaUsr');
 //endregion
+//region Control de Acceso
+Route::get('Usuario/misdatos','Usuarios@index');
+//endregion
+
 //region Lobby
 Route::get('/','lobby@index')->middleware('auth');
 //endregion

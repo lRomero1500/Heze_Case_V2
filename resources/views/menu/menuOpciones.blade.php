@@ -8,12 +8,11 @@
                 <ul class="LatNavpadre">
                     @foreach(($menuOpcionesHijos->where('cod_menu_padre',$item2->cod_menu)->where('pos_menu',1)) as $item3)
 
-                        <li>
-                            <p class="fa fa-circle fa-fw LatNavAletasPadres"></p><a
-                                    style="color: #f7f7f7 !important" href="{!! $item3->url_menu !!}">
-                                <h4>{!! $item3->nom_menu !!}</h4></a>
-                        </li>
-
+                            <li>
+                                <p class="fa fa-circle fa-fw LatNavAletasPadres"></p><a
+                                        style="color: #f7f7f7 !important" href="{!! $item3->url_menu !!}">
+                                    <h4>{!! $item3->nom_menu !!}</h4></a>
+                            </li>
                     @endforeach
                 </ul>
             @endif
@@ -26,11 +25,20 @@
                 <ul class="LatNavpadre">
                     @foreach(($menuOpcionesHijos->where('cod_menu_padre',$item2->cod_menu)->where('pos_menu',1)) as $item3)
 
-                        <li>
-                            <p class="fa fa-circle fa-fw LatNavAletasPadres"></p><a
-                                    style="color: #f7f7f7 !important" href="{!! $item3->url_menu !!}">
-                                <h4>{!! $item3->nom_menu !!}</h4></a>
-                        </li>
+                        @if($item3->cod_menu==$activo)
+                            <li>
+                                <p class="fa fa-circle fa-fw LatNavAletasPadres"></p><a
+                                        style="color: #f7f7f7 !important" href="{!! $item3->url_menu !!}"
+                                        class="opcionMenuActivo">
+                                    <h4>{!! $item3->nom_menu !!}</h4></a>
+                            </li>
+                        @else
+                            <li>
+                                <p class="fa fa-circle fa-fw LatNavAletasPadres"></p><a
+                                        style="color: #f7f7f7 !important" href="{!! $item3->url_menu !!}">
+                                    <h4>{!! $item3->nom_menu !!}</h4></a>
+                            </li>
+                        @endIf
 
                     @endforeach
                 </ul>

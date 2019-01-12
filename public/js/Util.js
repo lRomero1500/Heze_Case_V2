@@ -191,8 +191,7 @@ String.prototype.toFloat = function () {
 String.prototype.ConvertirFecha = function () {
     if (this === "") {
         return this;
-    }
-    else {
+    } else {
         var prts = this.split('-')
         return [prts[2], prts[1], prts[0]].join("/");
     }
@@ -283,31 +282,27 @@ function ValidaFormulario(form) {
                             item.setAttribute('style', 'border-color:red');
                         }
 
-                    }
-                    else if (item.type == 'checkbox') {
+                    } else if (item.type == 'checkbox') {
+                        if (item.checked == false) {
+                            resp.fallo = true;
+                            resp.mensajes.push("Complete los campos en rojo");
+                            item.setAttribute('style', 'border-color:red');
+                        }
+                    } else if (item.type == 'radio') {
                         if (item.checked == false) {
                             resp.fallo = true;
                             resp.mensajes.push("Complete los campos en rojo");
                             item.setAttribute('style', 'border-color:red');
                         }
                     }
-                    else if (item.type == 'radio') {
-                        if (item.checked == false) {
-                            resp.fallo = true;
-                            resp.mensajes.push("Complete los campos en rojo");
-                            item.setAttribute('style', 'border-color:red');
-                        }
-                    }
-                }
-                else if (item.tagName == 'SELECT') {
+                } else if (item.tagName == 'SELECT') {
                     item.setAttribute('style', 'background-color: #fff;');
                     if (item.value == "0") {
                         resp.fallo = true;
                         resp.mensajes.push("Complete los campos en rojo");
                         item.setAttribute('style', 'background-color: #ffcb75;');
                     }
-                }
-                else if (item.tagName == 'TEXTAREA') {
+                } else if (item.tagName == 'TEXTAREA') {
                     item.setAttribute('style', 'background-color: #fff;');
                     if (item.value == "") {
                         resp.fallo = true;
@@ -318,8 +313,7 @@ function ValidaFormulario(form) {
             }
         });
         return resp;
-    }
-    catch (err) {
+    } catch (err) {
         alert(err);
     }
 
@@ -339,39 +333,33 @@ function ResetForm(form, e) {
                     if (item.value != "") {
                         item.value = "";
                     }
-                }
-                else if (item.type == 'email') {
+                } else if (item.type == 'email') {
                     item.setAttribute('style', 'background-color: #fff;');
                     if (item.value != "") {
                         item.value = "";
                     }
-                }
-                else if (item.type == 'password') {
+                } else if (item.type == 'password') {
                     item.setAttribute('style', 'background-color: #fff;');
                     if (item.value != "") {
                         item.value = "";
                     }
-                }
-                else if (item.type == 'checkbox') {
+                } else if (item.type == 'checkbox') {
+                    item.setAttribute('style', 'background-color: #fff;');
+                    if (item.checked != false) {
+                        item.checked = false;
+                    }
+                } else if (item.type == 'radio') {
                     item.setAttribute('style', 'background-color: #fff;');
                     if (item.checked != false) {
                         item.checked = false;
                     }
                 }
-                else if (item.type == 'radio') {
-                    item.setAttribute('style', 'background-color: #fff;');
-                    if (item.checked != false) {
-                        item.checked = false;
-                    }
-                }
-            }
-            else if (item.tagName == 'SELECT') {
+            } else if (item.tagName == 'SELECT') {
                 item.setAttribute('style', 'background-color: #fff;');
                 if (item.value != "0") {
                     item.value = "0"
                 }
-            }
-            else if (item.tagName == 'TEXTAREA') {
+            } else if (item.tagName == 'TEXTAREA') {
                 item.setAttribute('style', 'background-color: #fff;');
                 if (item.value != "") {
                     item.value = "";
@@ -379,8 +367,7 @@ function ResetForm(form, e) {
             }
         });
 
-    }
-    catch (err) {
+    } catch (err) {
         alert(err);
     }
 }
@@ -424,9 +411,14 @@ $(document).ready(function () {
     });
 
     $('#AddEmpresa').click(function (e) {
-        if ($('#formulario').css('display') == 'none') {
+        if ($('#formulario').css('display') === 'none') {
             $('#formulario').css('display', '');
             crearMask('tel');
+            $('#cerrarForm').click(function (e) {
+                destruirMask('tel');
+                $('#formulario').trigger("reset");
+                $('#formulario').css('display', 'none');
+            });
         }
     })
     $('#AddColaborador').click(function (e) {
@@ -434,6 +426,12 @@ $(document).ready(function () {
             $('#formulario').css('display', '');
             crearMask('tel');
             crearDatePick('dat');
+            $('#cerrarForm').click(function (e) {
+                destruirMask('tel');
+                destruirDatePick('dat');
+                $('#formulario').trigger("reset");
+                $('#formulario').css('display', 'none');
+            });
         }
     })
 });

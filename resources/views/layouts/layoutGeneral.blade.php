@@ -7,6 +7,7 @@
     <meta name="token" content="{{ csrf_token() }}">
     <base href="{!! URL::to('/').'/' !!}"/>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/freddy.css') }}" rel="stylesheet" type="text/css" />
     @yield('headers')
 </head>
 <body>
@@ -28,7 +29,7 @@
             <div class="contMenuUsuario">
                 <i class="fas fa-angle-down"></i>
                 <div class="itemMenu">
-                    <label>Ver mis datos</label>
+                    <label onclick="window.location.href='Usuario/misdatos'">Ver mis datos</label>
                     <label onclick="window.location.href='acceso/logout'">Cerrar sesión</label>
                 </div>
             </div>
