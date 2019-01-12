@@ -29,7 +29,7 @@
             <div class="contMenuUsuario">
                 <i class="fas fa-angle-down"></i>
                 <div class="itemMenu">
-                    <label>Ver mis datos</label>
+                    <label onclick="window.location.href='Usuario/misdatos'">Ver mis datos</label>
                     <label onclick="window.location.href='acceso/logout'">Cerrar sesión</label>
                 </div>
             </div>

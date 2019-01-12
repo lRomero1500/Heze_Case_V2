@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function ($view) {
             $ruta = Route::getFacadeRoot()->current()->uri();
             $menu = Session::get('menu');
-            if ($ruta !== 'acceso/login') {
+            if ($ruta !== 'acceso/login' && $ruta !== 'Usuario/misdatos') {
                 $menuPadreReal = null;
                 $menuSelect = $menu->where('url_menu', $ruta)->first();
                 if ($menuSelect->cod_menu_padre !== 0) {
