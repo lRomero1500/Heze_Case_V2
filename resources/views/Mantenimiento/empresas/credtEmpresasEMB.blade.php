@@ -47,7 +47,7 @@
                     class="fa fa-floppy-o btnIconComun"></i>
             <p> Guardar datos</p></button>
     </div>
-    <div class="btnCerrar">
+    <div id="cerrarForm" class="btnCerrar">
         <button type="button" id="btnCerrar"></button>
     </div>
     <div id="errores" style="visibility: hidden">
