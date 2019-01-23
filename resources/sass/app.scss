@@ -1539,6 +1539,7 @@ div.contBtnWizard label {
     background: #313539;
     color: #ffffff;
     text-transform: uppercase;
+    transition: .4s;
 }
 div.contBtnWizard label ~ label {
     margin: 0 0 0 5px;
@@ -1648,5 +1649,8 @@ button[name="irAtrasWizard"]:hover{
 
 button[name="irAtrasWizard"]:hover:after, button[name="irAtrasWizard"]:hover:before{
     left: 7px;
+}
+
+div.linea{
 }
 /*Fin estilos Wizard*/

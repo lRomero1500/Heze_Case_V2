@@ -52,29 +52,37 @@
 
             </div>
             <div class="contContenidoWizard" id="contContenidoWizard">
-                <div class="cantenidoWizard uno" name="cantenidoWizard">
+                <div class="cantenidoWizard" name="cantenidoWizard">
                     <h1>Contenido 1</h1>
                     <div name="otroNombre"> otro nombre</div>
                 </div>
-                <div class="cantenidoWizard uno" name="cantenidoWizard">
+                <div class="cantenidoWizard" name="cantenidoWizard">
                     <h1>Contenido 2</h1>
                     <div name="otroNombre"> otro nombre</div>
                 </div>
-                <div class="cantenidoWizard uno" name="cantenidoWizard">
+                <div class="cantenidoWizard" name="cantenidoWizard">
                     <h1>Contenido 3</h1>
                     <div name="otroNombre"> otro nombre</div>
                 </div>
-                <div class="cantenidoWizard uno" name="cantenidoWizard">
+                <div class="cantenidoWizard" name="cantenidoWizard">
                     <h1>Contenido 4</h1>
                     <div name="otroNombre"> otro nombre</div>
                 </div>
-                <div class="cantenidoWizard uno" name="cantenidoWizard">
+                <div class="cantenidoWizard" name="cantenidoWizard">
                     <h1>Contenido 5</h1>
+                    <div name="otroNombre"> otro nombre</div>
+                </div>
+                <div class="cantenidoWizard" name="cantenidoWizard">
+                    <h1>Contenido 6</h1>
+                    <div name="otroNombre"> otro nombre</div>
+                </div>
+                <div class="cantenidoWizard" name="cantenidoWizard">
+                    <h1>Contenido 7</h1>
                     <div name="otroNombre"> otro nombre</div>
                 </div>
             </div>
         </div>
-        <button
+        <button>ss</button>
 
     </div>
 @endsection
@@ -92,17 +100,32 @@
                 contContenidoWizard[i].innerHTML += "<button name='irAdelanteWizard' onclick='irAdelante()'>Ir al paso " + (cantidadWizard + 2) + "</button>"
 
             }else if((i > 0) && (i !== contContenidoWizard.length - 1)){
-                contContenidoWizard[i].innerHTML += "<button name='irAdelanteWizard' onclick='irAdelante()'>Ir al paso " + (cantidadWizard + 2) + "</button>" + "<button name='irAtrasWizard' onclick='irAdelante()'>Ir un paso atrás</button>"
+                contContenidoWizard[i].innerHTML += "<button name='irAdelanteWizard' onclick='irAdelante()'>Ir al paso " + (cantidadWizard + 2) + "</button>" + "<button name='irAtrasWizard' onclick='irAtras()'>Ir un paso atrás</button>"
             }else{
-                contContenidoWizard[i].innerHTML += "<button name='irAdelanteWizard' onclick='finalizar()'>Finalizar</button>" + "<button name='irAtrasWizard' onclick='irAdelante()'>Ir un paso atrás</button>"
+                contContenidoWizard[i].innerHTML += "<button name='irAdelanteWizard' onclick='finalizar()'>Finalizar</button>" + "<button name='irAtrasWizard' onclick='irAtras()'>Ir un paso atrás</button>"
             }
-
-
         }
     var contBtnWizard = $('#contBtnWizard').children('label');
     var primerItemBtnWizard = contBtnWizard[0];
     primerItemBtnWizard.className += " activo";
+    var indice = 0;
+    function irAdelante() {
+        contBtnWizard[indice].classList.remove("activo");
+        contBtnWizard[indice+1].className += " activo";
 
+        contContenidoWizard[indice].classList.remove("activo");
+        contContenidoWizard[indice+1].className += " activo";
+        indice += 1;
+    }
+    function irAtras(){
+        contBtnWizard[indice].classList.remove("activo");
+        contBtnWizard[indice-1].className += " activo";
+
+        contContenidoWizard[indice].classList.remove("activo");
+        contContenidoWizard[indice-1].className += " activo";
+        indice -= 1;
+
+    }
 </script>
 @endsection
 

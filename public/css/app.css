@@ -9630,6 +9630,7 @@ div.contBtnWizard label {
   background: #313539;
   color: #ffffff;
   text-transform: uppercase;
+  transition: 0.4s;
 }
 
 div.contBtnWizard label ~ label {
