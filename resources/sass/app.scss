@@ -1772,12 +1772,47 @@ div.servicio label {
     color: white;
     width: calc(100% - 30px);
     height: 30px;
-    margin-left: 10px;
+    margin-left: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 3px;
-    box-shadow: inset 0px 2px 3px rgba(0,0,0,.4);
+    box-shadow: inset 0px 2px 3px rgba(0, 0, 0, 0.4);
+    z-index: 2;
+}
+div.servicio label:after {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: 0;
+    width: calc(100% + 0px);
+    height: calc(100% + 8px);
+    background: #212529;
+    z-index: -1;
+    border-radius: 8px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.4);
+}
+div.servicio label span[name=Eliminar] {
+    position: absolute;
+    background: #313539;
+    width: 30px;
+    height: 100%;
+    right: 5px;
+    border-radius: 0px 3px 3px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div.servicio label span[name="Eliminar"]:before, div.servicio label span[name="Eliminar"]:after {
+    content: '';
+    background: #b1b5b9;
+    width: 20px;
+    height: 2px;
+    position: absolute;
+    transform: rotate(45deg);
+}
+div.servicio label span[name="Eliminar"]:after {
+    transform: rotate(-45deg);
 }
 
 
