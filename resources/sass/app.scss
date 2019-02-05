@@ -772,6 +772,8 @@ p {
     display: inline-block;
     vertical-align: top;
     font-size: initial;
+    overflow: auto;
+    height: calc(100vh - 103px);
 }
 
 /*
@@ -1560,7 +1562,7 @@ div.contContenidoWizard {
 }
 div.cantenidoWizard {
     background: #F9F9F9;
-    height: 0;
+    max-height: 0;
     overflow: hidden;
     padding: 0 15px 0 15px;
     position: relative;
@@ -1575,7 +1577,7 @@ div.cantenidoWizard {
 }
 div.cantenidoWizard.activo {
     background: #F9F9F9;
-    height: 320px;
+    max-height: 1000px;
     padding: 15px 15px 45px 15px;
     z-index: 1;
     opacity: 1;
@@ -1675,40 +1677,51 @@ button[name="irAtrasWizard"]:hover:after, button[name="irAtrasWizard"]:hover:bef
 /*Fin estilos Wizard*/
 /*estilod formularios*/
 div.W20 {
-    width: 20%;
+    width: calc(20% - 4px);
+    padding: 0 2px;
 }
 div.W25 {
-    width: 25%;
+    width: calc(25% - 4px);
+    padding: 0 2px;
 }
 div.W30 {
-    width: 30%;
+    width: calc(30% - 4px);
+    padding: 0 2px;
 }
 div.W33 {
-    width: 33.33%;
+    width: calc(33.33% - 4px);
+    padding: 0 2px;
 }
 div.W40 {
-     width: 40%;
+     width: calc(40% - 4px);
+    padding: 0 2px;
 }
 div.W50 {
-    width: 50%;
+    width: calc(50% - 4px);
+    padding: 0 2px;
 }
 div.W60 {
-    width: 60%;
+    width: calc(60% - 4px);
+    padding: 0 2px;
 }
 div.H60 textarea {
     height: 60px;
 }
 div.W70 {
-    width: 70%;
+    width: calc(70% - 4px);
+    padding: 0 2px;
 }
 div.W75 {
-    width: 75%;
+    width: calc(75% - 4px);
+    padding: 0 2px;
 }
 div.W80 {
-    width: 80%;
+    width: calc(80% - 4px);
+    padding: 0 2px;
 }
 div.W100 {
-    width: 100%;
+    width: calc(100% - 4px);
+    padding: 0 2px;
 }
 div.linea {
     background: linear-gradient(to top right, #0097f6 40%, #b622b5 80%);
@@ -1758,6 +1771,7 @@ div.servicio, div.subServicio {
     display: inline-block;
     vertical-align: top;
     position: relative;
+    margin: 5px 0;
 }
 div.servicio label {
     font-size: 22px;
@@ -1770,9 +1784,9 @@ div.servicio label {
     font-weight: 900;
     background: orangered;
     color: white;
-    width: calc(100% - 30px);
+    width: calc(100% - 40px);
     height: 30px;
-    margin-left: 5px;
+    margin: 0 10px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1784,10 +1798,10 @@ div.servicio label:after {
     content: "";
     position: absolute;
     top: -4px;
-    left: 0;
-    width: calc(100% + 0px);
-    height: calc(100% + 8px);
-    background: #212529;
+    left: 5px;
+    width: calc(100% - 10px);
+    height: calc(100% - 12px);
+    background: linear-gradient(to top right, #313539 0%, #212529 100%);
     z-index: -1;
     border-radius: 8px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.4);
@@ -1796,8 +1810,8 @@ div.servicio label span[name=Eliminar] {
     position: absolute;
     background: #313539;
     width: 30px;
-    height: 100%;
-    right: 5px;
+    height: calc(100% - 20px);
+    right: 10px;
     border-radius: 0px 3px 3px 0;
     display: flex;
     justify-content: center;
@@ -1812,6 +1826,75 @@ div.servicio label span[name="Eliminar"]:before, div.servicio label span[name="E
     transform: rotate(45deg);
 }
 div.servicio label span[name="Eliminar"]:after {
+    transform: rotate(-45deg);
+}
+div.subServicio {
+    margin: 11px 0;
+    padding: 15px 0 0 0;
+    border: 1px solid #b1b5b9;
+    border-radius: 3px;
+}
+div.subServicio label {
+    font-size: 15px;
+    font-family: 'Lato';
+    position: absolute;
+    top: -15px;
+    left: 10px;
+    background: #f9f9f9;
+    padding: 3px 6px;
+    border-radius: 3px;
+}
+div.subServicio label:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    border: 1px solid #b1b5b9;
+    border-radius: 3px 3px 0 0;
+    height: calc(100% - 10px);
+    width: 100%;
+    top: -1px;
+    left: -1px;
+}
+div.subServicio p {
+    font-size: 18px;
+    font-family: "Lato";
+    font-weight: 900;
+    background: orangered;
+    color: white;
+    width: calc(100% - 40px);
+    height: 30px;
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    box-shadow: inset 0px 2px 3px rgba(0, 0, 0, 0.4);
+    z-index: 2;
+    position: relative;
+}
+
+div.subServicio p span[name=Eliminar] {
+    position: absolute;
+    background: #313539;
+    width: 30px;
+    height: calc(100% - 0px);
+    right: 0;
+    border-radius: 0px 3px 3px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div.subServicio p span[name="Eliminar"]:before, div.subServicio p span[name="Eliminar"]:after {
+    content: "";
+    background: #b1b5b9;
+    width: 20px;
+    height: 2px;
+    position: absolute;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+div.subServicio p span[name="Eliminar"]:after {
+    -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
 }
 

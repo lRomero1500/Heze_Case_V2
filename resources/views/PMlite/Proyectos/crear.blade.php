@@ -95,8 +95,11 @@
                         </div>
                         <div class="linea"></div>
                         <div class="contServicios W100 columColpce2">
-                            <div class="servicio W50"><label>Marketing digital <span name="Eliminar"></span></label></div>
+                            <div class="servicio W50"><label>Diseño Gráfico <span name="Eliminar"></span></label></div>
+                            <div class="servicio W50"><label>Desarrollo de Software <span name="Eliminar"></span></label></div>
                             <div class="subServicio W50"><label>Marketing digital</label><p>Campañas en adwords <span name="Eliminar"></span></p><p>Campañas en redes <span name="Eliminar"></span></p><p>Capacitación <span name="Eliminar"></span></p><p>Manejo de redes <span name="Eliminar"></span></p></div>
+                            <div class="servicio W50"><label>Marketing digital <span name="Eliminar"></span></label></div>
+                            <div class="subServicio W50"><label>Desarrollo de Apps</label><p>Android <span name="Eliminar"></span></p><p>iOs <span name="Eliminar"></span></p><p>Window Phone <span name="Eliminar"></span></p></div>
                         </div>
                     </div>
                 </div>
