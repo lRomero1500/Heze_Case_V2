@@ -8938,6 +8938,10 @@ p {
   margin-left: 20px;
 }
 
+div.conteedorIconoAreatrabajo a {
+  text-decoration: none !important;
+}
+
 .iconoAreatrabajo {
   color: #fff;
   padding-top: 5px;
@@ -9338,7 +9342,8 @@ label.error:after {
 }
 
 .contenedorDeCampos h5 {
-  padding: 5px 0 4px 10px;
+  padding: 10px 0 0px 10px;
+  margin-bottom: -5px;
 }
 
 .contenedorDeCampos input {
@@ -9618,7 +9623,7 @@ div.contBtnWizard {
 div.contBtnWizard label {
   padding: 7px;
   border-radius: 5px;
-  width: 25%;
+  width: calc(20% - 18px);
   min-width: 100px;
   margin: 0;
   display: inline-flex;
@@ -9652,22 +9657,45 @@ div.contContenidoWizard {
 
 div.cantenidoWizard {
   background: #F9F9F9;
-  max-height: 0px;
+  height: 0;
   overflow: hidden;
-  padding: 15px 15px 45px 15px;
-  position: absolute;
-  width: calc(100% - 34px);
+  padding: 0 15px 0 15px;
+  position: relative;
   z-index: 0;
-  opacity: 0;
+  opacity: 1;
+  border: 2px solid transparent;
   top: 0;
+  font-size: 0;
+  width: calc(100% - 34px);
+  transition: 0.4s;
+  border-width: 0;
 }
 
 div.cantenidoWizard.activo {
-  border: 2px solid #0097F6;
   background: #F9F9F9;
-  max-height: 500px;
+  height: 320px;
+  padding: 15px 15px 45px 15px;
   z-index: 1;
   opacity: 1;
+  border: 2px solid #0097F6;
+  transition-delay: 0.4s;
+}
+
+.cantenidoWizard h1 {
+  font-size: 26px;
+}
+
+div.cantenidoWizard h6 {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 14px;
+  max-width: 320px;
+  line-height: 1.1;
+}
+
+div.cantenidoWizard a {
+  color: #AA00FF;
+  text-decoration: underline;
+  font-weight: 900;
 }
 
 button[name=irAdelanteWizard] {
@@ -9757,3 +9785,131 @@ button[name=irAtrasWizard]:hover:after, button[name=irAtrasWizard]:hover:before 
 }
 
 /*Fin estilos Wizard*/
+/*estilod formularios*/
+div.W20 {
+  width: 20%;
+}
+
+div.W25 {
+  width: 25%;
+}
+
+div.W30 {
+  width: 30%;
+}
+
+div.W33 {
+  width: 33.33%;
+}
+
+div.W40 {
+  width: 40%;
+}
+
+div.W50 {
+  width: 50%;
+}
+
+div.W60 {
+  width: 60%;
+}
+
+div.H60 textarea {
+  height: 60px;
+}
+
+div.W70 {
+  width: 70%;
+}
+
+div.W75 {
+  width: 75%;
+}
+
+div.W80 {
+  width: 80%;
+}
+
+div.W100 {
+  width: 100%;
+}
+
+div.linea {
+  background: linear-gradient(to top right, #0097f6 40%, #b622b5 80%);
+  width: 100%;
+  height: 1px;
+  margin: 20px auto;
+}
+
+div.contFormGobal {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+div.contFormGobal div.contCampo {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
+
+div.contCampo label {
+  font-size: 15px;
+  padding: 10px 0 0px 10px;
+  margin-bottom: -5px;
+  display: block;
+}
+
+input.campo, select.campo, textarea.campo {
+  width: calc(100% - 36px);
+  border: 1px solid #919599;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 0px 12px;
+  border-radius: 2px;
+  margin: 5px;
+  height: 30px;
+  transition: 0.4s;
+}
+
+textarea.campo {
+  height: 16px;
+  min-height: 16px;
+  padding: 6px 12px;
+  min-width: calc(100% - 36px);
+}
+
+select.campo {
+  width: calc(100% - 10px);
+  height: 32px;
+}
+
+div.servicio, div.subServicio {
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+}
+
+div.servicio label {
+  font-size: 22px;
+  font-family: "Lato";
+  font-weight: 900;
+}
+
+div.servicio label {
+  font-size: 18px;
+  font-family: "Lato";
+  font-weight: 900;
+  background: orangered;
+  color: white;
+  width: calc(100% - 30px);
+  height: 30px;
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  box-shadow: inset 0px 2px 3px rgba(0, 0, 0, 0.4);
+}
+
+/*Fin estilos Formularios*/

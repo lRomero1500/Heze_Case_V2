@@ -48,17 +48,57 @@
 
         <!-- Contenedor generan -->
         <div class="contGeneralWizard">
-            <div class="contBtnWizard" id="contBtnWizard">
-
-            </div>
+            <div class="contBtnWizard" id="contBtnWizard"></div>
             <div class="contContenidoWizard" id="contContenidoWizard">
                 <div class="cantenidoWizard" name="cantenidoWizard">
-                    <h1>Contenido 1</h1>
-                    <div name="otroNombre"> otro nombre</div>
+                    <h1>Datos del proyecto</h1>
+                    <h6>Ingresa los datos de manera correcta para continuar | ver más a cerca de  cómo crear un proyecto <a href="">Aquí</a></h6>
+                    <div class="contFormGobal contFormWizard">
+                        <div class="contCampo W25">
+                            <label>Nombre del proyecto</label>
+                            <input class="campo" type="text" placeholder="" required>
+                        </div>
+                        <div class="contCampo W25">
+                            <label>Cliente</label>
+                            <select class="campo" type="text" required>
+                                <option>WCC</option>
+                                <option>Coinpaz</option>
+                                <option>OfertSHOP</option>
+                                <option>Prelegal</option>
+                            </select>
+                        </div>
+                        <div class="contCampo W25">
+                            <label>Líder / Responsable</label>
+                            <input class="campo" type="text" placeholder="" required>
+                        </div>
+                        <div class="contCampo W25">
+                            <label>Nivel de importancia</label>
+                            <select class="campo" type="text" required>
+                                <option>Poco Importante</option>
+                                <option>Importante</option>
+                                <option>Muy Importante</option>
+                                <option>Prioridad alta</option>
+                            </select>
+                        </div>
+                        <div class="contCampo W100 H60">
+                            <label>Obcervaciones</label>
+                            <textarea class="campo" type="text" placeholder="" required></textarea>
+                        </div>
+                    </div>
                 </div>
                 <div class="cantenidoWizard" name="cantenidoWizard">
-                    <h1>Contenido 2</h1>
-                    <div name="otroNombre"> otro nombre</div>
+                    <h1>Servicios</h1>
+                    <h6>Ingresa los datos de manera correcta para continuar | ver más a cerca de  cómo crear un proyecto <a href="">Aquí</a></h6>
+                    <div class="contFormGobal contFormWizard">
+                        <div class="conteedorIconoAreatrabajo">
+                            <a><span></span><h4 class="textIcono">Añadir Nuevo</h4></a>
+                        </div>
+                        <div class="linea"></div>
+                        <div class="contServicios W100 columColpce2">
+                            <div class="servicio W50"><label>Marketing digital <span name="Eliminar"></span></label></div>
+                            <div class="subServicio W50"><label>Marketing digital</label><p>Campañas en adwords <span name="Eliminar"></span></p><p>Campañas en redes <span name="Eliminar"></span></p><p>Capacitación <span name="Eliminar"></span></p><p>Manejo de redes <span name="Eliminar"></span></p></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="cantenidoWizard" name="cantenidoWizard">
                     <h1>Contenido 3</h1>
@@ -66,18 +106,6 @@
                 </div>
                 <div class="cantenidoWizard" name="cantenidoWizard">
                     <h1>Contenido 4</h1>
-                    <div name="otroNombre"> otro nombre</div>
-                </div>
-                <div class="cantenidoWizard" name="cantenidoWizard">
-                    <h1>Contenido 5</h1>
-                    <div name="otroNombre"> otro nombre</div>
-                </div>
-                <div class="cantenidoWizard" name="cantenidoWizard">
-                    <h1>Contenido 6</h1>
-                    <div name="otroNombre"> otro nombre</div>
-                </div>
-                <div class="cantenidoWizard" name="cantenidoWizard">
-                    <h1>Contenido 7</h1>
                     <div name="otroNombre"> otro nombre</div>
                 </div>
             </div>
@@ -109,14 +137,20 @@
     var primerItemBtnWizard = contBtnWizard[0];
     primerItemBtnWizard.className += " activo";
     var indice = 0;
+    var validarCampos = $('#contContenidoWizard').children('div');
+    var selectorRequired = validarCampos.find('input,select,textarea[required]');
+
     function irAdelante() {
+        if (validarCampos.find('input,select,textarea[required]').length > 0){
         contBtnWizard[indice].classList.remove("activo");
         contBtnWizard[indice+1].className += " activo";
 
         contContenidoWizard[indice].classList.remove("activo");
         contContenidoWizard[indice+1].className += " activo";
         indice += 1;
+        }
     }
+
     function irAtras(){
         contBtnWizard[indice].classList.remove("activo");
         contBtnWizard[indice-1].className += " activo";
