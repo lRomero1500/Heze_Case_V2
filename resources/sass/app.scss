@@ -659,14 +659,14 @@ p {
     margin-bottom: -10px !important;
 }
 
-.LatNav > li:hover .LatNavpadre{
+.LatNav > li.active .LatNavpadre{
     max-height: 300px;
-    transition-delay: .15s;
+    transition-delay: .17s;
 }
 
-.LatNav > li:hover i {
+.LatNav > li.active i {
     border-radius: 50% 50% 0 0;
-    transition: .3s;
+    transition: .4s;
 
 }
 

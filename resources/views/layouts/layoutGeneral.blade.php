@@ -46,7 +46,7 @@
             <nav class="nav">
                 <li>
                     <div class="IconoMenuBar">
-                        <a href="" id="iconoMenuTop">
+                        <a id="iconoMenuTop">
                             <i class="fa fa-th-large iconoMenuNav"></i>
                         </a>
                     </div>

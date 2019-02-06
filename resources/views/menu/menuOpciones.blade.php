@@ -1,26 +1,62 @@
 @foreach($menuOpciones as $item2)
-    <li>
+    @if(($menuOpcionesHijos->where('cod_menu_padre',$item2->cod_menu)->where('pos_menu',1))->count()>0)
+        @if(($menuOpcionesHijos->where('cod_menu_padre',$item2->cod_menu)->where('pos_menu',1)->where('cod_menu',$activo))->count()>0)
+            <li class="active">
+        @else
+            <li>
+        @endif
+    @else
+        <li>
+    @endif
         @if($item2->cod_menu==$activo)
-            <a style="color: #f7f7f7 !important" href="{!! $item2->url_menu !!}" class="opcionMenuActivo"><i
-                        class="{!! $item2->url_icono !!}"></i>
-                <h4>{!! $item2->nom_menu !!}</h4></a>
+            @if($item2->url_menu=='#')
+                <a style="color: #f7f7f7 !important;cursor: pointer" class="opcionMenuActivo"
+                   onclick="menuActivo(this,1)"><i
+                            class="{!! $item2->url_icono !!}"></i>
+                    <h4>{!! $item2->nom_menu !!}</h4></a>
+            @else
+                <a style="color: #f7f7f7 !important" href="{!! $item2->url_menu !!}" class="opcionMenuActivo"><i
+                            class="{!! $item2->url_icono !!}"></i>
+                    <h4>{!! $item2->nom_menu !!}</h4></a>
+            @endif
+
             @if(($menuOpcionesHijos->where('cod_menu_padre',$item2->cod_menu)->where('pos_menu',1))->count()>0)
                 <ul class="LatNavpadre">
                     @foreach(($menuOpcionesHijos->where('cod_menu_padre',$item2->cod_menu)->where('pos_menu',1)) as $item3)
 
-                            <li>
-                                <p class="fa fa-circle fa-fw LatNavAletasPadres"></p><a
-                                        style="color: #f7f7f7 !important" href="{!! $item3->url_menu !!}">
-                                    <h4>{!! $item3->nom_menu !!}</h4></a>
-                            </li>
+                        <li>
+                            <p class="fa fa-circle fa-fw LatNavAletasPadres"></p><a
+                                    style="color: #f7f7f7 !important" href="{!! $item3->url_menu !!}">
+                                <h4>{!! $item3->nom_menu !!}</h4></a>
+                        </li>
                     @endforeach
                 </ul>
             @endif
 
         @else
-            <a style="color: #f7f7f7 !important" href="{!! $item2->url_menu !!}"><i
-                        class="{!! $item2->url_icono !!}"></i>
-                <h4>{!! $item2->nom_menu !!}</h4></a>
+            @if($item2->url_menu=='#')
+                @if(($menuOpcionesHijos->where('cod_menu_padre',$item2->cod_menu)->where('pos_menu',1))->count()>0)
+                    @if(($menuOpcionesHijos->where('cod_menu_padre',$item2->cod_menu)->where('pos_menu',1)->where('cod_menu',$activo))->count()>0)
+                        <a class="opcionMenuActivo" style="color: #f7f7f7 !important ;cursor: pointer"
+                           onclick="menuActivo(this,1)"><i
+                                    class="{!! $item2->url_icono !!}"></i>
+                            <h4>{!! $item2->nom_menu !!}</h4></a>
+                    @else
+                        <a style="color: #f7f7f7 !important ;cursor: pointer" onclick="menuActivo(this,1)"><i
+                                    class="{!! $item2->url_icono !!}"></i>
+                            <h4>{!! $item2->nom_menu !!}</h4></a>
+                    @endif
+                @else
+                    <a style="color: #f7f7f7 !important ;cursor: pointer" onclick="menuActivo(this,1)"><i
+                                class="{!! $item2->url_icono !!}"></i>
+                        <h4>{!! $item2->nom_menu !!}</h4></a>
+                @endif
+            @else
+                <a style="color: #f7f7f7 !important" href="{!! $item2->url_menu !!}"><i
+                            class="{!! $item2->url_icono !!}"></i>
+                    <h4>{!! $item2->nom_menu !!}</h4></a>
+            @endif
+
             @if(($menuOpcionesHijos->where('cod_menu_padre',$item2->cod_menu)->where('pos_menu',1))->count()>0)
                 <ul class="LatNavpadre">
                     @foreach(($menuOpcionesHijos->where('cod_menu_padre',$item2->cod_menu)->where('pos_menu',1)) as $item3)

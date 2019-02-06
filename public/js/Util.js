@@ -1,5 +1,8 @@
+//region Utiles Url
 var baseUrl = document.getElementsByTagName('base')[0].href;
 var token = $('meta[name="token"]').attr('content');
+//endregion
+//region Variables
 var Traduccion = {
     errorTitle: 'Envio de formulario fallido!',
     requiredField: "Este Campo es requerido",
@@ -41,26 +44,30 @@ var Traduccion = {
     min: 'min',
     max: 'max',
     imageRatioNotAccepted: 'Image ratio is not accepted'
+};
+var caracteres = new Array("Ñ", "Á", "É", "Í", "Ó", "Ú", " "); //Arreglo con los caracteres permitidos para validar una cadena de solo letras
+var getEl = function (elementId) {
+    return document.getElementById(elementId);
 }
-
-function InicioCarando() {
-    $('body').loading({
-        message: '<p style="color:#151515 !important;"class="saving">Procesando<span>.</span><span>.</span><span>.</span></p>',
-        stoppable: false
-    });
+var caracteres = new Array("Ñ", "Á", "É", "Í", "Ó", "Ú", " "); //Arreglo con los caracteres permitidos para validar una cadena de solo letras
+var getEl = function (elementId) {
+    return document.getElementById(elementId);
 }
-
-function FinCarando() {
-    $('body').loading('stop');
-}
-
+//endregion
+//region Detener o iniciar procesando al completar o iniciar la carga de la pagina
+$(window).bind('beforeunload', function () {
+    if (!$('body').is(':loading')) {
+        InicioCarando();
+    }
+});
 var bootstrap = function (evt) {
     if (evt.target.readyState === "complete") {
         FinCarando();
     }
-}
-$(document).ready()
-{
+};
+//endregion
+//region Document Ready
+$(document).ready(function () {
     document.addEventListener('readystatechange', bootstrap, false);
     $.fn.datepicker.languages['es-ES'] = {
         format: 'dd/mm/yyyy',
@@ -85,22 +92,46 @@ $(document).ready()
         },
         "Please enter a date in the format!"
     );
-}
-$(window).bind('beforeunload', function () {
-    if (!$('body').is(':loading')) {
-        InicioCarando();
-    }
+    $('#iconoMenuTop').mouseover(function () {
+        $('#menuTop').attr('class', '');
+        $('#menuTop').attr('class', 'ContentNavheaderActivo');
+//            $('#menuTop').show( 'slide',{direction:'up',distance: 40});
+    });
+    $('#menuTop').mouseleave(function () {
+        $('#menuTop').attr('class', '');
+        $('#menuTop').attr('class', 'ContentNavheader');
+    });
+    $('#btnCerrarAlert').click(function () {
+        $('#AlertNoError').css('display', 'none');
+    });
+
+    $('#AddEmpresa').click(function (e) {
+        if ($('#formulario').css('display') === 'none') {
+            $('#formulario').css('display', '');
+            crearMask('tel');
+            $('#cerrarForm').click(function (e) {
+                destruirMask('tel');
+                $('#formulario').trigger("reset");
+                $('#formulario').css('display', 'none');
+            });
+        }
+    })
+    $('#AddColaborador').click(function (e) {
+        if ($('#formulario').css('display') == 'none') {
+            $('#formulario').css('display', '');
+            crearMask('tel');
+            crearDatePick('dat');
+            $('#cerrarForm').click(function (e) {
+                destruirMask('tel');
+                destruirDatePick('dat');
+                $('#formulario').trigger("reset");
+                $('#formulario').css('display', 'none');
+            });
+        }
+    })
 });
-var caracteres = new Array("Ñ", "Á", "É", "Í", "Ó", "Ú", " "); //Arreglo con los caracteres permitidos para validar una cadena de solo letras
-var getEl = function (elementId) {
-    return document.getElementById(elementId);
-}
-
-var caracteres = new Array("Ñ", "Á", "É", "Í", "Ó", "Ú", " "); //Arreglo con los caracteres permitidos para validar una cadena de solo letras
-var getEl = function (elementId) {
-    return document.getElementById(elementId);
-}
-
+//endregion
+//region Funciones Prototipo
 Array.prototype.encontrar = //Agrega Función prototipo a la clase Array para buscar un valor en el arreglo
     function (val) {
         for (var i = 0; i <= this.length; i++)
@@ -181,7 +212,6 @@ String.prototype.pad = function (l, s, t) {
         + 1).join(s)).substr(0, t = !t ? l : t == 1 ? 0 : Math.ceil(l / 2))
         + this + s.substr(0, l - t) : this;
 };
-
 String.prototype.toFloat = function () {
     return isNaN(parseFloat(this.replace(/,/gi, ""))) ? 0 : parseFloat(this.replace(/,/gi, ""));
 }
@@ -196,12 +226,6 @@ String.prototype.ConvertirFecha = function () {
         return [prts[2], prts[1], prts[0]].join("/");
     }
 }
-
-function convertDate(dateString) {
-    var p = dateString.split(/\D/g)
-    return [p[2], p[1], p[0]].join("-")
-}
-
 Date.prototype.convertir = function (fecha, formato) {
     var dia, mes, año
     dia = fecha.substring(0, 2)
@@ -209,6 +233,12 @@ Date.prototype.convertir = function (fecha, formato) {
     año = fecha.substring(6, 10)
     var fecha = new Date(año, mes - 1, dia)
     return fecha
+}
+//endregion
+//region Funciones Varias
+function convertDate(dateString) {
+    var p = dateString.split(/\D/g)
+    return [p[2], p[1], p[0]].join("-")
 }
 
 function validaEntero(txt, e) {//Valida para una caja de texto que solamente se digiten números
@@ -265,7 +295,6 @@ function validaValorFlo(objTxt) {
         objTxt.value = parseFloat(objTxt.value)
     objTxt.value = objTxt.value.replace(/\./, ',')
 }
-
 
 function ValidaFormulario(form) {
     try {
@@ -396,46 +425,6 @@ function destruirDatePick(cls) {
     $('.' + cls + '').datepicker('destroy');
 }
 
-$(document).ready(function () {
-    $('#iconoMenuTop').mouseover(function () {
-        $('#menuTop').attr('class', '');
-        $('#menuTop').attr('class', 'ContentNavheaderActivo');
-//            $('#menuTop').show( 'slide',{direction:'up',distance: 40});
-    });
-    $('#menuTop').mouseleave(function () {
-        $('#menuTop').attr('class', '');
-        $('#menuTop').attr('class', 'ContentNavheader');
-    });
-    $('#btnCerrarAlert').click(function () {
-        $('#AlertNoError').css('display', 'none');
-    });
-
-    $('#AddEmpresa').click(function (e) {
-        if ($('#formulario').css('display') === 'none') {
-            $('#formulario').css('display', '');
-            crearMask('tel');
-            $('#cerrarForm').click(function (e) {
-                destruirMask('tel');
-                $('#formulario').trigger("reset");
-                $('#formulario').css('display', 'none');
-            });
-        }
-    })
-    $('#AddColaborador').click(function (e) {
-        if ($('#formulario').css('display') == 'none') {
-            $('#formulario').css('display', '');
-            crearMask('tel');
-            crearDatePick('dat');
-            $('#cerrarForm').click(function (e) {
-                destruirMask('tel');
-                destruirDatePick('dat');
-                $('#formulario').trigger("reset");
-                $('#formulario').css('display', 'none');
-            });
-        }
-    })
-});
-
 function cerrarResp() {
     $('#AlertResp').remove();
 }
@@ -464,7 +453,6 @@ function alertSucces(msg) {
     });
 }
 
-
 function defaultAlert(msg) {
     $.alert({
         title: 'Alerta',
@@ -476,3 +464,33 @@ function defaultAlert(msg) {
         boxWidth: '20%'
     });
 }
+
+function InicioCarando() {
+    $('body').loading({
+        message: '<p style="color:#151515 !important;"class="saving">Procesando<span>.</span><span>.</span><span>.</span></p>',
+        stoppable: false
+    });
+}
+
+function FinCarando() {
+    $('body').loading('stop');
+}
+
+function menuActivo(obj, t) {
+    switch (t) {
+        case 1:
+            var padre = $(obj).parent('li')[0];
+            if ($(padre).hasClass('active')) {
+                $(padre).removeClass('active');
+            } else{
+                var hermanosPadre=$(padre).siblings('li');
+                $.each(hermanosPadre,function (index,item) {
+                    $(item).removeClass('active');
+                });
+                $(padre).addClass('active');
+            }
+            break;
+    }
+}
+
+//endregion
