@@ -13,7 +13,7 @@ class AlterCotzEmpleadosRenombreEmailDropColumnPasword extends Migration
      */
     public function up()
     {
-        Schema::table('cotz_empleados', function (Blueprint $table) {
+        Schema::table('hez_empleados', function (Blueprint $table) {
 //            $table->renameColumn('email','email_contacto'); toca hacerlo por otro lado ya que da problemas laravel
             $table->dropColumn('password');
         });
@@ -26,7 +26,7 @@ class AlterCotzEmpleadosRenombreEmailDropColumnPasword extends Migration
      */
     public function down()
     {
-        Schema::table('cotz_empleados', function (Blueprint $table) {
+        Schema::table('hez_empleados', function (Blueprint $table) {
 //            $table->renameColumn('email_contacto','email'); toca hacerlo por otro lado ya que da problemas laravel
             $table->string('password');
         });

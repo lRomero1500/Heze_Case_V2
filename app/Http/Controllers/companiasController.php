@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Companias;
+use App\Models\HezCompania;
 use Illuminate\Http\Request;
 
 class companiasController extends Controller
@@ -15,7 +16,7 @@ class companiasController extends Controller
     public function index()
     {
         $title_page = 'Mantenimiento de Compañias';
-        $Companias = Companias::all();
+        $Companias = HezCompania::all();
         return view('empresas/credtEmpresasnoEMB')->with([
             'title_page' => $title_page,
             'Companias' => $Companias
@@ -31,21 +32,21 @@ class companiasController extends Controller
      */
     public function store(Request $request)
     {
-        $companias = new Companias();
+        $companias = new HezCompania();
         $companias->fill($request->all());
         $order = array('(', ')', '-');
         $companias->tel_Companias = str_replace($order, '', $companias->tel_Companias);
         try {
             if ($companias->cod_Companias == '0') {
                 $x = $companias->save();
-                $dat = Companias::all();
+                $dat = HezCompania::all();
                 return response()->json([
                     'msg' => 'La empresa ' . $companias->nomb_Companias . ' se creo  exitosamente!',
                     'error' => false,
                     'table' => $dat
                 ]);
             } else {
-                $CompaniasUp = Companias::find($companias->cod_Companias);
+                $CompaniasUp = HezCompania::find($companias->cod_Companias);
                 $CompaniasUp->nomb_Companias = $companias->nomb_Companias;
                 $CompaniasUp->nit_Companias = $companias->nit_Companias;
                 $CompaniasUp->tel_Companias = $companias->tel_Companias;
@@ -53,7 +54,7 @@ class companiasController extends Controller
                 $CompaniasUp->logo_companias = $companias->logo_companias;
                 $CompaniasUp->correo_companias = $companias->correo_companias;
                 $CompaniasUp->save();
-                $dat = Companias::all();
+                $dat = HezCompania::all();
                 return response()->json([
                     'msg' => 'La empresa ' . $companias->nomb_Companias . ' se modifico  exitosamente!',
                     'error' => false,
@@ -77,7 +78,7 @@ class companiasController extends Controller
      */
     public function show($id)
     {
-        $data = Companias::find($id);
+        $data = HezCompania::find($id);
         return \Response::json($data);
     }
 
@@ -113,10 +114,10 @@ class companiasController extends Controller
     public function destroy($id)
     {
         try {
-            $companias = Companias::where('cod_Companias', $id)->first();;
+            $companias = HezCompania::where('cod_Companias', $id)->first();;
             if($companias){
-                Companias::destroy($id);
-                $dat=Companias::all();
+                HezCompania::destroy($id);
+                $dat=HezCompania::all();
                 return response()->json([
                     'msg' => 'La empresa ' . $companias->nomb_Companias . ' se eliminó correctamente!',
                     'error' => false,

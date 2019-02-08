@@ -10,7 +10,7 @@ namespace App\Models;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class TrEstadosTarea
+ * Class PmEstadosTarea
  * 
  * @property int $id
  * @property string $nombre_estado
@@ -21,7 +21,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  *
  * @package App\Models
  */
-class TrEstadosTarea extends Eloquent
+class PmEstadosTarea extends Eloquent
 {
 	protected $fillable = [
 		'nombre_estado'
@@ -29,6 +29,6 @@ class TrEstadosTarea extends Eloquent
 
 	public function tr_tareas()
 	{
-		return $this->hasMany(\App\Models\TrTarea::class, 'estado_tarea_id');
+		return $this->hasMany(\App\Models\PmTarea::class, 'estado_tarea_id');
 	}
 }

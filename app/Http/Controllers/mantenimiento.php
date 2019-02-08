@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Mail\emailCreaUsr;
 use App\Models\Companias;
 use App\Models\Empleados;
+use App\Models\HezCompania;
+use App\Models\HezEmpleado;
+use App\Models\HezUsuario;
 use App\Models\Usuarios;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -21,7 +24,7 @@ class mantenimiento extends Controller
     }
     public function empresasIndex(){
         $title_page = 'Mantenimiento de Empresas';
-        $Companias = Companias::all();
+        $Companias = HezCompania::all();
         return view('Mantenimiento.empresas.credtEmpresasnoEMB')->with([
             'title_page' => $title_page,
             'Companias' => $Companias
@@ -32,7 +35,7 @@ class mantenimiento extends Controller
     }
     public function colaboradoresIndex(){
         $title_page = 'Mantenimiento de Colaboradores';
-        $Colaboradores = Empleados::with(['Usuario', 'compania', 'tipoDoc'])->get();
+        $Colaboradores = HezEmpleado::with(['hez_usuarios', 'hez_compania', 'hez_tipo_documento'])->get();
         return view('Mantenimiento.colaboradores.credtColaboradoresnoEMB')->with([
             'title_page' => $title_page,
             'Colabors' => $Colaboradores
@@ -41,21 +44,21 @@ class mantenimiento extends Controller
     //endregion
     //region Crear Editar
     public function creaEditEmpresas(Request $request){
-        $companias = new Companias();
+        $companias = new HezCompania();
         $companias->fill($request->all());
         $order = array('(', ')', '-');
         $companias->tel_Companias = str_replace($order, '', $companias->tel_Companias);
         try {
             if ($companias->cod_Companias == '0') {
                 $x = $companias->save();
-                $dat = Companias::all();
+                $dat = HezCompania::all();
                 return response()->json([
                     'msg' => 'La empresa ' . $companias->nomb_Companias . ' se creo  exitosamente!',
                     'error' => false,
                     'table' => $dat
                 ]);
             } else {
-                $CompaniasUp = Companias::find($companias->cod_Companias);
+                $CompaniasUp = HezCompania::find($companias->cod_Companias);
                 $CompaniasUp->nomb_Companias = $companias->nomb_Companias;
                 $CompaniasUp->nit_Companias = $companias->nit_Companias;
                 $CompaniasUp->tel_Companias = $companias->tel_Companias;
@@ -63,7 +66,7 @@ class mantenimiento extends Controller
                 $CompaniasUp->logo_companias = $companias->logo_companias;
                 $CompaniasUp->correo_companias = $companias->correo_companias;
                 $CompaniasUp->save();
-                $dat = Companias::all();
+                $dat = HezCompania::all();
                 return response()->json([
                     'msg' => 'La empresa ' . $companias->nomb_Companias . ' se modifico  exitosamente!',
                     'error' => false,
@@ -82,7 +85,7 @@ class mantenimiento extends Controller
 
     }
     public function creaEditColaboradores(Request $request){
-        $clbrdrs = new Empleados();
+        $clbrdrs = new HezEmpleado();
         $clbrdrs->fill($request->all());
         $nombArr = array(0 => $request->only('apellido1')['apellido1'],
             1 => $request->only('apellido2')['apellido2'],
@@ -101,7 +104,7 @@ class mantenimiento extends Controller
                     $creaUsuario = $request->only('crearUsrHezeCase')['crearUsrHezeCase'];
                     if ($creaUsuario == 'on') {
                         $clave = Str::random(6);
-                        $usuarioCreado = Usuarios::create([
+                        $usuarioCreado = HezUsuario::create([
                             'cod_Empleado' => $clbrdrs->cod_Empleado,
                             'email' => $clbrdrs->email_contacto,
                             'password' => bcrypt($clave),
@@ -113,20 +116,19 @@ class mantenimiento extends Controller
                             $objMail->pass = $clave;
                             $objMail->sender = 'Heze Case';
                             $objMail->receiver = $request->only('nombre1')['nombre1'] . ' ' . $request->only('apellido1')['apellido1'];
-
                             Mail::to($clbrdrs->email_contacto)->send(new emailCreaUsr($objMail));
                         }
                     }
                 }
 
-                $dat = Empleados::with(['Usuario', 'compania', 'tipoDoc'])->get();
+                $dat = HezEmpleado::with(['hez_usuarios', 'hez_compania', 'hez_tipo_documento'])->get();
                 return response()->json([
                     'msg' => 'El colaborador ' . $request->only('nombre1')['nombre1'] . ' ' . $request->only('apellido1')['apellido1'] . ' se creo  exitosamente!',
                     'error' => false,
                     'table' => $dat
                 ]);
             } else {
-                $clbrdrsUP = Empleados::find($clbrdrs->cod_Empleado);
+                $clbrdrsUP = HezEmpleado::find($clbrdrs->cod_Empleado);
                 $clbrdrsUP->documentoEmpleado = $clbrdrs->documentoEmpleado;
                 $clbrdrsUP->tipo_Doc_Empleado = $clbrdrs->tipo_Doc_Empleado;
                 $clbrdrsUP->nombre_Empleado = $clbrdrs->nombre_Empleado;
@@ -152,10 +154,10 @@ class mantenimiento extends Controller
 
                         Mail::to($clbrdrsUP->email_contacto)->send(new emailCreaUsr($objMail));
                     } elseif ($creaUsuario == 'off' && $clbrdrsUP->Usuario != null) {
-                        Usuarios::destroy($clbrdrsUP->Usuario->id_Usuarios);
+                        HezUsuario::destroy($clbrdrsUP->Usuario->id_Usuarios);
                     }
                 }
-                $dat = Empleados::with(['Usuario', 'compania', 'tipoDoc'])->get();
+                $dat = HezEmpleado::with(['hez_usuarios', 'hez_compania', 'hez_tipo_documento'])->get();
                 return response()->json([
                     'msg' => 'El colaborador ' . (explode('/', $clbrdrsUP->nombre_Empleado))[2] . ' ' . (explode('/', $clbrdrsUP->nombre_Empleado))[0] . ' se modifico exitosamente!',
                     'error' => false,
@@ -173,7 +175,7 @@ class mantenimiento extends Controller
     //endregion
     //region obtener para editar
     public function getEmpresa($id){
-        $data = Companias::find($id);
+        $data = HezCompania::find($id);
         return \Response::json($data);
     }
     public function getDepartamento($id){
@@ -181,7 +183,7 @@ class mantenimiento extends Controller
     }
     public function getColaborador($id){
         try {
-            $data = Empleados::with(['Usuario', 'compania', 'tipoDoc'])->find($id);
+            $data = HezEmpleado::with(['hez_usuarios', 'hez_compania', 'hez_tipo_documento'])->find($id);
             return \Response::json($data);
         } catch (Exception $e) {
             return response()->json([
@@ -195,10 +197,10 @@ class mantenimiento extends Controller
     //region Eliminar
     public function delEmpresa($id){
         try {
-            $companias = Companias::where('cod_Companias', $id)->first();;
+            $companias = HezCompania::where('cod_Companias', $id)->first();;
             if($companias){
-                Companias::destroy($id);
-                $dat=Companias::all();
+                HezCompania::destroy($id);
+                $dat=HezCompania::all();
                 return response()->json([
                     'msg' => 'La empresa ' . $companias->nomb_Companias . ' se eliminó correctamente!',
                     'error' => false,
@@ -226,16 +228,16 @@ class mantenimiento extends Controller
     }
     public function delColaborador($id){
         try {
-            $empleado = Empleados::where('cod_Empleado', $id)->get();
+            $empleado = HezEmpleado::where('cod_Empleado', $id)->get();
             if (!$empleado->isEmpty()) {
-                if (((Empleados::whereHas('Usuario', function ($query) use ($id) {
+                if (((HezEmpleado::whereHas('hez_usuarios', function ($query) use ($id) {
                         $query->where('cod_Empleado', $id);
                     })->get())->count()) > 0) {
-                    Usuarios::destroy(($empleado->first())->Usuario->id_Usuarios);
-                    Empleados::destroy($id);
+                    HezUsuario::destroy(($empleado->first())->Usuario->id_Usuarios);
+                    HezEmpleado::destroy($id);
                 } else
-                    Empleados::destroy($id);
-                $dat = Empleados::with(['Usuario', 'compania', 'tipoDoc'])->get();
+                    HezEmpleado::destroy($id);
+                $dat = HezEmpleado::with(['hez_usuarios', 'hez_compania', 'hez_tipo_documento'])->get();
                 $nombre = (explode('/', ($empleado->first())['nombre_Empleado']))[2] . ' ' . (explode('/', ($empleado->first())['nombre_Empleado']))[0];
                 return response()->json([
                     'msg' => 'El Colaborador ' . $nombre . ' se eliminó correctamente!',

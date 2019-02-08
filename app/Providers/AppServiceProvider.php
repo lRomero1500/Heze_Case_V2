@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\Companias;
+use App\Models\HezCompania;
+use App\Models\HezTipoDocumento;
 use App\Models\TipoDocumento;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -19,8 +21,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('Mantenimiento.colaboradores.credtColaboradoresnoEMB', function ($view) {
-            $view->with('companias', Companias::all());
-            $view->with('tiposDoc', TipoDocumento::all());
+            $view->with('companias', HezCompania::all());
+            $view->with('tiposDoc', HezTipoDocumento::all());
         });
         view()->composer('*', function ($view) {
             $ruta = Route::getFacadeRoot()->current()->uri();

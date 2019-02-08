@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Empleados;
+use App\Models\HezDetalleRole;
+use App\Models\HezEmpleado;
+use App\Models\HezMenu;
 use App\Models\Menu;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 use Illuminate\Routing\Route;
@@ -29,7 +33,7 @@ class controlAcceso extends Controller
 
         try {
             $email = $request->only('usrName')['usrName'];
-            $data = (Empleados::whereHas('Usuario',function($query) use ($email) {
+            $data = (HezEmpleado::whereHas('hez_usuarios',function($query) use ($email) {
                 $query->where('email_contacto', $email);
             })->first());
             if ($data != null) {
@@ -62,15 +66,13 @@ class controlAcceso extends Controller
         try {
             if (Auth::attempt(['email' => $email, 'password' => $Pass])) {
 
-                $rol = Auth::user()->roles;
-                $deta = Auth::user()->detalle;
-                $in = [];
-                $cont = 0;
-                foreach ($deta as $item) {
-                    $in[$cont] = $item->cod_menu;
-                    $cont = $cont + 1;
-                }
-                $menu = Menu::whereIn('cod_menu', $in)->where('activo', 1)->orderBy('orden_menu')->get();
+                $rol = Auth::user()->hez_role;
+                $menu=HezMenu::query()
+                    ->join('hez_detalle_roles','hez_detalle_roles.cod_menu','=','hez_menu.cod_menu')
+                    ->where('hez_detalle_roles.cod_Rol','=',$rol->cod_Rol)
+                    ->where('activo','=','1')
+                    ->orderBy('orden_menu')
+                    ->get();
                 if (Session::has('menu')) {
                     Session::forget('menu');
                     session(['menu' => $menu]);
@@ -104,4 +106,5 @@ class controlAcceso extends Controller
     {
         return route('/');
     }
+
 }

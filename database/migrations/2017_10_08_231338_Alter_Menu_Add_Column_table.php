@@ -12,7 +12,7 @@ class AlterMenuAddColumnTable extends Migration
      */
     public function up()
     {
-        Schema::table('cotz_menu',function (Blueprint $table){
+        Schema::table('hez_menu',function (Blueprint $table){
            $table->integer('orden_menu');
         });
     }
@@ -24,7 +24,7 @@ class AlterMenuAddColumnTable extends Migration
      */
     public function down()
     {
-        Schema::table('cotz_menu',function (Blueprint $table){
+        Schema::table('hez_menu',function (Blueprint $table){
             $table->dropColumn('orden_menu');
         });
     }

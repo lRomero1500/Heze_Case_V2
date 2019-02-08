@@ -10,7 +10,7 @@ namespace App\Models;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class TrLog
+ * Class PmLog
  * 
  * @property int $id
  * @property string $desc_logs
@@ -19,12 +19,12 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property \Carbon\Carbon $updated_at
  * @property int $operaciones_log_id
  * 
- * @property \App\Models\TrOperacionesLog $tr_operaciones_log
+ * @property \App\Models\PmOperacionesLog $tr_operaciones_log
  * @property \App\Models\CotzUsuario $cotz_usuario
  *
  * @package App\Models
  */
-class TrLog extends Eloquent
+class PmLog extends Eloquent
 {
 	protected $casts = [
 		'usuario_id' => 'int',
@@ -39,7 +39,7 @@ class TrLog extends Eloquent
 
 	public function tr_operaciones_log()
 	{
-		return $this->belongsTo(\App\Models\TrOperacionesLog::class, 'operaciones_log_id');
+		return $this->belongsTo(\App\Models\PmOperacionesLog::class, 'operaciones_log_id');
 	}
 
 	public function cotz_usuario()

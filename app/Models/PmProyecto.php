@@ -10,7 +10,7 @@ namespace App\Models;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class TrProyecto
+ * Class PmProyecto
  * 
  * @property int $id
  * @property string $nombre_proyecto
@@ -30,7 +30,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  *
  * @package App\Models
  */
-class TrProyecto extends Eloquent
+class PmProyecto extends Eloquent
 {
 	protected $casts = [
 		'usuario_id' => 'int',
@@ -68,6 +68,6 @@ class TrProyecto extends Eloquent
 
 	public function tr_tareas()
 	{
-		return $this->hasMany(\App\Models\TrTarea::class, 'proyecto_id');
+		return $this->hasMany(\App\Models\PmTarea::class, 'proyecto_id');
 	}
 }

@@ -13,7 +13,7 @@ class AlterCotzEmpleadosAddEmailCorporativo extends Migration
      */
     public function up()
     {
-        Schema::table('cotz_empleados', function (Blueprint $table) {
+        Schema::table('hez_empleados', function (Blueprint $table) {
             $table->string('email_corporativo')->after('email');
         });
     }
@@ -25,7 +25,7 @@ class AlterCotzEmpleadosAddEmailCorporativo extends Migration
      */
     public function down()
     {
-        Schema::table('cotz_empleados', function (Blueprint $table) {
+        Schema::table('hez_empleados', function (Blueprint $table) {
             $table->dropColumn('email_corporativo');
         });
     }

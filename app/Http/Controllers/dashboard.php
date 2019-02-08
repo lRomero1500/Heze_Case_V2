@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Companias;
+use App\Models\HezCompania;
 use Illuminate\Http\Request;
 
 class dashboard extends Controller
@@ -30,7 +31,7 @@ class dashboard extends Controller
     }
 
     public function  CreatEditEmpresa(Request $request){
-        $companias= new Companias();
+        $companias= new HezCompania();
         $companias->fill($request->all());
         $order=array('(',')','-');
         $companias->tel_Companias= str_replace($order,'',$companias->tel_Companias);

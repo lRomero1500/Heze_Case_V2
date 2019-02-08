@@ -13,11 +13,11 @@ class CreatDepartamentosTable extends Migration
      */
     public function up()
     {
-        Schema::create('cotz_departamentos', function (Blueprint $table) {
+        Schema::create('hez_departamentos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('departamento');
             $table->bigInteger('cod_Companias')->unsigned();
-            $table->foreign('cod_Companias')->references('cod_Companias')->on('Cotz-Companias');
+            $table->foreign('cod_Companias')->references('cod_Companias')->on('hez-Companias');
             $table->timestamps();
         });
     }

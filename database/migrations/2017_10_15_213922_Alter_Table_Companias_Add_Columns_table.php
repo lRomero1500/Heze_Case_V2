@@ -12,7 +12,7 @@ class AlterTableCompaniasAddColumnsTable extends Migration
      */
     public function up()
     {
-        Schema::table('cotz-companias',function (Blueprint $table){
+        Schema::table('hez-companias',function (Blueprint $table){
             $table->string('direccion_companias');
             $table->binary('logo_companias');
             $table->binary('correo_companias');
@@ -26,7 +26,7 @@ class AlterTableCompaniasAddColumnsTable extends Migration
      */
     public function down()
     {
-        Schema::table('cotz-companias',function (Blueprint $table){
+        Schema::table('hez-companias',function (Blueprint $table){
             $table->dropColumn('direccion_companias');
             $table->dropColumn('logo_companias');
             $table->dropColumn('correo_companias');

@@ -10,13 +10,13 @@ class CreateCompaniasyEmpleadosTables extends Migration
 
     public function up()
     {
-        Schema::create('cotz-companias', function (Blueprint $table){
+        Schema::create('hez-companias', function (Blueprint $table){
             $table->bigIncrements('cod_Companias');
             $table->string('nomb_Companias');
             $table->string('nit_Companias')->nullable();
             $table->string('tel_Companias')->nullable();
         });
-        Schema::create('cotz_empleados', function (Blueprint $table){
+        Schema::create('hez_empleados', function (Blueprint $table){
             $table->bigIncrements('cod_Empleado');
             $table->string('documentoEmpleado', 10);
             $table->string('tipo_Doc_Empleado');
@@ -27,7 +27,7 @@ class CreateCompaniasyEmpleadosTables extends Migration
             $table->string('telf_Corporativo_Empleado');
             $table->string('email')->unique();
             $table->bigInteger('cod_Companias')->unsigned();
-            $table->foreign('cod_Companias')->references('cod_Companias')->on('Cotz-Companias');
+            $table->foreign('cod_Companias')->references('cod_Companias')->on('hez-companias');
             $table->integer('porc_Descuento')->nullable();
             $table->integer('porc_Ganacia')->nullable();
             $table->string('password');

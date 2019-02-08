@@ -12,7 +12,7 @@ class AlterCotzCompaniasAddTimeStamps extends Migration
      */
     public function up()
     {
-        Schema::table('cotz-companias',function (Blueprint $table){
+        Schema::table('hez-companias',function (Blueprint $table){
             $table->timestamps();
         });
         //
@@ -25,7 +25,7 @@ class AlterCotzCompaniasAddTimeStamps extends Migration
      */
     public function down()
     {
-        Schema::table('cotz-companias',function (Blueprint $table){
+        Schema::table('hez-companias',function (Blueprint $table){
             $table->dropColumn('created_at');
             $table->dropColumn('updated_at');
         });

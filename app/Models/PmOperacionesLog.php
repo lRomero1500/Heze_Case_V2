@@ -10,7 +10,7 @@ namespace App\Models;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class TrOperacionesLog
+ * Class PmOperacionesLog
  * 
  * @property int $id
  * @property string $nombre_operacion
@@ -21,7 +21,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  *
  * @package App\Models
  */
-class TrOperacionesLog extends Eloquent
+class PmOperacionesLog extends Eloquent
 {
 	protected $fillable = [
 		'nombre_operacion'
@@ -29,6 +29,6 @@ class TrOperacionesLog extends Eloquent
 
 	public function tr_logs()
 	{
-		return $this->hasMany(\App\Models\TrLog::class, 'operaciones_log_id');
+		return $this->hasMany(\App\Models\PmLog::class, 'operaciones_log_id');
 	}
 }

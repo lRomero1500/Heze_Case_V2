@@ -21,14 +21,14 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  *
  * @package App\Models
  */
-class TrEstadosProyecto extends Eloquent
+class PmEstadosProyecto extends Eloquent
 {
 	protected $fillable = [
 		'nombre_estado'
 	];
 
-	public function tr_proyectos()
+	public function pm_proyectos()
 	{
-		return $this->hasMany(\App\Models\TrProyecto::class, 'estado_proyecto_id');
+		return $this->hasMany(\App\Models\PmProyecto::class, 'estado_proyecto_id');
 	}
 }

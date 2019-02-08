@@ -22,7 +22,7 @@
         <div class="Nombre">
             <h5>
                 <?php
-                $nombre = (explode('/', Auth::user()->empleados->nombre_Empleado))[2] . ' ' . (explode('/', Auth::user()->empleados->nombre_Empleado))[0];
+                $nombre = (explode('/', Auth::user()->hez_empleado->nombre_Empleado))[2] . ' ' . (explode('/', Auth::user()->hez_empleado->nombre_Empleado))[0];
                 echo $nombre;
                 ?>
             </h5>
@@ -37,7 +37,7 @@
         <div class="Avatar">
             <h1>
                 <?php
-                $ini = mb_substr((explode('/', Auth::user()->empleados->nombre_Empleado))[2], 0, 1) . mb_substr((explode('/', Auth::user()->empleados->nombre_Empleado))[0], 0, 1);
+                $ini = mb_substr((explode('/', Auth::user()->hez_empleado->nombre_Empleado))[2], 0, 1) . mb_substr((explode('/', Auth::user()->hez_empleado->nombre_Empleado))[0], 0, 1);
                 echo $ini;
                 ?>
             </h1>

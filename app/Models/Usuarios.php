@@ -13,7 +13,7 @@ class Usuarios extends Authenticatable
     public $timestamps = true;
     protected $guard = 'usuarios';
     protected $primaryKey = 'id_Usuarios';
-    protected $table='cotz_usuarios';
+    protected $table='hez_usuarios';
     protected $fillable=['cod_Empleado','email','password','cod_Rol'];
     protected $hidden=['id_Usuarios','cod_Empleado',];
 

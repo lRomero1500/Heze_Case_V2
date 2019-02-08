@@ -10,7 +10,7 @@ namespace App\Models;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class TrTarea
+ * Class PmTarea
  * 
  * @property int $id
  * @property int $proyecto_id
@@ -25,15 +25,15 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property \Carbon\Carbon $updated_at
  * @property int $estado_tarea_id
  * 
- * @property \App\Models\TrEstadosTarea $tr_estados_tarea
- * @property \App\Models\TrProyecto $tr_proyecto
+ * @property \App\Models\PmEstadosTarea $tr_estados_tarea
+ * @property \App\Models\PmProyecto $tr_proyecto
  * @property \App\Models\CotzUsuario $cotz_usuario
  * @property \Illuminate\Database\Eloquent\Collection $tr_tiempostareas
  * @property \Illuminate\Database\Eloquent\Collection $tr_usuario_tareas
  *
  * @package App\Models
  */
-class TrTarea extends Eloquent
+class PmTarea extends Eloquent
 {
 	protected $casts = [
 		'proyecto_id' => 'int',
@@ -62,12 +62,12 @@ class TrTarea extends Eloquent
 
 	public function tr_estados_tarea()
 	{
-		return $this->belongsTo(\App\Models\TrEstadosTarea::class, 'estado_tarea_id');
+		return $this->belongsTo(\App\Models\PmEstadosTarea::class, 'estado_tarea_id');
 	}
 
 	public function tr_proyecto()
 	{
-		return $this->belongsTo(\App\Models\TrProyecto::class, 'proyecto_id');
+		return $this->belongsTo(\App\Models\PmProyecto::class, 'proyecto_id');
 	}
 
 	public function cotz_usuario()
@@ -77,11 +77,11 @@ class TrTarea extends Eloquent
 
 	public function tr_tiempostareas()
 	{
-		return $this->hasMany(\App\Models\TrTiempostarea::class, 'tarea_id');
+		return $this->hasMany(\App\Models\PmTiempostarea::class, 'tarea_id');
 	}
 
 	public function tr_usuario_tareas()
 	{
-		return $this->hasMany(\App\Models\TrUsuarioTarea::class, 'tarea_id');
+		return $this->hasMany(\App\Models\PmUsuarioTarea::class, 'tarea_id');
 	}
 }
