@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Thu, 07 Feb 2019 16:27:02 +0000.
+ * Date: Fri, 08 Feb 2019 17:04:57 +0000.
  */
 
 namespace App\Models;
@@ -37,6 +37,7 @@ class HezCompania extends Eloquent
 	];
 
 	protected $fillable = [
+	    'cod_Companias',
 		'nomb_Companias',
 		'nit_Companias',
 		'tel_Companias',

@@ -103,7 +103,7 @@
                                         class="SeparadorOpcionesTablas">|</span>
                                 <a onclick="eliminarColaborador({!! $colaborador->cod_Empleado !!});">Eliminar</a></div>
                         </td>
-                        <td>{{$colaborador->compania->nomb_Companias}}</td>
+                        <td>{{$colaborador->hez_compania->nomb_Companias}}</td>
                         <td>Desarrollo Web</td>
                     </tr>
                 @endforeach

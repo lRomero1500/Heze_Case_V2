@@ -2,15 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Empleados;
-use App\Models\HezDetalleRole;
 use App\Models\HezEmpleado;
 use App\Models\HezMenu;
-use App\Models\Menu;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
-
-use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Support\Facades\Redirect;

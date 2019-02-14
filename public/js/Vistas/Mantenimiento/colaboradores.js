@@ -76,7 +76,7 @@ function guardar(e) {
 }
 function editColaborador(idUsuario) {
     InicioCarando();
-    var url = baseUrl + 'mantenimiento/getColaborador';
+    var url = baseUrl + 'mantenimiento/getColaborador/';
     $.ajax({
         type: "GET",
         url: url + idUsuario,
@@ -167,7 +167,7 @@ function eliminarColaborador(idColaborador) {
                                         '<a onclick="editColaborador('+item.cod_Empleado+');">Editar</a><span class="SeparadorOpcionesTablas">|</span>' +
                                         '<a onclick="eliminarColaborador('+item.cod_Empleado+');">Eliminar</a></div>' +
                                         '</td>'+
-                                        '<td>'+item.compania.nomb_Companias+'</td>' +
+                                        '<td>'+item.hez_compania.nomb_Companias+'</td>' +
                                         '<td>Desarrollo Web</td>' +
                                         '</tr>';
                                 });

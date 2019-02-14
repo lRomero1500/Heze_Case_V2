@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Mail\emailCreaUsr;
-use App\Models\Empleados;
 use App\Models\HezEmpleado;
 use App\Models\HezUsuario;
-use App\Models\Usuarios;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;

@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Thu, 07 Feb 2019 16:15:14 +0000.
+ * Date: Fri, 08 Feb 2019 19:38:45 +0000.
  */
 
 namespace App\Models;
@@ -42,6 +42,7 @@ class HezDetalleRole extends Eloquent
 	{
 		return $this->belongsTo(\App\Models\HezRole::class, 'cod_Rol');
 	}
+
 	public function hez_menu()
 	{
 		return $this->belongsTo(\App\Models\HezMenu::class, 'cod_menu');

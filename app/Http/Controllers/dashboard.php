@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Companias;
+
 use App\Models\HezCompania;
 use Illuminate\Http\Request;
 

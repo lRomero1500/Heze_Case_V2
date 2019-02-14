@@ -7,6 +7,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Carbon;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
@@ -48,12 +49,12 @@ class HezEmpleado extends Eloquent
 		'porc_Ganacia' => 'int',
 		'departamento_id' => 'int'
 	];
-
 	protected $dates = [
 		'fecha_Nac_Empleado'
 	];
 
 	protected $fillable = [
+	    'cod_Empleado',
 		'documentoEmpleado',
 		'tipo_Doc_Empleado',
 		'nombre_Empleado',
@@ -86,6 +87,10 @@ class HezEmpleado extends Eloquent
 
 	public function hez_usuarios()
 	{
-		return $this->hasMany(\App\Models\HezUsuario::class, 'cod_Empleado');
+		return $this->hasOne(\App\Models\HezUsuario::class, 'cod_Empleado');
 	}
+    public function setFechaNacEmpleadoAttribute($value){
+        $this->attributes['fecha_Nac_Empleado'] = Carbon::createFromFormat('d/m/Y',$value);
+    }
+
 }

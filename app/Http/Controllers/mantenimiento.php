@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Mail\emailCreaUsr;
-use App\Models\Companias;
-use App\Models\Empleados;
 use App\Models\HezCompania;
 use App\Models\HezEmpleado;
 use App\Models\HezUsuario;
-use App\Models\Usuarios;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -92,7 +89,6 @@ class mantenimiento extends Controller
             2 => $request->only('nombre1')['nombre1'],
             3 => $request->only('nombre2')['nombre2']);
         $clbrdrs->nombre_Empleado = implode("/", $nombArr);
-        $clbrdrs->fecha_Nac_Empleado = Carbon::createFromFormat('d/m/Y', $clbrdrs->fecha_Nac_Empleado);
         $order = array('(', ')', '-');
         $clbrdrs->telf_Celular_Empleado = str_replace($order, '', $clbrdrs->telf_Celular_Empleado);
         $clbrdrs->telf_Corporativo_Empleado = str_replace($order, '', $clbrdrs->telf_Corporativo_Empleado);
@@ -233,7 +229,8 @@ class mantenimiento extends Controller
                 if (((HezEmpleado::whereHas('hez_usuarios', function ($query) use ($id) {
                         $query->where('cod_Empleado', $id);
                     })->get())->count()) > 0) {
-                    HezUsuario::destroy(($empleado->first())->Usuario->id_Usuarios);
+                    $z=$empleado->first()->hez_usuarios;
+                    HezUsuario::destroy(($empleado->first())->hez_usuarios->id_Usuarios);
                     HezEmpleado::destroy($id);
                 } else
                     HezEmpleado::destroy($id);

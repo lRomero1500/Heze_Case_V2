@@ -50,6 +50,7 @@ class HezUsuario extends Authenticatable
 	];
 
 	protected $fillable = [
+	    'id_Usuarios',
 		'cod_Empleado',
 		'password',
 		'email',
