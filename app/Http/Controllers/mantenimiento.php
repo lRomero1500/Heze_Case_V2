@@ -38,6 +38,9 @@ class mantenimiento extends Controller
             'Colabors' => $Colaboradores
         ]);
     }
+    public function serviciosIndex(){
+
+    }
     //endregion
     //region Crear Editar
     public function creaEditEmpresas(Request $request){
