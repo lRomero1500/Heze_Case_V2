@@ -1,15 +1,15 @@
 var form;
 function guardar(e) {
     InicioCarando();
-    form = $('#colaborador');
+    form = $('#departamento');
     form.validate();
     if (!form.valid()) {
         e.preventDefault();
         FinCarando();
     }
     else {
-        var data = $('#colaborador').serialize();
-        var url = baseUrl + 'CreaEditColaborador';
+        var data = $('#departamento').serialize();
+        var url = baseUrl + 'mantenimiento/creaEditDepartamentos';
         $.post({
             url: url,
             data: data,
@@ -21,30 +21,26 @@ function guardar(e) {
                         $('#errores').html('');
                         $('#errores').css('visibility', 'none');
                         $('#formulario').css('display', 'none');
-                        destruirMask('tel');
-                        destruirDatePick('dat');
                         $('#ContenedorAltertas').append(
                             "<div id='AlertResp' class='AlertasAreaNoError'>" +
                             "<i onclick='cerrarResp();' style='cursor: pointer;'" +
                             " class='CerrarAlertasAreaNoError fa fa-times fa-fw' aria-hidden='true'></i>" +
                             "<p>" + resp.msg + " </p></div>"
                         );
-                        $('#tbColaboradores').html('');
+                        $('#tbDepatamentos').html('');
                         var tb = "";
                         $.each(resp.table, function (index, item) {
-                            var arrNombre=item.nombre_Empleado.split('/');
                             tb += '<tr>' +
                                 '<td><input type="checkbox"/></td>\n' +
-                                '<td>' +arrNombre[2]+' '+arrNombre[3]+' '+arrNombre[0]+' '+arrNombre[1]+
+                                '<td>' +item.departamento+
                                 '<div class="OpcionesTabla">' +
-                                '<a onclick="editColaborador('+item.cod_Empleado+');">Editar</a><span class="SeparadorOpcionesTablas">|</span>' +
-                                '<a onclick="eliminarColaborador('+item.cod_Empleado+');">Eliminar</a></div>' +
+                                '<a onclick="editColaborador('+item.id+');">Editar</a><span class="SeparadorOpcionesTablas">|</span>' +
+                                '<a onclick="eliminarColaborador('+item.id+');">Eliminar</a></div>' +
                                 '</td>'+
-                                '<td>'+item.compania.nomb_Companias+'</td>' +
-                                '<td>Desarrollo Web</td>' +
+                                '<td>'+item.hez_compania.nomb_Companias+'</td>' +
                                 '</tr>';
                         });
-                        $('#tbColaboradores').html(tb);
+                        $('#tbDepatamentos').html(tb);
                         FinCarando();
                     }
                     else {

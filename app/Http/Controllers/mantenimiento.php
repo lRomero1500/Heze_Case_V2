@@ -32,9 +32,11 @@ class mantenimiento extends Controller
     public function departamentosIndex(){
         $title_page = 'Mantenimiento de Departamentos';
         $deparamentos= HezDepartamento::all();
+        $Companias = HezCompania::all();
         return view('Mantenimiento.departamentos.credtDepartamentosnoEMB')->with([
             'title_page' => $title_page,
-            'departamentos'=>$deparamentos
+            'departamentos'=>$deparamentos,
+            'Companias'=>$Companias
         ]);
     }
     public function colaboradoresIndex(){
@@ -94,7 +96,35 @@ class mantenimiento extends Controller
         }
     }
     public function creaEditDepartamentos(Request $request){
+        $departamento= new HezDepartamento();
+        $departamento->fill($request->all());
+        try {
+            if ($departamento->id == '0') {
+                $departamento->save();
+                $dat = HezDepartamento::with('hez_compania')->get();
+                return response()->json([
+                    'msg' => 'El departamento ' . $departamento->departamento . ' se creo  exitosamente!',
+                    'error' => false,
+                    'table' => $dat
+                ]);
+            } else {
+                $departamentoUP = HezDepartamento::find($departamento->id);
+                $departamentoUP->departamento = $departamento->departamento;
+                $departamentoUP->save();
+                $dat = HezDepartamento::with('hez_compania')->get();
+                return response()->json([
+                    'msg' => 'El departamento ' . $departamento->departamento . ' se modifico  exitosamente!',
+                    'error' => false,
+                    'table' => $dat
+                ]);
+            }
 
+        } catch (\Exception $e) {
+            return response()->json([
+                'msg' => 'Error: ' . $e,
+                'error' => true
+            ]);
+        }
     }
     public function creaEditColaboradores(Request $request){
         $clbrdrs = new HezEmpleado();
@@ -190,7 +220,8 @@ class mantenimiento extends Controller
         return \Response::json($data);
     }
     public function getDepartamento($id){
-
+        $data =  HezDepartamento::with('hez_compania')->find($id);
+        return \Response::json($data);
     }
     public function getColaborador($id){
         try {
@@ -235,7 +266,32 @@ class mantenimiento extends Controller
         }
     }
     public function delDepartamento($id){
+        try {
+            $departamento = HezDepartamento::where('id', $id)->first();
+            if($departamento){
+                HezDepartamento::destroy($id);
+                $dat=HezDepartamento::with('hez_compania')->get();
+                return response()->json([
+                    'msg' => 'El Departamento ' . $departamento->departamento . ' se eliminó correctamente!',
+                    'error' => false,
+                    'table'=>$dat
+                ]);
+            }
+            else{
+                return response()->json([
+                    'msg' => 'El departamento seleccionado no existe',
+                    'error' => true
+                ]);
+            }
 
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'msg' => 'Error! ' . $e->getMessage(),
+                'error' => true
+            ]);
+
+        }
     }
     public function delColaborador($id){
         try {

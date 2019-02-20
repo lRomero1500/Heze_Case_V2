@@ -100,14 +100,14 @@
                     @foreach($departamentos as $departamento)
                         <tr>
                             <td><input type="checkbox"/></td>
-                            <td>{!! $compania->nomb_Companias !!}
+                            <td>{!! $departamento->departamento !!}
                                 <div class="OpcionesTabla"><a
-                                            onclick="editEmpresa({!! $compania->cod_Companias.',event' !!});">Editar</a>
+                                            onclick="editEmpresa({!! $departamento->id.',event' !!});">Editar</a>
                                     <span class="SeparadorOpcionesTablas">|</span>
-                                    <a onclick="eliminarEmpresa({!! $compania->cod_Companias !!});">Eliminar</a>
+                                    <a onclick="eliminarEmpresa({!! $departamento->id !!});">Eliminar</a>
                                 </div>
                             </td>
-                            <td>{!! $compania->nit_Companias !!}</td>
+                            <td>{!! $departamento->hez_compania->nomb_Companias !!}</td>
                         </tr>
                     @endforeach
                 @else

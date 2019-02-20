@@ -30,7 +30,8 @@ class HezDepartamento extends Eloquent
 	];
 
 	protected $fillable = [
-		'departamento',
+		'id',
+	    'departamento',
 		'cod_Companias'
 	];
 

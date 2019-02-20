@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('Mantenimiento.colaboradores.credtColaboradoresnoEMB', function ($view) {
+        view()->composer(['Mantenimiento.colaboradores.credtColaboradoresnoEMB','Mantenimiento.departamentos.credtDepartamentosEMB'], function ($view) {
             $view->with('companias', HezCompania::all());
             $view->with('tiposDoc', HezTipoDocumento::all());
         });
