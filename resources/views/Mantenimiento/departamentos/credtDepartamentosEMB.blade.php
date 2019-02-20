@@ -1,3 +1,4 @@
+{{--
 <form id="departamento">
     {!! csrf_field() !!}
     <div class="contentFormulario3Colomnas" style="padding:0px!important;margin-bottom: 0.5em">
@@ -35,4 +36,4 @@
 </form>
 @section('scriptsEMB')
     <script src="{{asset('js/Vistas/departamentos.js')}}"></script>
-@endsection
+@endsection--}}

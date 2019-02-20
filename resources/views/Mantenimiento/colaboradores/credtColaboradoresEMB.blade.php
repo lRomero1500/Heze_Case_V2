@@ -139,6 +139,9 @@
             <p> Guardar datos</p>
         </button>
     </div>
+    <div id="cerrarForm" class="btnCerrar">
+        <button type="button" id="btnCerrar"></button>
+    </div>
     <div id="errores" style="visibility: hidden">
 
     </div>

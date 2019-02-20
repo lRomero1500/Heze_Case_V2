@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Mail\emailCreaUsr;
 use App\Models\HezCompania;
+use App\Models\HezDepartamento;
 use App\Models\HezEmpleado;
+use App\Models\HezServicio;
 use App\Models\HezUsuario;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -28,7 +30,12 @@ class mantenimiento extends Controller
         ]);
     }
     public function departamentosIndex(){
-
+        $title_page = 'Mantenimiento de Departamentos';
+        $deparamentos= HezDepartamento::all();
+        return view('Mantenimiento.departamentos.credtDepartamentosnoEMB')->with([
+            'title_page' => $title_page,
+            'departamentos'=>$deparamentos
+        ]);
     }
     public function colaboradoresIndex(){
         $title_page = 'Mantenimiento de Colaboradores';
@@ -39,7 +46,12 @@ class mantenimiento extends Controller
         ]);
     }
     public function serviciosIndex(){
-
+        $title_page = 'Mantenimiento de Servicios';
+        $servicios= HezServicio::all();
+        return view('Mantenimiento.servicios.credtServiciosnoEMB')->with([
+            'title_page' => $title_page,
+            'servicios'=>$servicios
+        ]);
     }
     //endregion
     //region Crear Editar

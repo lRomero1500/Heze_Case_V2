@@ -8,7 +8,7 @@
     <div class="AreaTrabajo">
         <div class="ContenedorAreaTop">
             <div class="tituloAreaTrabajo">
-                <h3>Mantenimiento/Departamentos</h3>
+                <h3>Mantenimiento/Servicios</h3>
             </div>
             <div class="conteedorIconoAreatrabajo">
                 <a id="AddEmpresa" style="cursor: pointer;"><i class="iconoAreatrabajo fa fa-plus fa-fw"
@@ -18,7 +18,7 @@
         </div>
         <div id="formulario" class="contenedorFormsEditCrea" style="display: none">
             <div class="formsCreaEdit">
-                @include('Mantenimiento.departamentos.credtDepartamentosEMB')
+                @include('Mantenimiento.servicios.credtServiciosEMB')
             </div>
         </div>
         <div id="ContenedorAltertas" class="ConetendorAlertasArea">
@@ -91,13 +91,13 @@
                 <thead>
                 <tr>
                     <th width="2%"><input type="checkbox"/></th>
-                    <th width="20%">Departamento</th>
+                    <th width="20%">Servicio</th>
                     <th width="19%">Empresa</th>
                 </tr>
                 </thead>
                 <tbody id="tbDepatamentos">
-                @if ($departamentos->count()>0)
-                    @foreach($departamentos as $departamento)
+                @if ($servicios->count()>0)
+                    @foreach($servicios as $departamento)
                         <tr>
                             <td><input type="checkbox"/></td>
                             <td>{!! $compania->nomb_Companias !!}

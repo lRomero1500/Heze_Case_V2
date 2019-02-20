@@ -36,6 +36,8 @@ Route::get('/','lobby@index')->middleware('auth');
 //region Mantenimiento
 Route::get('mantenimiento','mantenimiento@index')->middleware('auth');
 Route::get('mantenimiento/empresas','mantenimiento@empresasIndex')->middleware('auth');
+Route::get('mantenimiento/departamentos','mantenimiento@departamentosIndex')->middleware('auth');
+Route::get('mantenimiento/servicios','mantenimiento@serviciosIndex')->middleware('auth');
 Route::get('mantenimiento/colaboradores','mantenimiento@colaboradoresIndex')->middleware('auth');
 Route::get('mantenimiento/getEmpresa/{id}','mantenimiento@getEmpresa');
 Route::get('mantenimiento/getColaborador/{id}','mantenimiento@getColaborador');
