@@ -9896,19 +9896,11 @@ input.campo, select.campo, textarea.campo {
   transition: 0.4s;
 }
 
-input[type=checkbox].campo {
-  display: inline-block;
-  vertical-align: middle;
-  width: 21px;
-  transition: 0.4s;
-  position: relative;
-  z-index: 1;
-  margin-left: 10px;
-}
-
 input[type=checkbox] {
   width: 0.1px;
   height: 0.1px;
+  display: none;
+  opacity: 0;
 }
 
 label.textCheckbox {
