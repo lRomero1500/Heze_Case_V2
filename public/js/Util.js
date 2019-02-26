@@ -115,7 +115,7 @@ $(document).ready(function () {
                 $('#formulario').css('display', 'none');
             });
         }
-    })
+    });
     $('#AddColaborador').click(function (e) {
         if ($('#formulario').css('display') == 'none') {
             $('#formulario').css('display', '');
@@ -128,7 +128,16 @@ $(document).ready(function () {
                 $('#formulario').css('display', 'none');
             });
         }
-    })
+    });
+    $('#AddDepartamentos').click(function (e) {
+        if ($('#formulario').css('display') == 'none') {
+            $('#formulario').css('display', '');
+            $('#cerrarForm').click(function (e) {
+                $('#formulario').trigger("reset");
+                $('#formulario').css('display', 'none');
+            });
+        }
+    });
 });
 //endregion
 //region Funciones Prototipo

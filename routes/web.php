@@ -46,6 +46,7 @@ Route::post('mantenimiento/creaEditEmpresas','mantenimiento@creaEditEmpresas');
 Route::post('mantenimiento/creaEditDepartamentos','mantenimiento@creaEditDepartamentos');
 Route::post('mantenimiento/creaEditColaboradores', 'mantenimiento@creaEditColaboradores');
 Route::post('mantenimiento/delEmpresa/{id}','mantenimiento@delEmpresa');
+Route::post('mantenimiento/delDepartamento/{id}','mantenimiento@delDepartamento');
 Route::post('mantenimiento/delColaborador/{id}','mantenimiento@delColaborador');
 //endregion
 //region Pmlite
