@@ -1,14 +1,14 @@
 var form;
 function guardar(e) {
     InicioCarando();
-    form = $('#departamento');
+    form = $('#departamentos');
     form.validate();
     if (!form.valid()) {
         e.preventDefault();
         FinCarando();
     }
     else {
-        var data = $('#departamento').serialize();
+        var data = $('#departamentos').serialize();
         var url = baseUrl + 'mantenimiento/creaEditDepartamentos';
         $.post({
             url: url,
@@ -34,8 +34,8 @@ function guardar(e) {
                                 '<td><input type="checkbox"/></td>\n' +
                                 '<td>' +item.departamento+
                                 '<div class="OpcionesTabla">' +
-                                '<a onclick="editColaborador('+item.id+');">Editar</a><span class="SeparadorOpcionesTablas">|</span>' +
-                                '<a onclick="eliminarColaborador('+item.id+');">Eliminar</a></div>' +
+                                '<a onclick="editDepartamento('+item.id+');">Editar</a><span class="SeparadorOpcionesTablas">|</span>' +
+                                '<a onclick="eliminarDepartamento('+item.id+');">Eliminar</a></div>' +
                                 '</td>'+
                                 '<td>'+item.hez_compania.nomb_Companias+'</td>' +
                                 '</tr>';
@@ -70,41 +70,20 @@ function guardar(e) {
     }
 
 }
-/*function editColaborador(idUsuario) {
+function editDepartamento(idDep) {
     InicioCarando();
-    var url = baseUrl + 'getColaborador/';
+    var url = baseUrl + 'mantenimiento/getDepartamento/';
     $.ajax({
         type: "GET",
-        url: url + idUsuario,
+        url: url + idDep,
         success: function (resp) {
             if (resp != null && resp != undefined) {
                 if ($('#formulario').css('display') == 'none') {
                     $('#formulario').css('display', '');
-                    crearMask('tel');
-                    crearDatePick('dat');
                 }
-                document.getElementById("colaborador").reset();
-                var nombres= (resp.nombre_Empleado).split('/');
-                $('#idEmpleado').prop('value', resp.cod_Empleado);
-                $('#nombre1').val(nombres[2]);
-                $('#nombre2').val(nombres[3]);
-                $('#apellido1').val(nombres[0]);
-                $('#apellido2').val(nombres[1]);
-                $('#tipo_Doc_Empleado').val(resp.tipo_Doc_Empleado);
-                $('#documentoEmpleado').val(resp.documentoEmpleado);
-                $('#sexo_Empleado').val(resp.sexo_Empleado);
-                $('#fecha_Nac_Empleado').datepicker('setDate', resp.fecha_Nac_Empleado.ConvertirFecha());
-                $('#telf_Celular_Empleado').val(resp.telf_Celular_Empleado);
-                $('#telf_Corporativo_Empleado').val(resp.telf_Corporativo_Empleado);
-                $('#email_contacto').val(resp.email_contacto);
-                $('#email_corporativo').val(resp.email_corporativo);
-                $('#cod_Companias').val(resp.cod_Companias);
-                $('#porc_Descuento').val(resp.porc_Descuento);
-                $('#porc_Ganacia').val(resp.porc_Ganacia);
-                if(resp.usuario!=null)
-                    document.getElementById('crearUsrHezeCase').checked=true;
-
-
+                document.getElementById("departamentos").reset();
+                $('#departamento').val(resp.departamento);
+                $('#cod_Companias').val(resp.hez_compania.cod_Companias);
             }
             else {
                 $('#errores').css('visibility', '');
@@ -120,12 +99,11 @@ function guardar(e) {
             $('#errores').html('Error' + textStatus);
         }
     });
-}*/
-/*
-function eliminarColaborador(idColaborador) {
+}
+function eliminarDepartamento(idDep) {
     InicioCarando();
-    var url = baseUrl + 'deleteColaborador/';
-    var parametros = {id: idColaborador};
+    var url = baseUrl + 'mantenimiento/delDepartamento/';
+    var parametros = {id: idDep};
     $.confirm({
         title: 'Confirmación!',
         typeAnimated: true,
@@ -138,7 +116,7 @@ function eliminarColaborador(idColaborador) {
             Ok: function () {
                 $.ajax({
                     type: 'POST',
-                    url: url + idColaborador,
+                    url: url + idDep,
                     headers: {'X-CSRF-TOKEN': token},
                     data: JSON.stringify(parametros),
                     contentType: 'application/json; charset=UTF-8',
@@ -152,22 +130,20 @@ function eliminarColaborador(idColaborador) {
                                     " class='CerrarAlertasAreaNoError fa fa-times fa-fw' aria-hidden='true'></i>" +
                                     "<p>" + resp.msg + " </p></div>"
                                 );
-                                $('#tbColaboradores').html('');
+                                $('#tbDepatamentos').html('');
                                 var tb = "";
                                 $.each(resp.table, function (index, item) {
-                                    var arrNombre=item.nombre_Empleado.split('/');
                                     tb += '<tr>' +
                                         '<td><input type="checkbox"/></td>\n' +
-                                        '<td>' +arrNombre[2]+' '+arrNombre[3]+' '+arrNombre[0]+' '+arrNombre[1]+
+                                        '<td>' +item.departamento+
                                         '<div class="OpcionesTabla">' +
-                                        '<a onclick="editColaborador('+item.cod_Empleado+');">Editar</a><span class="SeparadorOpcionesTablas">|</span>' +
-                                        '<a onclick="eliminarColaborador('+item.cod_Empleado+');">Eliminar</a></div>' +
+                                        '<a onclick="editDepartamento('+item.id+');">Editar</a><span class="SeparadorOpcionesTablas">|</span>' +
+                                        '<a onclick="eliminarDepartamento('+item.id+');">Eliminar</a></div>' +
                                         '</td>'+
-                                        '<td>'+item.compania.nomb_Companias+'</td>' +
-                                        '<td>Desarrollo Web</td>' +
+                                        '<td>'+item.hez_compania.nomb_Companias+'</td>' +
                                         '</tr>';
                                 });
-                                $('#tbColaboradores').html(tb);
+                                $('#tbDepatamentos').html(tb);
                                 FinCarando();
                             }
                             else {
@@ -206,4 +182,4 @@ function eliminarColaborador(idColaborador) {
             }
         }
     });
-}*/
+}

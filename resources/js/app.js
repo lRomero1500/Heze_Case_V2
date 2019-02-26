@@ -6,6 +6,7 @@ require('jquery-confirm');
 require('jquery-ui');
 require('inputmask/dist/min/jquery.inputmask.bundle.min');
 require('@chenfengyuan/datepicker');
+require('jquery-cropper');
 
 /*
  *  jquery-easy-loading - v1.3.0

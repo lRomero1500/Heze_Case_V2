@@ -11,7 +11,7 @@
                 <h3>Mantenimiento/Departamentos</h3>
             </div>
             <div class="conteedorIconoAreatrabajo">
-                <a id="AddEmpresa" style="cursor: pointer;"><i class="iconoAreatrabajo fa fa-plus fa-fw"
+                <a id="AddDepartamentos" style="cursor: pointer;"><i class="iconoAreatrabajo fa fa-plus fa-fw"
                                                                aria-hidden="true"></i><h4 class="textIcono">Añadir
                         Nuevo</h4></a>
             </div>
@@ -102,9 +102,9 @@
                             <td><input type="checkbox"/></td>
                             <td>{!! $departamento->departamento !!}
                                 <div class="OpcionesTabla"><a
-                                            onclick="editEmpresa({!! $departamento->id.',event' !!});">Editar</a>
+                                            onclick="editDepartamento({!! $departamento->id.',event' !!});">Editar</a>
                                     <span class="SeparadorOpcionesTablas">|</span>
-                                    <a onclick="eliminarEmpresa({!! $departamento->id !!});">Eliminar</a>
+                                    <a onclick="eliminarDepartamento({!! $departamento->id !!});">Eliminar</a>
                                 </div>
                             </td>
                             <td>{!! $departamento->hez_compania->nomb_Companias !!}</td>
@@ -122,7 +122,7 @@
 @endsection
 
 @section('scripts')
-
+    <script src="{{asset('js/Vistas/Mantenimiento/departamentos.js')}}"></script>
 @endsection
 
 @section('scriptsEMB')
