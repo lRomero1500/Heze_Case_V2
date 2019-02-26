@@ -1,3 +1,9 @@
+.popUpCropper{
+    display: none;
+}
+.popUpCropper.activo{
+    display: block;
+}
 .imgAvatarForm img.imgCortPop {
     display: block;
     width: 100%;

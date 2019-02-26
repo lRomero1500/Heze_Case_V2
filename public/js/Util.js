@@ -804,7 +804,7 @@ $('.iniCropPOPPerfil').change(function () {
 function setImagePerfilClosePOp(imagenCortada) {
     var img = ($('.imgCortPop'))[0];
     img.src = imagenCortada;
-    $('#image').cropper('destroy').attr('src', '#');
+    $('#image').cropper('destroy').attr('src', '');
     $('.popUpCropper').removeClass('activo');
 }
 //endregion

@@ -62,7 +62,7 @@
 </form>
 <div class="popUpCropper">
     <div id="popUP" class="img-container">
-        <img id="image" src="" alt="Imagen de Perfil">
+        <img id="image" src="">
     </div>
     <div id="bototnes">
         <div class="docs-buttons">
