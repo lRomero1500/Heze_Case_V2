@@ -22,23 +22,29 @@
             </div>
             <div class="campoCorto"><h5>Teléfono</h5>
                 <input id="tel_Companias" class="tel" name="tel_Companias" type="text" value="" placeholder=""
-                       requerido="true" required data-rule-required="true" data-msg-required="Ingrese un telefono de la compañia">
+                       requerido="true" required data-rule-required="true"
+                       data-msg-required="Ingrese un telefono de la compañia">
             </div>
             <div class="campoCorto"><h5>Dirección</h5>
                 <input id="direccion_companias" name="direccion_companias" type="text" value="" placeholder=""
-                       requerido="true" required data-rule-required="true" data-msg-required="Ingrese una direccion de la compañia">
+                       requerido="true" required data-rule-required="true"
+                       data-msg-required="Ingrese una direccion de la compañia">
             </div>
             {{--            <div class="campoCorto"><h5>Logo</h5>
                             <input id="logo_companias" name="logo_companias" type="file" accept="image/*">
                         </div>--}}
             <div class="campoCorto"><h5>Logo</h5>
                 <input type="file" name="logo_companias" id="logo_companias" accept="image/*"
-                       style=" width: 0.1px; height: 0.1px;  opacity: 0;  overflow: hidden;  position: absolute;  z-index: -1;">
-                <label for="logo_companias" style="border: 1px solid #707070; background: #ffffff;"><span style=" width: 54%; min-height: 2em; display: inline-block;  text-overflow: ellipsis; white-space: nowrap;
-    overflow: hidden; vertical-align: top;"></span> <strong
-                            style=" height: 100%; color: #f1e5e6; background: #d3394c; display: inline-block;">
-                        <i class="fa fa-upload" aria-hidden="true"></i>
-                        Logo&hellip;</strong></label>
+                       style=" width: 0.1px; height: 0.1px;  opacity: 0;  overflow: hidden;  position: absolute;  z-index: -1;"
+                       class="iniCropPOPPerfil">
+                <div class="imgAvatarForm">
+                    <img class="imgCortPop" src="#"/>
+                </div>
+                <label for="logo_companias">
+                    <strong style=" height: 100%; color: #f1e5e6; background: #d3394c; display: inline-block;">
+                        <i class="fa fa-upload" aria-hidden="true"></i>Logo&hellip;
+                    </strong>
+                </label>
             </div>
         </div>
     </div>
@@ -54,6 +60,20 @@
 
     </div>
 </form>
+<div class="popUpCropper">
+    <div id="popUP" class="img-container">
+        <img id="image" src="" alt="Imagen de Perfil">
+    </div>
+    <div id="bototnes">
+        <div class="docs-buttons">
+            <button type="button" data-method="getCroppedCanvas" data-option="{ &quot;maxWidth&quot;: 400, &quot;maxHeight&quot;: 400 }">
+                    <span title="$().cropper(&quot;getCroppedCanvas&quot;, { maxWidth: 400, maxHeight: 400 })">
+                        Realizar Corte
+                    </span>
+            </button>
+        </div>
+    </div>
+</div>
 @section('scriptsEMB')
     <script>
         $(document).ready(function () {
