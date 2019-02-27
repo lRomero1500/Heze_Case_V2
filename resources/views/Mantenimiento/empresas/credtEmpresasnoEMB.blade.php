@@ -23,10 +23,7 @@
                     <button type="button" id="btnCerrar"></button>
                 </div>
                 <p>
-                    A Lorem ipsum dolor sit amet, consectetur adipiscing elit. Superiores tres erant, quae esse possent,
-                    quarum est una sola defensa, eaque vehementer. Omnia contraria, quos etiam insanos esse vultis. Non
-                    autem hoc: igitur ne illud quidem. Istam voluptatem, inquit, Epicurus ignorat? Ergo instituto
-                    veterum, quo etiam Stoici utuntur.
+                    En este espacio podrás agregar, editar y eliminar las empresas; para crear o editar una empresa de forma correcta es necesario que diligencies todos los campos de manera correcta. para mayor información acerca de <b>cómo crear una empresa</b> visita la wiki de <b>Hezecase <a href="#">Aquí</a> </b> y conoce todo el potencial que tiene Hececaze para ti y tu empresa
                 </p>
             </div>
             <div class="AlertasAreaError" style="display: none">

@@ -26,13 +26,10 @@
                     <button type="button" id="btnCerrar"></button>
                 </div>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Superiores tres erant, quae esse possent,
-                    quarum est una sola defensa, eaque vehementer. Omnia contraria, quos etiam insanos esse vultis. Non
-                    autem hoc: igitur ne illud quidem. Istam voluptatem, inquit, Epicurus ignorat? Ergo instituto
-                    veterum, quo etiam Stoici utuntur.
+                    En este espacio podrás agregar, editar y eliminar los servicios y Sub-servicios de tu empresa; para crear o editar un servicio de forma correcta es necesario que diligencies todos los campos de manera correcta, Recuerda que los Sub-servicios dependen de la creación de Servicios. para mayor información acerca de <b>cómo crear un Servicio o Sub-servicio</b> visita la wiki de <b>Hezecase <a href="#">Aquí</a> </b> y conoce todo el potencial que tiene Hececaze para ti y tu empresa
                 </p>
             </div>
-            <div class="AlertasAreaError" style="display: none">
+            <div class="AlertasAreaError" style="display: ">
                 <table>
                     <tr>
                         <td style="background-color:#FF5012;text-align: center; vertical-align: middle;width: 30px">
@@ -40,10 +37,7 @@
                         </td>
                         <td style="padding: 20px;text-align: justify;vertical-align: middle">
                             <p style="text-wrap: none">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Superiores tres erant, quae
-                                esse possent, quarum est una sola defensa, eaque vehementer. Omnia contraria, quos etiam
-                                insanos esse vultis. Non autem hoc: igitur ne illud quidem. Istam voluptatem, inquit,
-                                Epicurus ignorat? Ergo instituto veterum, quo etiam Stoici utuntur.
+                                No tienes servicios creados
                             </p>
                         </td>
                     </tr>

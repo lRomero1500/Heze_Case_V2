@@ -8880,15 +8880,17 @@ p {
 }
 
 .conteedorIconoAreatrabajo a {
-  width: 180px;
-  display: flex;
+  width: auto;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   height: 50px;
   background: #e9e9e9;
   margin: 5px 0;
+  padding: 0 12px 0 20px;
   cursor: pointer;
   transition: 0.4s;
+  border-radius: 50px 6px 6px 50px;
 }
 
 .conteedorIconoAreatrabajo a:hover {
@@ -8898,7 +8900,7 @@ p {
 .conteedorIconoAreatrabajo a span {
   position: absolute;
   color: #fff;
-  left: 20px;
+  left: 12px;
   display: flex;
   align-items: center;
   height: 26px;
@@ -8945,8 +8947,8 @@ p {
 }
 
 .conteedorIconoAreatrabajo .textIcono {
-  color: #000;
-  margin-left: 20px;
+  color: #212529;
+  margin-left: 24px;
 }
 
 div.conteedorIconoAreatrabajo a {
@@ -8962,10 +8964,6 @@ div.conteedorIconoAreatrabajo a {
   background: linear-gradient(to top right, #0097f6 40%, #b622b5 80%);
   cursor: pointer;
   margin-right: 10px;
-}
-
-.conteedorIconoAreatrabajo .textIcono {
-  color: #000;
 }
 
 .ConetendorAlertasArea, .contenedorFormsEditCrea {
@@ -9307,7 +9305,7 @@ div.conteedorIconoAreatrabajo a {
 
 .contenedorDeCampos {
   padding: 10px;
-  width: 100%;
+  width: calc(100% - 20px);
   font-size: 0;
 }
 
@@ -9343,7 +9341,7 @@ label.error:after {
   border-radius: 200px 0px 0 0;
 }
 
-.campoCorto label[for=logo_companias] {
+.contCampo label[for=logo_companias] {
   border: 1px solid #999999 !important;
   font-size: 13px;
   font-weight: 700;
@@ -9357,11 +9355,11 @@ label.error:after {
   transition: 0.4s;
 }
 
-.campoCorto label[for=logo_companias]:hover {
+.contCampo label[for=logo_companias]:hover {
   border: 1px solid #0288D1 !important;
 }
 
-.campoCorto label[for=logo_companias] strong {
+.contCampo label[for=logo_companias] strong {
   position: absolute;
   top: 0;
   right: 0;
@@ -9375,11 +9373,11 @@ label.error:after {
   transition: 0.4s;
 }
 
-.campoCorto label[for=logo_companias] strong:hover {
+.contCampo label[for=logo_companias] strong:hover {
   background: #0288D1 !important;
 }
 
-.campoCorto label[for=logo_companias] strong i {
+.contCampo label[for=logo_companias] strong i {
   padding-right: 7px;
 }
 
@@ -9541,13 +9539,13 @@ label.error:after {
 }
 
 /*Botón Cerrar*/
-.btnCerrar {
+div.btnCerrar {
   position: absolute;
   color: #fff;
   top: -13px;
   right: -13px;
   height: 26px;
-  width: 26px !important;
+  width: 26px;
   border-radius: 50%;
   background: linear-gradient(to top right, #0097f6 20%, #b622b5 80%);
   transition: 0.4s;
@@ -9555,12 +9553,21 @@ label.error:after {
           filter: saturate(1);
 }
 
-.btnCerrar:hover {
+div.btnCerrar:hover {
   -webkit-filter: saturate(1.4);
           filter: saturate(1.4);
 }
 
-.btnCerrar button#btnCerrar {
+div.contCampo div.btnCerrar {
+  top: 15px;
+  right: -3px;
+  border: 2px solid #0097F6;
+  background: #313539;
+  width: 22px;
+  height: 22px;
+}
+
+div.btnCerrar button#btnCerrar {
   height: 26px;
   width: 26px;
   background: transparent;
@@ -9570,7 +9577,12 @@ label.error:after {
   justify-content: center;
 }
 
-.btnCerrar button#btnCerrar:before {
+div.contCampo div.btnCerrar button#btnCerrar {
+  width: 22px;
+  height: 22px;
+}
+
+div.btnCerrar button#btnCerrar:before {
   content: "";
   background: #ffffff;
   height: 4px;
@@ -9582,7 +9594,7 @@ label.error:after {
   transition: 0.4s;
 }
 
-.btnCerrar button#btnCerrar:after {
+div.btnCerrar button#btnCerrar:after {
   content: "";
   background: #ffffff;
   height: 4px;
@@ -9594,13 +9606,13 @@ label.error:after {
   transition: 0.4s;
 }
 
-.btnCerrar button#btnCerrar:hover:before {
+div.btnCerrar button#btnCerrar:hover:before {
   -webkit-transform: rotate(225deg);
           transform: rotate(225deg);
   height: 2px;
 }
 
-.btnCerrar button#btnCerrar:hover:after {
+div.btnCerrar button#btnCerrar:hover:after {
   -webkit-transform: rotate(135deg);
           transform: rotate(135deg);
   height: 2px;
@@ -9904,6 +9916,13 @@ div.linea {
   width: 100%;
   height: 1px;
   margin: 20px auto;
+}
+
+div.lineaGris {
+  background: linear-gradient(to right, #c1c5c9 0%, #919599 100%);
+  width: 100%;
+  height: 1px;
+  margin: 15px 0;
 }
 
 div.contFormGobal {

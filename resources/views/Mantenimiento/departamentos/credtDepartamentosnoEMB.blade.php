@@ -26,10 +26,7 @@
                     <button type="button" id="btnCerrar"></button>
                 </div>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Superiores tres erant, quae esse possent,
-                    quarum est una sola defensa, eaque vehementer. Omnia contraria, quos etiam insanos esse vultis. Non
-                    autem hoc: igitur ne illud quidem. Istam voluptatem, inquit, Epicurus ignorat? Ergo instituto
-                    veterum, quo etiam Stoici utuntur.
+                    En este espacio podrás agregar, editar y eliminar los departamentos, tales cómo: Producción, Contable, Ventas, Comercial, etc; para crear o editar un departamento de forma correcta es necesario que diligencies todos los campos de manera correcta. para mayor información acerca de <b>cómo crear un departamento</b> visita la wiki de <b>Hezecase <a href="#">Aquí</a> </b> y conoce todo el potencial que tiene Hececaze para ti y tu empresa
                 </p>
             </div>
             <div class="AlertasAreaError" style="display: none">
