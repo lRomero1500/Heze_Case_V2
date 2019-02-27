@@ -8161,7 +8161,7 @@ p {
 }
 
 .contenedor {
-  width: 23% !important;
+  width: 300px;
   position: relative;
   -webkit-transform: translate(0px, -50%);
   transform: translate(0px, -50%);
@@ -8180,6 +8180,8 @@ p {
 
 .usps-login > h6 {
   margin-top: 10% !important;
+  font-size: 20px;
+  color: #515559;
 }
 
 .usps-login > div > h2 {
@@ -8206,10 +8208,11 @@ p {
   border-top: unset;
   border-left: unset;
   border-right: unset;
-  border-bottom: 1px solid #666666;
+  border-bottom: 1px solid #919599;
   padding: 0 0.5em 0 0.5em;
   text-align: center !important;
   margin-bottom: 20px;
+  font-size: 17px;
 }
 
 .login-control::-webkit-input-placeholder,
@@ -9341,6 +9344,14 @@ label.error:after {
   border-radius: 200px 0px 0 0;
 }
 
+.contCamposIndividuales {
+  position: relative;
+  border: 1px solid #c1c5c9;
+  padding: 5px;
+  background: #EFEfef;
+  border-radius: 0 15px 0 0;
+}
+
 .contCampo label[for=logo_companias] {
   border: 1px solid #999999 !important;
   font-size: 13px;
@@ -9558,9 +9569,9 @@ div.btnCerrar:hover {
           filter: saturate(1.4);
 }
 
-div.contCampo div.btnCerrar {
-  top: 15px;
-  right: -3px;
+div.contCamposIndividuales div.btnCerrar {
+  top: 2px;
+  right: 2px;
   border: 2px solid #0097F6;
   background: #313539;
   width: 22px;
@@ -9577,7 +9588,7 @@ div.btnCerrar button#btnCerrar {
   justify-content: center;
 }
 
-div.contCampo div.btnCerrar button#btnCerrar {
+div.contCamposIndividuales div.btnCerrar button#btnCerrar {
   width: 22px;
   height: 22px;
 }
@@ -9911,6 +9922,12 @@ div.W100 {
   vertical-align: top;
 }
 
+div.inlineBlock {
+  position: relative;
+  display: inline-block;
+  vert-align: top;
+}
+
 div.linea {
   background: linear-gradient(to top right, #0097f6 40%, #b622b5 80%);
   width: 100%;
@@ -9956,7 +9973,7 @@ input.campo, select.campo, textarea.campo {
   transition: 0.4s;
 }
 
-input[type=checkbox] {
+input[type=checkbox], input[type=radio] {
   width: 0.1px;
   height: 0.1px;
   display: none;
@@ -9971,11 +9988,11 @@ label.textCheckbox {
   vertical-align: middle;
   padding: 4px 12px 4px 31px;
   background: #e1e5E9;
-  min-height: 22px;
+  min-height: 20px;
   align-items: center;
   border-radius: 2px;
   position: relative;
-  margin: 6px;
+  margin: 5px;
   border: 2px solid transparent;
   transition: 0.4s;
   cursor: pointer;
@@ -10028,11 +10045,25 @@ input[type=checkbox]:checked ~ label.textCheckbox {
   border: 2px solid #0097F6;
 }
 
+input[type=radio]:checked ~ label.textCheckbox {
+  background: #313539;
+  color: #ffffff;
+  border: 2px solid #0097F6;
+}
+
 input[type=checkbox]:checked ~ label.textCheckbox span.check:after {
   background: #0097F6;
 }
 
+input[type=radio]:checked ~ label.textCheckbox span.check:after {
+  background: #0097F6;
+}
+
 input[type=checkbox]:checked ~ label.textCheckbox span.check:before {
+  background: #0097F6;
+}
+
+input[type=radio]:checked ~ label.textCheckbox span.check:before {
   background: #0097F6;
 }
 

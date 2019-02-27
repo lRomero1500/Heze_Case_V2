@@ -16,29 +16,33 @@
                 <a id="AddEmpresa"><span></span><h4 class="textIcono">Añadir
                         Sub-servicio</h4></a>
             </div>
-            <div class="contCampo W25"><h5>Nombre Sub-Servicio 1</h5>
-                <input class="campo" id="nomb_Companias" name="nomb_Companias" type="text" value="" placeholder=""
-                       style="" required data-rule-required="true" data-msg-required="Ingrese el nombre del servicio"
-                       onkeypress="return validaTexto();">
-
-                <div id="cerrarForm" class="btnCerrar">
-                    <button type="button" id="btnCerrar"></button>
+            <div class="lineaGris"></div>
+            <div class="contCamposIndividuales">
+                <div class="contCampo W25"><h5>Nombre Sub-Servicio 1</h5>
+                    <input class="campo" id="nomb_Companias" name="nomb_Companias" type="text" value="" placeholder=""
+                           style="" required data-rule-required="true" data-msg-required="Ingrese el nombre del servicio"
+                           onkeypress="return validaTexto();">
                 </div>
-            </div>
-            <div class="contCampo W25"><h5>Nombre Sub-Servicio 2</h5>
-                <input class="campo" id="nomb_Companias" name="nomb_Companias" type="text" value="" placeholder=""
-                       style="" required data-rule-required="true" data-msg-required="Ingrese el nombre del servicio"
-                       onkeypress="return validaTexto();">
+                <div class="contCampo W25"><h5>Valor</h5>
+                    <input class="campo" id="nomb_Companias" name="nomb_Companias" type="text" value="" placeholder=""
+                           style="" required data-rule-required="true" data-msg-required="Ingrese el nombre del servicio"
+                           onkeypress="return validaTexto();">
 
-                <div id="cerrarForm" class="btnCerrar">
-                    <button type="button" id="btnCerrar"></button>
                 </div>
-            </div>
-            <div class="contCampo W25"><h5>Nombre Sub-Servicio 3</h5>
-                <input class="campo" id="nomb_Companias" name="nomb_Companias" type="text" value="" placeholder=""
-                       style="" required data-rule-required="true" data-msg-required="Ingrese el nombre del servicio"
-                       onkeypress="return validaTexto();">
-
+                <div class="contCampo W25"><h5>por:</h5>
+                    <div class="inlineBlock W50">
+                        <input class="campo" type="radio" name="crearUsrHezeCase" id="valorStotal"
+                               title="Seleccione esta opcion en caso de que desee que este colaborador ingrese a la plataforma"
+                        />
+                        <label for="valorStotal" class="textCheckbox"><span class="check"></span>Total</label>
+                    </div>
+                    <div class="inlineBlock W50">
+                        <input class="campo" type="radio" name="crearUsrHezeCase" id="valorSporHora"
+                               title="Seleccione esta opcion en caso de que desee que este colaborador ingrese a la plataforma"
+                        />
+                        <label for="valorSporHora" class="textCheckbox"><span class="check"></span>por hora</label>
+                    </div>
+                </div>
                 <div id="cerrarForm" class="btnCerrar">
                     <button type="button" id="btnCerrar"></button>
                 </div>
