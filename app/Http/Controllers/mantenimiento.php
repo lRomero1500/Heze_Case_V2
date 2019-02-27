@@ -10,8 +10,11 @@ use App\Models\HezServicio;
 use App\Models\HezUsuario;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 
 class mantenimiento extends Controller
 {
@@ -60,6 +63,31 @@ class mantenimiento extends Controller
     public function creaEditEmpresas(Request $request){
         $companias = new HezCompania();
         $companias->fill($request->all());
+        $img_url = "logo-".$companias->cod_Companias.'-'.time();
+        if (preg_match('/^data:image\/(\w+);base64,/', $request->get('base64FotPerf'), $type)) {
+            if(!File::isDirectory('./Recursos/'.Auth::user()->hez_empleado->cod_Companias.'/img'))
+            {
+                File::makeDirectory('./Recursos/'.Auth::user()->hez_empleado->cod_Companias.'/img',0755,true);
+            }
+            if(!File::isDirectory('./Recursos/'.Auth::user()->hez_empleado->cod_Companias.'/img/tumbs')){
+                File::makeDirectory('./Recursos/'.Auth::user()->hez_empleado->cod_Companias.'/img/tumbs',0755,true);
+            }
+            $path = './Recursos/'.Auth::user()->hez_empleado->cod_Companias.'/img/' . $img_url;
+            $pathTumb = './Recursos/'.Auth::user()->hez_empleado->cod_Companias.'/img/tumbs/' . $img_url;
+            $encoded_base64_image = substr($request->get('base64FotPerf'), strpos($request->get('base64FotPerf'), ',') + 1);
+            $decoded_image = base64_decode($encoded_base64_image);
+            $imgPNG = Image::make($decoded_image)->encode('png', 30);
+            $imgPNG->save($path.'.png');
+            $imgPNGTumb = Image::make($decoded_image)->encode('png');
+            $imgPNGTumb->resize(100,100);
+            $imgPNGTumb->save($pathTumb.'.png');
+            $imgWEBP = Image::make($decoded_image)->encode('webp', 50);
+            $imgWEBP->save($path.'.webp');
+            $imgWEBPTumb = Image::make($decoded_image)->encode('webp');
+            $imgWEBPTumb->resize(100,100);
+            $imgWEBPTumb->save($pathTumb.'.webp');
+        }
+        $companias->logo_companias=$img_url;
         $order = array('(', ')', '-');
         $companias->tel_Companias = str_replace($order, '', $companias->tel_Companias);
         try {
@@ -219,6 +247,7 @@ class mantenimiento extends Controller
         $data = HezCompania::find($id);
         return \Response::json($data);
     }
+
     public function getDepartamento($id){
         $data =  HezDepartamento::with('hez_compania')->find($id);
         return \Response::json($data);
