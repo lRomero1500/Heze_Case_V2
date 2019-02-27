@@ -50,35 +50,35 @@ body {
 
 h1 {
     font-size: 30px;
-    line-height: 40px;
+    line-height: 1.2;
     font-weight: 800;
     color: #37474F;
 }
 
 h2 {
     font-size: 25px;
-    line-height: 25px;
+    line-height: 1.2;
     font-weight: 500;
     color: #37474F;
 }
 
 h3 {
     font-size: 20px;
-    line-height: 20px;
+    line-height: 1.2;
     font-weight: 200;
     color: #263238;
 }
 
 h4 {
     font-size: 18px;
-    line-height: 20px;
+    line-height: 1.2;
     font-weight: 500;
     color: #f5f5f5;
 }
 
 h5 {
     font-size: 15px;
-    line-height: 20px;
+    line-height: 1.2;
     font-weight: 300;
     color: #263238;
 }
@@ -89,13 +89,14 @@ h6 {
     font-weight: 500;
     padding-bottom: 20px;
     color: #333333;
+    line-height: 1.1;
 }
 
 p {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     color: #263238;
-    line-height: 18px;
+    line-height: 1.2;
 }
 
 .contenedor {
@@ -829,7 +830,7 @@ p {
     justify-content: center;
     width: 26px !important;
     border-radius: 50%;
-    background: linear-gradient(to top right, #0097f6 40%, #b622b5 80%);
+    background: linear-gradient(to top right, #0097f6 20%, #b622b5 80%);
 }
 
 .conteedorIconoAreatrabajo a span:before {
@@ -899,19 +900,33 @@ div.conteedorIconoAreatrabajo a {
     margin-bottom: 30px;
     position: relative;
 }
-
 .AlertasAreaNoError {
     position: relative;
     padding: 20px;
-    margin: 20px 0;
+    margin: 20px 0 0;
     width: calc(100% - 10px);
-    border-left: 1px solid #b622b5;
-    border-right: 1px solid #0097f6;
+    border-left: 1px solid #212529;
+    border-right: 1px solid #414549;
     box-sizing: border-box;
     background-position: 0 0, 0 100%;
     background-repeat: no-repeat;
     background-size: 100% 1px;
+    background-image: linear-gradient(to right, #212529 0%, #414549 100%), linear-gradient(to right, #212529 0%, #414549 100%);
+}
+.AlertasAreaNoError.exito {
+    border-left: 1px solid rgba(0,200,83,1);
+    border-right: 1px solid rgba(0,191,165,1);
+    background-image: linear-gradient(to right, rgba(0,200,83,1) 0%, rgba(0,191,165,1) 100%), linear-gradient(to right, rgba(0,200,83,1) 0%, rgba(0,191,165,1) 100%);
+}
+.AlertasAreaNoError.informe {
+    border-left: 1px solid #b622b5;
+    border-right: 1px solid #0097f6;
     background-image: linear-gradient(to right, #b622b5 0%, #0097f6 100%), linear-gradient(to right, #b622b5 0%, #0097f6 100%);
+}
+.AlertasAreaNoError.eliminado {
+    border-left: 1px solid #FE5012;
+    border-right: 1px solid #d50000;
+    background-image: linear-gradient(to right, #FE5012 0%, #d50000 100%), linear-gradient(to right, #FE5012 0%, #d50000 100%);
 }
 
 .CerrarAlertasAreaNoError {
@@ -928,9 +943,8 @@ div.conteedorIconoAreatrabajo a {
 }
 
 .AlertasAreaError {
-    position: relative;
-    top: 0.5em;
-    width: 98%;
+    width: calc(100% - 10px);
+    margin: 20px 0 0;
 }
 
 .AlertasAreaError > table {
@@ -1028,8 +1042,12 @@ div.conteedorIconoAreatrabajo a {
 .TablasArea > tbody > tr {
     background-color: #f9f9f9;
     margin-top: 5px;
-    border-bottom: 1px solid #1A2E35;
+    border-bottom: 1px solid #c1c5c9;
     min-height: 40px !important;
+}
+
+.TablasArea > tbody > tr > td {
+    padding: 3px 9px 3px 0;
 }
 
 .TablasArea > tbody > tr > td:first-of-type {
@@ -1037,7 +1055,17 @@ div.conteedorIconoAreatrabajo a {
 }
 
 .TablasArea > tbody > tr > td > div > a {
-    color: #d50000;
+    color: #FE5012;
+    background: transparent;
+    padding: 2px 5px 1px;
+    line-height: 1;
+    display: inline-block;
+    border-radius: 2px;
+    transition: 0.4s;
+}
+.TablasArea > tbody > tr > td > div > a:hover {
+    color: #ffffff;
+    background: #FE5012;
 }
 
 .OpcionesTabla {
@@ -1050,8 +1078,7 @@ div.conteedorIconoAreatrabajo a {
 }
 
 .SeparadorOpcionesTablas {
-    color: #d50000;
-    padding: 0 5px 0 5px;
+    color: #313539;
 }
 
 /*Body Servicios*/
@@ -1268,7 +1295,7 @@ label.error:after {
 
 .contenedorDeCampos input {
     border: 1px solid #999999;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 700;
     padding: 0px 12px;
     border-radius: 2px;
@@ -1426,7 +1453,13 @@ label.error:after {
     height: 26px;
     width: 26px !important;
     border-radius: 50%;
-    background: linear-gradient(to top right, #0097f6 40%, #b622b5 80%);
+    background: linear-gradient(to top right, #0097f6 20%, #b622b5 80%);
+    transition: .4s;
+    filter: saturate(1);
+}
+
+.btnCerrar:hover {
+    filter: saturate(1.4);
 }
 .btnCerrar button#btnCerrar {
     height: 26px;
@@ -1520,6 +1553,7 @@ div.contGeneralWizard {
     background: #fff;
     width: calc(100% - 10px);
     position: relative;
+    margin-top: 30px;
 }
 div.contBtnWizard {
     position: relative;
@@ -1752,7 +1786,7 @@ div.contCampo > label {
 input.campo, select.campo, textarea.campo {
     width: calc(100% - 36px);
     border: 1px solid #919599;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 700;
     padding: 0px 12px;
     border-radius: 2px;

@@ -39,9 +39,11 @@ function guardar(e) {
                         $('#formulario').css('display', 'none');
                         destruirMask('tel');
                         $('#ContenedorAltertas').append(
-                            "<div id='AlertResp' class='AlertasAreaNoError'>" +
-                            "<i onclick='cerrarResp();' style='cursor: pointer;'" +
-                            " class='CerrarAlertasAreaNoError fa fa-times fa-fw' aria-hidden='true'></i>" +
+                            "<div id='AlertResp' class='AlertasAreaNoError exito'>" +
+                            "<div id='btnCerrarAlert' class='btnCerrar'>" +
+                            "<button type='button' id='btnCerrar'>" +
+                            "</button>" +
+                            "</div>" +
                             "<p>" + resp.msg + " </p></div>"
                         );
                         $('#tbCompanias').html('');
@@ -149,9 +151,11 @@ function eliminarEmpresa(idEmpresa) {
                         if (resp.msg != null) {
                             if (!resp.error) {
                                 $('#ContenedorAltertas').append(
-                                    "<div id='AlertResp' class='AlertasAreaNoError'>" +
-                                    "<i onclick='cerrarResp();' style='cursor: pointer;'" +
-                                    " class='CerrarAlertasAreaNoError fa fa-times fa-fw' aria-hidden='true'></i>" +
+                                    "<div id='AlertResp' class='AlertasAreaNoError eliminado'>" +
+                                    "<div id='btnCerrarAlert' class='btnCerrar'>" +
+                                    "<button type='button' id='btnCerrar'>" +
+                                    "</button>" +
+                                    "</div>" +
                                     "<p>" + resp.msg + " </p></div>"
                                 );
                                 $('#tbCompanias').html('');
