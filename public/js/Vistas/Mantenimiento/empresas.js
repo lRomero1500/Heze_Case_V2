@@ -2,7 +2,15 @@
  * Created by luisd on 19/03/2018.
  */
 var form;
-
+$(document).ready(function () {
+    $('#cerrarForm').click(function (e) {
+        $('#formulario').trigger("reset");
+        $('#formulario').css('display', 'none');
+    });
+    $('img.imgCortPop').on('load', function () {
+        $('#base64FotPerf').prop('value',this.src);
+    });
+});
 function guardar(e) {
     InicioCarando();
     form = $('#empresa');
@@ -109,6 +117,8 @@ function editEmpresa(idEmpresa, e) {
                 $('#correo_companias').val(resp.correo_companias);
                 $('#tel_Companias').val(resp.tel_Companias);
                 $('#direccion_companias').val(resp.direccion_companias);
+                $('.imgCortPop').prop('src',resp.logo_companias);
+                $('#base64FotPerf').prop('value',resp.logo_companias);
             }
             else {
                 $('#errores').css('visibility', '');

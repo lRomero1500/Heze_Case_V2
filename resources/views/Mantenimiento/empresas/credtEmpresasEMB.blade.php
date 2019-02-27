@@ -30,9 +30,6 @@
                        requerido="true" required data-rule-required="true"
                        data-msg-required="Ingrese una direccion de la compañia">
             </div>
-            {{--            <div class="campoCorto"><h5>Logo</h5>
-                            <input id="logo_companias" name="logo_companias" type="file" accept="image/*">
-                        </div>--}}
             <div class="contCampo W25"><h5>Logo</h5>
                 <input type="file" name="logo_companias" id="logo_companias" accept="image/*"
                        style=" width: 0.1px; height: 0.1px;  opacity: 0;  overflow: hidden;  position: absolute;  z-index: -1;"
@@ -59,6 +56,7 @@
     <div id="errores" style="visibility: hidden">
 
     </div>
+    <input id="base64FotPerf" name="base64FotPerf" type="hidden" value=""/>
 </form>
 <div class="popUpCropper">
     <div id="popUP" class="img-container">
@@ -75,14 +73,6 @@
     </div>
 </div>
 @section('scriptsEMB')
-    <script>
-        $(document).ready(function () {
-            $('#cerrarForm').click(function (e) {
-                $('#formulario').trigger("reset");
-                $('#formulario').css('display', 'none');
-            });
-        });
-    </script>
 @endsection
 
 
