@@ -20,17 +20,18 @@
 
         <!-- Contenedor de información -->
         <div id="ContenedorAltertas" class="ConetendorAlertasArea">
-            <div id="AlertNoError" class="AlertasAreaNoError">
-                <i id="btnCerrarAlert" style="cursor: pointer;" class="CerrarAlertasAreaNoError fa fa-times fa-fw"
-                   aria-hidden="true"></i>
+            <div id="AlertNoError" class="AlertasAreaNoError informe">
+                <div id="btnCerrarAlert" class="btnCerrar">
+                    <button type="button" id="btnCerrar"></button>
+                </div>
                 <p>
-                    En este espacio podrás crear un proyecto nuevo; para crear un proyecto de forma correcta es necesario que diligencies todos los campos de manera correcta. Recuerda, el proyecto es el macro de todo, dependiendo del contenido del proyecto, se despliegan opciones diferentes para las tareas, para mayor información acerca de <b>cómo crear un proyecto</b> visita la wiki de <b>Heza-Case <a href="#">Aquí</a> </b> y conose todo el potencial que tiene Hace-caze para ti y tu empresa
+                    En este espacio podrás crear un proyecto nuevo; para crear un proyecto de forma correcta es necesario que diligencies todos los campos de manera correcta. Recuerda, el proyecto es el macro de todo, dependiendo del contenido del proyecto, se despliegan opciones diferentes para las tareas, para mayor información acerca de <b>cómo crear un proyecto</b> visita la wiki de <b>Hezecase <a href="#">Aquí</a> </b> y conoce todo el potencial que tiene Hececaze para ti y tu empresa
                 </p>
             </div>
             <div class="AlertasAreaError" style="display: none">
                 <table>
                     <tr>
-                        <td style="background-color:#FF5012;text-align: center; vertical-align: middle;width: 3%">
+                        <td style="background-color:#FF5012;text-align: center; vertical-align: middle;width: 30px">
                             <span style="color:#FFF" class="fa fa-exclamation fa-2x" aria-hidden="true"></span>
                         </td>
                         <td style="padding: 20px;text-align: justify;vertical-align: middle">

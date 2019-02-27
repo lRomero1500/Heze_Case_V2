@@ -7,8 +7,7 @@
                 <h3>Mantenimiento/Colaboradores</h3>
             </div>
             <div class="conteedorIconoAreatrabajo">
-                <a id="AddColaborador" style="cursor: pointer;"><i class="iconoAreatrabajo fa fa-plus fa-fw"
-                                                                   aria-hidden="true"></i><h4 class="textIcono">Añadir
+                <a id="AddEmpresa"><span></span><h4 class="textIcono">Añadir
                         Nuevo</h4></a>
             </div>
         </div>
@@ -19,28 +18,23 @@
         </div>
         <div id="ContenedorAltertas" class="ConetendorAlertasArea">
 
-            <div id="AlertNoError" class="AlertasAreaNoError">
-                <i id="btnCerrarAlert" style="cursor: pointer;" class="CerrarAlertasAreaNoError fa fa-times fa-fw"
-                   aria-hidden="true"></i>
+            <div id="AlertNoError" class="AlertasAreaNoError informe">
+                <div id="btnCerrarAlert" class="btnCerrar">
+                    <button type="button" id="btnCerrar"></button>
+                </div>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Superiores tres erant, quae esse possent,
-                    quarum est una sola defensa, eaque vehementer. Omnia contraria, quos etiam insanos esse vultis. Non
-                    autem hoc: igitur ne illud quidem. Istam voluptatem, inquit, Epicurus ignorat? Ergo instituto
-                    veterum, quo etiam Stoici utuntur.
+                    En este espacio podrás agregar, editar, eliminar y asignar a los colaboradores de tu empresa; para crear o editar un colaborador de forma correcta es necesario que diligencies todos los campos de manera correcta. para mayor información acerca de <b>cómo crear un colaborador</b> visita la wiki de <b>Hezecase <a href="#">Aquí</a> </b> y conoce todo el potencial que tiene Hececaze para ti y tu empresa
                 </p>
             </div>
-            <div class="AlertasAreaError" style="display: none">
+            <div class="AlertasAreaError" style="display: block">
                 <table>
                     <tr>
-                        <td style="background-color:#FF5012;text-align: center; vertical-align: middle;width: 3%">
+                        <td style="background-color:#FF5012;text-align: center; vertical-align: middle;width: 30px">
                             <span style="color:#FFF" class="fa fa-exclamation fa-2x" aria-hidden="true"></span>
                         </td>
                         <td style="padding: 20px;text-align: justify;vertical-align: middle">
                             <p style="text-wrap: none">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Superiores tres erant, quae
-                                esse possent, quarum est una sola defensa, eaque vehementer. Omnia contraria, quos etiam
-                                insanos esse vultis. Non autem hoc: igitur ne illud quidem. Istam voluptatem, inquit,
-                                Epicurus ignorat? Ergo instituto veterum, quo etiam Stoici utuntur.
+                                Uno o más colaboradores no están asignados a una empresa
                             </p>
                         </td>
                     </tr>

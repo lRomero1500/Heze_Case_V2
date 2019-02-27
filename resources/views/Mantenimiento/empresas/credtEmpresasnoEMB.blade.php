@@ -18,20 +18,18 @@
         </div>
         <div id="ContenedorAltertas" class="ConetendorAlertasArea">
 
-            <div id="AlertNoError" class="AlertasAreaNoError">
-                <i id="btnCerrarAlert" style="cursor: pointer;" class="CerrarAlertasAreaNoError fa fa-times fa-fw"
-                   aria-hidden="true"></i>
+            <div id="AlertNoError" class="AlertasAreaNoError informe">
+                <div id="btnCerrarAlert" class="btnCerrar">
+                    <button type="button" id="btnCerrar"></button>
+                </div>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Superiores tres erant, quae esse possent,
-                    quarum est una sola defensa, eaque vehementer. Omnia contraria, quos etiam insanos esse vultis. Non
-                    autem hoc: igitur ne illud quidem. Istam voluptatem, inquit, Epicurus ignorat? Ergo instituto
-                    veterum, quo etiam Stoici utuntur.
+                    En este espacio podrás agregar, editar y eliminar las empresas; para crear o editar una empresa de forma correcta es necesario que diligencies todos los campos de manera correcta. para mayor información acerca de <b>cómo crear una empresa</b> visita la wiki de <b>Hezecase <a href="#">Aquí</a> </b> y conoce todo el potencial que tiene Hececaze para ti y tu empresa
                 </p>
             </div>
             <div class="AlertasAreaError" style="display: none">
                 <table>
                     <tr>
-                        <td style="background-color:#FF5012;text-align: center; vertical-align: middle;width: 3%">
+                        <td style="background-color:#FF5012;text-align: center; vertical-align: middle;width: 30px">
                             <span style="color:#FFF" class="fa fa-exclamation fa-2x" aria-hidden="true"></span>
                         </td>
                         <td style="padding: 20px;text-align: justify;vertical-align: middle">
