@@ -35,11 +35,11 @@
                        style=" width: 0.1px; height: 0.1px;  opacity: 0;  overflow: hidden;  position: absolute;  z-index: -1;"
                        class="iniCropPOPPerfil campo">
                 <div class="imgAvatarForm">
-                    <img class="imgCortPop" src="#"/>
+                    <img class="imgCortPop" src=""/>
                 </div>
                 <label for="logo_companias">
-                    <strong style=" height: 100%; color: #f1e5e6; background: #d3394c; display: inline-block;">
-                        <i class="fa fa-upload" aria-hidden="true"></i>Logo&hellip;
+                    <strong>
+                        <i class="fa fa-upload" aria-hidden="true"></i><p>Cargar Imagen</p>
                     </strong>
                 </label>
             </div>
@@ -66,7 +66,7 @@
         <div class="docs-buttons">
             <button type="button" data-method="getCroppedCanvas" data-option="{ &quot;maxWidth&quot;: 400, &quot;maxHeight&quot;: 400 }">
                     <span title="$().cropper(&quot;getCroppedCanvas&quot;, { maxWidth: 400, maxHeight: 400 })">
-                        Realizar Corte
+                       <i class="fas fa-cut"></i>  Realizar Corte
                     </span>
             </button>
         </div>

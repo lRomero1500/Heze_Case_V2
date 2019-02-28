@@ -1259,42 +1259,61 @@ label.error:after {
     padding: 5px;
     background: #EFEfef;
     border-radius: 0 15px 0 0;
+    margin: 10px 0;
 }
 
-.contCampo label[for=logo_companias] {
-    border: 1px solid #999999 !important;
-    font-size: 13px;
-    font-weight: 700;
-    padding: 6px 12px;
-    border-radius: 2px;
-    width: calc(100% - 36px);
-    margin: 5px;
-    display: block;
-    height: 16px;
-    position: relative;
-    transition: .4s;
+.contCamposIndividuales.principal {
+    border: none;
+    background: none;
 }
-.contCampo label[for=logo_companias]:hover {
-    border: 1px solid #0288D1 !important;
-}
-.contCampo label[for=logo_companias] strong {
+.contCampo .iconoMoneda {
+    font-size: 15px;
     position: absolute;
-    top: 0;
-    right: 0;
-    display: inline-flex !important;
+    left: 11px;
+    top: 35px;
+}
+.contCampo label[for=logo_companias] {
+    position: absolute;
+    transition: 0.4s;
+    bottom: 10px;
+    left: 114px;
+    padding: 0;
+    width: calc(100% - 122px);
+    display: flex;
     align-items: center;
     justify-content: center;
-    background: #0097F6 !important;
-    height: 28px !important;
-    width: 70px;
+}
+.contCampo label[for=logo_companias] strong {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #313539;
+    width: calc(100% - 0px);
+    min-height: 17px;
     cursor: pointer;
-    transition: .4s;
+    transition: 0.4s;
+    color: #fff;
+    padding: 5px 6px;
+    border-radius: 0 3px 3px 0;
 }
 .contCampo label[for=logo_companias] strong:hover {
-    background: #0288D1 !important;
+    background: #0288D1;
 }
 .contCampo label[for=logo_companias] strong i {
-    padding-right: 7px;
+    position: relative;
+    font-size: 25px;
+    line-height: 1;
+    color: #0097F6;
+    z-index: 0;
+    margin-right: 7px;
+}
+
+.contCampo label[for=logo_companias] strong p {
+    font-size: 14px;
+    color: #fff;
+    z-index: 1;
+    line-height: 1;
+    padding: 5px 0px;
 }
 
 .contenedorDeCampos h5 {
@@ -1826,6 +1845,9 @@ input.campo, select.campo, textarea.campo {
     height: 30px;
     transition: 0.4s;
 }
+input[type="number"] {
+    padding: 0 8px 0 16px;
+}
 input[type="checkbox"], input[type="radio"]{
     width: 0.1px;
     height: 0.1px;
@@ -2047,7 +2069,118 @@ div.subServicio p span[name="Eliminar"]:after {
     transform: rotate(-45deg);
 }
 
-
-
-
 /*Fin estilos Formularios*/
+
+/*Estilos Cropper*/
+.cropper-container {
+    font-size: 0;
+    line-height: 0;
+    position: relative;
+    touch-action: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: auto;
+    max-width: 100%;
+    max-height: calc(100vh - 160px);
+}
+.cropper-modal {
+    background-color: #010509;
+    opacity: .8;
+}
+.cropper-view-box {
+    display: block;
+    height: 100%;
+    outline-color: #FE5012;
+    outline: 1px solid #FE5012;
+    overflow: hidden;
+    width: 100%;
+}
+.cropper-dashed {
+    border: 0 dashed #FE5012;
+    display: block;
+    opacity: .5;
+    position: absolute;
+}
+.cropper-line {
+    background-color: #FE5012;
+}
+.cropper-point {
+    background-color: #FE5012;
+    height: 7px;
+    opacity: .7;
+    width: 7px;
+    border-radius: 50%;
+}
+.popUpCropper{
+    display: none;
+}
+.popUpCropper.activo {
+    display: flex;
+    position: fixed;
+    top: 60px;
+    left: 0px;
+    width: calc(100% - 0px);
+    height: calc(100vh - 70px);
+    z-index: 9;
+    justify-content: center;
+    padding-bottom: 10px;
+    align-items: center;
+    background: rgba(0, 10, 20, 0.6);
+}
+.imgAvatarForm img.imgCortPop {
+    display: block;
+    width: 100%;
+}
+.imgAvatarForm {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px dashed #ccc;
+    margin: 5px 20px 5px 10px;
+}
+div#popUP.img-container {
+    position: absolute;
+    background: rgba(150, 50, 20, 0.9);
+    max-height: calc(100vh - 140px);
+    z-index: 2;
+    justify-content: center;
+    align-items: center;
+    max-width: 800px;
+    padding: 2px;
+    border-radius: 0;
+}
+div#bototnes {
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    width: 200px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    top: 20px;
+}
+.docs-buttons button {
+    background: #313539;
+    height: 30px;
+    width: auto;
+    padding: 0 12px;
+    border: 2px solid #FE5012;
+    border-radius: 3px;
+    justify-content: center;
+    color: #fff;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.4s;
+    font-weight: 500;
+    font-size: 16px;
+}
+.docs-buttons button:hover {
+    background: #FE5012;
+    color: #313539;
+    font-weight: 900;
+}
+
+/*Fin Estilos Cropper*/
