@@ -117,7 +117,7 @@ function editEmpresa(idEmpresa, e) {
                 $('#correo_companias').val(resp.correo_companias);
                 $('#tel_Companias').val(resp.tel_Companias);
                 $('#direccion_companias').val(resp.direccion_companias);
-                $('.imgCortPop').prop('src',resp.logo_companias);
+                $('.imgCortPop').prop('src',baseUrl+'Recursos/1/img/'+resp.logo_companias+'.png');
                 $('#base64FotPerf').prop('value',resp.logo_companias);
             }
             else {
@@ -171,7 +171,8 @@ function eliminarEmpresa(idEmpresa) {
                                 $('#tbCompanias').html('');
                                 var tb = "";
                                 $.each(resp.table, function (index, item) {
-                                    tb += '<tr><td><input type="checkbox"/></td><td>' + item.nomb_Companias +
+                                    tb += '<tr><td><input type="checkbox"/></td>' +
+                                        '<td>' + item.nomb_Companias +
                                         '<div class="OpcionesTabla">' +
                                         '<a onclick="editEmpresa(' + item.cod_Companias + ');">Editar</a>' +
                                         '<span class="SeparadorOpcionesTablas">|</span><a onclick="eliminarEmpresa( '+item.cod_Companias+' )">Eliminar</a>' +

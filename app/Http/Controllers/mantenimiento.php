@@ -63,36 +63,19 @@ class mantenimiento extends Controller
     public function creaEditEmpresas(Request $request){
         $companias = new HezCompania();
         $companias->fill($request->all());
-        $img_url = "logo-".$companias->cod_Companias.'-'.time();
-        if (preg_match('/^data:image\/(\w+);base64,/', $request->get('base64FotPerf'), $type)) {
-            if(!File::isDirectory('./Recursos/'.Auth::user()->hez_empleado->cod_Companias.'/img'))
-            {
-                File::makeDirectory('./Recursos/'.Auth::user()->hez_empleado->cod_Companias.'/img',0755,true);
-            }
-            if(!File::isDirectory('./Recursos/'.Auth::user()->hez_empleado->cod_Companias.'/img/tumbs')){
-                File::makeDirectory('./Recursos/'.Auth::user()->hez_empleado->cod_Companias.'/img/tumbs',0755,true);
-            }
-            $path = './Recursos/'.Auth::user()->hez_empleado->cod_Companias.'/img/' . $img_url;
-            $pathTumb = './Recursos/'.Auth::user()->hez_empleado->cod_Companias.'/img/tumbs/' . $img_url;
-            $encoded_base64_image = substr($request->get('base64FotPerf'), strpos($request->get('base64FotPerf'), ',') + 1);
-            $decoded_image = base64_decode($encoded_base64_image);
-            $imgPNG = Image::make($decoded_image)->encode('png', 30);
-            $imgPNG->save($path.'.png');
-            $imgPNGTumb = Image::make($decoded_image)->encode('png');
-            $imgPNGTumb->resize(100,100);
-            $imgPNGTumb->save($pathTumb.'.png');
-            $imgWEBP = Image::make($decoded_image)->encode('webp', 50);
-            $imgWEBP->save($path.'.webp');
-            $imgWEBPTumb = Image::make($decoded_image)->encode('webp');
-            $imgWEBPTumb->resize(100,100);
-            $imgWEBPTumb->save($pathTumb.'.webp');
-        }
-        $companias->logo_companias=$img_url;
+        $img_url = "logo-compania-".time();
         $order = array('(', ')', '-');
         $companias->tel_Companias = str_replace($order, '', $companias->tel_Companias);
         try {
             if ($companias->cod_Companias == '0') {
-                $x = $companias->save();
+                if (preg_match('/^data:image\/(\w+);base64,/', $request->get('base64FotPerf'), $type)) {
+                    $companias->logo_companias=$img_url;
+                    $this->cargaImagenes($request->get('base64FotPerf'),1,$img_url);
+                }
+                else{
+                    $companias->logo_companias=$request->get('base64FotPerf');
+                }
+                $companias->save();
                 $dat = HezCompania::all();
                 return response()->json([
                     'msg' => 'La empresa ' . $companias->nomb_Companias . ' se creo  exitosamente!',
@@ -105,6 +88,16 @@ class mantenimiento extends Controller
                 $CompaniasUp->nit_Companias = $companias->nit_Companias;
                 $CompaniasUp->tel_Companias = $companias->tel_Companias;
                 $CompaniasUp->direccion_companias = $companias->direccion_companias;
+                if (preg_match('/^data:image\/(\w+);base64,/', $request->get('base64FotPerf'), $type)) {
+                    $companias->logo_companias=$img_url;
+                    if(!empty($CompaniasUp->logo_companias)){
+                        $this->eliminaImagenes($CompaniasUp->logo_companias,1);
+                    }
+                    $this->cargaImagenes($request->get('base64FotPerf'),1,$img_url);
+                }
+                else{
+                    $companias->logo_companias=$request->get('base64FotPerf');
+                }
                 $CompaniasUp->logo_companias = $companias->logo_companias;
                 $CompaniasUp->correo_companias = $companias->correo_companias;
                 $CompaniasUp->save();
@@ -268,8 +261,11 @@ class mantenimiento extends Controller
     //region Eliminar
     public function delEmpresa($id){
         try {
-            $companias = HezCompania::where('cod_Companias', $id)->first();;
+            $companias = HezCompania::where('cod_Companias', $id)->first();
             if($companias){
+                if(!empty($companias->logo_companias)){
+                    $this->eliminaImagenes($companias->logo_companias,1);
+                }
                 HezCompania::destroy($id);
                 $dat=HezCompania::all();
                 return response()->json([

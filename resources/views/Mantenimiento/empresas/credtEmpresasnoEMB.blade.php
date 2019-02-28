@@ -23,7 +23,11 @@
                     <button type="button" id="btnCerrar"></button>
                 </div>
                 <p>
-                    En este espacio podrás agregar, editar y eliminar las empresas; para crear o editar una empresa de forma correcta es necesario que diligencies todos los campos de manera correcta. para mayor información acerca de <b>cómo crear una empresa</b> visita la wiki de <b>Hezecase <a href="#">Aquí</a> </b> y conoce todo el potencial que tiene Hececaze para ti y tu empresa
+                    En este espacio podrás agregar, editar y eliminar las empresas; para crear o editar una empresa de
+                    forma correcta es necesario que diligencies todos los campos de manera correcta. para mayor
+                    información acerca de <b>cómo crear una empresa</b> visita la wiki de <b>Hezecase <a
+                                href="#">Aquí</a> </b> y conoce todo el potencial que tiene Hececaze para ti y tu
+                    empresa
                 </p>
             </div>
             <div class="AlertasAreaError" style="display: none">
@@ -86,8 +90,9 @@
                 <thead>
                 <tr>
                     <th width="2%"><input type="checkbox"/></th>
+                    <th width="9%">Logo</th>
                     <th width="20%">Empresa</th>
-                    <th width="19%">Nit</th>
+                    <th width="10%">Nit</th>
                     <th width="19%">Telefono</th>
                     <th width="20%">Correo</th>
                     <th width="20%">Direccion</th>
@@ -97,8 +102,18 @@
                 @foreach($Companias as $compania)
                     <tr>
                         <td><input type="checkbox"/></td>
+                        <td>
+                            <div class="imgAvatarForm">
+                                @if($compania->logo_companias==null||$compania->logo_companias=="")
+                                    <img src="#"/>
+                                @else
+                                    <img src="{!! asset('Recursos/1/img/tumbs/'.$compania->logo_companias.'.png') !!}"/>
+                                @endif
+                            </div>
+                        </td>
                         <td>{!! $compania->nomb_Companias !!}
-                            <div class="OpcionesTabla"><a onclick="editEmpresa({!! $compania->cod_Companias.',event' !!});">Editar</a>
+                            <div class="OpcionesTabla"><a
+                                        onclick="editEmpresa({!! $compania->cod_Companias.',event' !!});">Editar</a>
                                 <span class="SeparadorOpcionesTablas">|</span>
                                 <a onclick="eliminarEmpresa({!! $compania->cod_Companias !!});">Eliminar</a>
                             </div>
