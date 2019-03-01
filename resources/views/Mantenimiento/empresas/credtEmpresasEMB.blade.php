@@ -1,4 +1,4 @@
-<form id="empresa">
+<form id="empresa" novalidate="novalidate">
     {!! csrf_field() !!}
     <div class="contentFormulario3Colomnas contFormGobal" style="padding:0px!important;margin-bottom: 0.5em">
         <div class="tituloTabla">
@@ -12,11 +12,13 @@
                        onkeypress="return validaTexto();">
             </div>
             <div class="contCampo W25"><h5>Nit</h5>
-                <input class="campo" id="nit_Companias" name="nit_Companias" type="text" value="" placeholder="" required
+                <input class="campo" id="nit_Companias" name="nit_Companias" type="text" value="" placeholder=""
+                       required
                        data-rule-required="true" data-msg-required="Ingrese el nit de la compañia">
             </div>
             <div class="contCampo W25"><h5>Correo</h5>
-                <input class="campo" id="correo_companias" name="correo_companias" type="text" value="" placeholder="" required
+                <input class="campo" id="correo_companias" name="correo_companias" type="text" value="" placeholder=""
+                       required
                        data-rule-required="true" data-msg-required="Ingrese un correo de la compañia"
                        data-rule-email="true" data-msg-email="Igrese un correo valido">
             </div>
@@ -26,7 +28,8 @@
                        data-msg-required="Ingrese un telefono de la compañia">
             </div>
             <div class="contCampo W25"><h5>Dirección</h5>
-                <input class="campo" id="direccion_companias" name="direccion_companias" type="text" value="" placeholder=""
+                <input class="campo" id="direccion_companias" name="direccion_companias" type="text" value=""
+                       placeholder=""
                        requerido="true" required data-rule-required="true"
                        data-msg-required="Ingrese una direccion de la compañia">
             </div>
@@ -39,7 +42,8 @@
                 </div>
                 <label for="logo_companias">
                     <strong>
-                        <i class="fa fa-upload" aria-hidden="true"></i><p>Cargar Imagen</p>
+                        <i class="fa fa-upload" aria-hidden="true"></i>
+                        <p>Cargar Imagen</p>
                     </strong>
                 </label>
             </div>
@@ -64,10 +68,14 @@
     </div>
     <div id="bototnes">
         <div class="docs-buttons">
-            <button type="button" data-method="getCroppedCanvas" data-option="{ &quot;maxWidth&quot;: 400, &quot;maxHeight&quot;: 400 }">
+            <button type="button" data-method="getCroppedCanvas"
+                    data-option="{ &quot;maxWidth&quot;: 400, &quot;maxHeight&quot;: 400 }">
                     <span title="$().cropper(&quot;getCroppedCanvas&quot;, { maxWidth: 400, maxHeight: 400 })">
                        <i class="fas fa-cut"></i>  Realizar Corte
                     </span>
+            </button>
+            <button type="button" data-method="CloseCropper">
+                <i class="fa fa-times"></i>
             </button>
         </div>
     </div>

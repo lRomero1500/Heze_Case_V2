@@ -4,13 +4,17 @@
 var form;
 $(document).ready(function () {
     $('#cerrarForm').click(function (e) {
-        $('#formulario').trigger("reset");
+        $('.imgCortPop').prop('src', '');
+        $('#base64FotPerf').prop('value', '');
+        $('#formulario').find('input:text,select,textarea').val('');
+        $('#formulario').find('input:radio, input:checkbox').prop('checked', false);
         $('#formulario').css('display', 'none');
     });
     $('img.imgCortPop').on('load', function () {
-        $('#base64FotPerf').prop('value',this.src);
+        $('#base64FotPerf').prop('value', this.src);
     });
 });
+
 function guardar(e) {
     InicioCarando();
     form = $('#empresa');
@@ -30,8 +34,7 @@ function guardar(e) {
     if (!form.valid()) {
         e.preventDefault();
         FinCarando();
-    }
-    else {
+    } else {
         var data = $('#empresa').serialize();
         var url = baseUrl + 'mantenimiento/creaEditEmpresas';
         $.post({
@@ -40,6 +43,8 @@ function guardar(e) {
             success: function (resp) {
                 if (resp.msg != null) {
                     if (!resp.error) {
+                        $('.imgCortPop').prop('src', '');
+                        $('#base64FotPerf').prop('value', '');
                         ResetForm($('#empresa')[0], e);
                         $('#errores').css('color', '#37474F');
                         $('#errores').html('');
@@ -48,7 +53,7 @@ function guardar(e) {
                         destruirMask('tel');
                         $('#ContenedorAltertas').append(
                             "<div id='AlertResp' class='AlertasAreaNoError exito'>" +
-                            "<div id='btnCerrarAlert' class='btnCerrar'>" +
+                            "<div id='btnCerrarAlert' class='btnCerrar' onclick='CerraralertaNoError(this);'>" +
                             "<button type='button' id='btnCerrar'>" +
                             "</button>" +
                             "</div>" +
@@ -57,10 +62,16 @@ function guardar(e) {
                         $('#tbCompanias').html('');
                         var tb = "";
                         $.each(resp.table, function (index, item) {
-                            tb += '<tr><td><input type="checkbox"/></td><td>' + item.nomb_Companias +
+                            tb += '<tr><td><input type="checkbox"/></td> ' +
+                                '<td><div class="imgAvatarForm">';
+                            if (item.logo_companias == '' || item.logo_companias == null)
+                                tb += '<img src=""/></div></td>';
+                            else
+                                tb += '<img src="' + baseUrl + 'Recursos/1/img/tumbs/' + item.logo_companias + '.png"/></div></td>';
+                            tb += '<td>' + item.nomb_Companias +
                                 '<div class="OpcionesTabla">' +
                                 '<a onclick="editEmpresa(' + item.cod_Companias + ',event);">Editar</a>' +
-                                '<span class="SeparadorOpcionesTablas">|</span><a onclick="eliminarEmpresa( '+item.cod_Companias+' )">Eliminar</a>' +
+                                '<span class="SeparadorOpcionesTablas">|</span><a onclick="eliminarEmpresa( ' + item.cod_Companias + ' )">Eliminar</a>' +
                                 '</div></td><td>' + item.nit_Companias + '</td>' +
                                 '<td>' + item.tel_Companias + '</td>' +
                                 '<td>' + item.correo_companias + '</td>' +
@@ -69,8 +80,7 @@ function guardar(e) {
                         });
                         $('#tbCompanias').html(tb);
                         FinCarando();
-                    }
-                    else {
+                    } else {
                         $('#errores').css('visibility', '');
                         $('#errores').css('color', 'red');
                         $('#errores').html('');
@@ -78,8 +88,7 @@ function guardar(e) {
                     }
 
                     FinCarando();
-                }
-                else {
+                } else {
                     FinCarando();
                     $('#errores').css('visibility', '');
                     $('#errores').html('');
@@ -117,10 +126,9 @@ function editEmpresa(idEmpresa, e) {
                 $('#correo_companias').val(resp.correo_companias);
                 $('#tel_Companias').val(resp.tel_Companias);
                 $('#direccion_companias').val(resp.direccion_companias);
-                $('.imgCortPop').prop('src',baseUrl+'Recursos/1/img/'+resp.logo_companias+'.png');
-                $('#base64FotPerf').prop('value',resp.logo_companias);
-            }
-            else {
+                $('.imgCortPop').prop('src', baseUrl + 'Recursos/1/img/' + resp.logo_companias + '.png');
+                $('#base64FotPerf').prop('value', resp.logo_companias);
+            } else {
                 $('#errores').css('visibility', '');
                 $('#errores').html('');
                 $('#errores').html('Ocurrio un error, Comuniquese con el departamento de soporte');
@@ -162,7 +170,7 @@ function eliminarEmpresa(idEmpresa) {
                             if (!resp.error) {
                                 $('#ContenedorAltertas').append(
                                     "<div id='AlertResp' class='AlertasAreaNoError eliminado'>" +
-                                    "<div id='btnCerrarAlert' class='btnCerrar'>" +
+                                    "<div id='btnCerrarAlert' class='btnCerrar' onclick='CerraralertaNoError(this);'>" +
                                     "<button type='button' id='btnCerrar'>" +
                                     "</button>" +
                                     "</div>" +
@@ -171,11 +179,16 @@ function eliminarEmpresa(idEmpresa) {
                                 $('#tbCompanias').html('');
                                 var tb = "";
                                 $.each(resp.table, function (index, item) {
-                                    tb += '<tr><td><input type="checkbox"/></td>' +
-                                        '<td>' + item.nomb_Companias +
+                                    tb += '<tr><td><input type="checkbox"/></td> ' +
+                                        '<td><div class="imgAvatarForm">';
+                                    if (item.logo_companias == '' || item.logo_companias == null)
+                                        tb += '<img src=""/></div></td>';
+                                    else
+                                        tb += '<img src="' + baseUrl + 'Recursos/1/img/tumbs/' + item.logo_companias + '.png"/></div></td>';
+                                    tb += '<td>' + item.nomb_Companias +
                                         '<div class="OpcionesTabla">' +
-                                        '<a onclick="editEmpresa(' + item.cod_Companias + ');">Editar</a>' +
-                                        '<span class="SeparadorOpcionesTablas">|</span><a onclick="eliminarEmpresa( '+item.cod_Companias+' )">Eliminar</a>' +
+                                        '<a onclick="editEmpresa(' + item.cod_Companias + ',event);">Editar</a>' +
+                                        '<span class="SeparadorOpcionesTablas">|</span><a onclick="eliminarEmpresa( ' + item.cod_Companias + ' )">Eliminar</a>' +
                                         '</div></td><td>' + item.nit_Companias + '</td>' +
                                         '<td>' + item.tel_Companias + '</td>' +
                                         '<td>' + item.correo_companias + '</td>' +
@@ -184,8 +197,7 @@ function eliminarEmpresa(idEmpresa) {
                                 });
                                 $('#tbCompanias').html(tb);
                                 FinCarando();
-                            }
-                            else {
+                            } else {
                                 $('#ContenedorAltertas').append(
                                     '<div class="AlertasAreaError" >' +
                                     '<table><tr>' +

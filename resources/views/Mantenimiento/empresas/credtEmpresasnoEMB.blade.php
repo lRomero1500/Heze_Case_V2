@@ -19,7 +19,7 @@
         <div id="ContenedorAltertas" class="ConetendorAlertasArea">
 
             <div id="AlertNoError" class="AlertasAreaNoError informe">
-                <div id="btnCerrarAlert" class="btnCerrar">
+                <div id="btnCerrarAlert" class="btnCerrar" onclick="CerraralertaNoError(this);">
                     <button type="button" id="btnCerrar"></button>
                 </div>
                 <p>
@@ -105,7 +105,7 @@
                         <td>
                             <div class="imgAvatarForm">
                                 @if($compania->logo_companias==null||$compania->logo_companias=="")
-                                    <img src="#"/>
+                                    <img src=""/>
                                 @else
                                     <img src="{!! asset('Recursos/1/img/tumbs/'.$compania->logo_companias.'.png') !!}"/>
                                 @endif

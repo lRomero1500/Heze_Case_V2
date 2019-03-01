@@ -101,10 +101,6 @@ $(document).ready(function () {
         $('#menuTop').attr('class', '');
         $('#menuTop').attr('class', 'ContentNavheader');
     });
-    $('#btnCerrarAlert').click(function () {
-        $('#AlertNoError').css('display', 'none');
-    });
-
     $('#AddEmpresa').click(function (e) {
         if ($('#formulario').css('display') === 'none') {
             $('#formulario').css('display', '');
@@ -491,9 +487,9 @@ function menuActivo(obj, t) {
             var padre = $(obj).parent('li')[0];
             if ($(padre).hasClass('active')) {
                 $(padre).removeClass('active');
-            } else{
-                var hermanosPadre=$(padre).siblings('li');
-                $.each(hermanosPadre,function (index,item) {
+            } else {
+                var hermanosPadre = $(padre).siblings('li');
+                $.each(hermanosPadre, function (index, item) {
                     $(item).removeClass('active');
                 });
                 $(padre).addClass('active');
@@ -501,11 +497,18 @@ function menuActivo(obj, t) {
             break;
     }
 }
+function CerraralertaNoError(btn){
+    var padre=$(btn).parent('div')[0];
+    $(padre).css('display', 'none');
+}
 
 //endregion
 //region Cropper
-function iniciaCropper(relAspec,tipo) {
-    var console = window.console || { log: function () {} };
+function iniciaCropper(relAspec, tipo) {
+    var console = window.console || {
+        log: function () {
+        }
+    };
     var URL = window.URL || window.webkitURL;
     var tipoCrop = tipo;
     var $image = $('#image');
@@ -677,6 +680,10 @@ function iniciaCropper(relAspec,tipo) {
                     }
 
                     break;
+                case 'CloseCropper':
+                    $('#image').cropper('destroy').attr('src', '');
+                    $('.popUpCropper').removeClass('activo');
+                    break;
 
                 case 'destroy':
                     if (uploadedImageURL) {
@@ -762,6 +769,7 @@ function iniciaCropper(relAspec,tipo) {
          $inputImage.prop('disabled', true).parent().addClass('disabled');
      }*/
 }
+
 //tipo{ 1=popup}
 $('.iniCropPOPPerfil').change(function () {
     var URL = window.URL || window.webkitURL;
@@ -784,14 +792,12 @@ $('.iniCropPOPPerfil').change(function () {
             if ($('#image').data('cropper')) {
                 $('.popUpCropper').addClass('activo');
                 $('#image').cropper('destroy').attr('src', uploadedImageURL);
-                iniciaCropper(1,1);
-            }
-            else {
+                iniciaCropper(1, 1);
+            } else {
                 $('.popUpCropper').addClass('activo');
                 $('#image').attr('src', uploadedImageURL);
-                iniciaCropper(1,1);
+                iniciaCropper(1, 1);
             }
-
 
 
             $('#image').val('');
@@ -807,4 +813,5 @@ function setImagePerfilClosePOp(imagenCortada) {
     $('#image').cropper('destroy').attr('src', '');
     $('.popUpCropper').removeClass('activo');
 }
+
 //endregion
