@@ -1,4 +1,4 @@
-<form id="departamentos">
+<form id="departamentos" novalidate="novalidate">
     {!! csrf_field() !!}
     <div class="contentFormulario3Colomnas contFormGobal" style="padding:0px!important;margin-bottom: 0.5em">
         <div class="tituloTabla">
@@ -37,12 +37,5 @@
     </div>
 </form>
 @section('scriptsEMB')
-<script>
-    $(document).ready(function () {
-        $('#cerrarForm').click(function (e) {
-            $('#formulario').trigger("reset");
-            $('#formulario').css('display', 'none');
-        });
-    });
-</script>
+
 @endsection

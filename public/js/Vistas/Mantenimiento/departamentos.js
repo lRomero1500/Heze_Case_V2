@@ -1,8 +1,18 @@
 var form;
+var objValidador;
+$(document).ready(function () {
+    $('#cerrarForm').click(function () {
+        $('#formulario').find('input:text,select,textarea').val('');
+        $('#formulario').find('input:radio, input:checkbox').prop('checked', false);
+        if(objValidador!=undefined)
+            objValidador.resetForm();
+        $('#formulario').css('display', 'none');
+    });
+});
 function guardar(e) {
     InicioCarando();
     form = $('#departamentos');
-    form.validate();
+    objValidador= form.validate();
     if (!form.valid()) {
         e.preventDefault();
         FinCarando();
@@ -23,7 +33,7 @@ function guardar(e) {
                         $('#formulario').css('display', 'none');
                         $('#ContenedorAltertas').append(
                             "<div id='AlertResp' class='AlertasAreaNoError'>" +
-                            "<i onclick='cerrarResp();' style='cursor: pointer;'" +
+                            "<i onclick='CerraralertaNoError(this);' style='cursor: pointer;'" +
                             " class='CerrarAlertasAreaNoError fa fa-times fa-fw' aria-hidden='true'></i>" +
                             "<p>" + resp.msg + " </p></div>"
                         );
@@ -126,7 +136,7 @@ function eliminarDepartamento(idDep) {
                             if (!resp.error) {
                                 $('#ContenedorAltertas').append(
                                     "<div id='AlertResp' class='AlertasAreaNoError'>" +
-                                    "<i onclick='cerrarResp();' style='cursor: pointer;'" +
+                                    "<i onclick='CerraralertaNoError(this);' style='cursor: pointer;'" +
                                     " class='CerrarAlertasAreaNoError fa fa-times fa-fw' aria-hidden='true'></i>" +
                                     "<p>" + resp.msg + " </p></div>"
                                 );

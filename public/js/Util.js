@@ -499,7 +499,7 @@ function menuActivo(obj, t) {
 }
 function CerraralertaNoError(btn){
     var padre=$(btn).parent('div')[0];
-    $(padre).css('display', 'none');
+    $(padre).remove();
 }
 
 //endregion
