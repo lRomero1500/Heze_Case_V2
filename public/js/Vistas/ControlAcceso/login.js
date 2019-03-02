@@ -5,8 +5,7 @@ $(document).ready(function () {
     document.addEventListener("keydown", function (event) {
         if ((event.keyCode == 13) && ($('#Usr').css('display') == 'block')) {
             $('#btnValida').click();
-        }
-        else if ((event.keyCode == 13) && ($('#Pass').css('display') == 'block')) {
+        } else if ((event.keyCode == 13) && ($('#Pass').css('display') == 'block')) {
             $('#btnIngresa').click()
         }
     });
@@ -16,20 +15,20 @@ $(document).ready(function () {
 $.validate({
     form: '#login',
     language: Traduccion,
-    validateOnEvent:true,
+    validateOnEvent: true,
     onElementValidate: function (valid, $el, $form, errorMess) {
         if ($el.attr('name') == 'usrName') {
             mailValido = valid;
-        }
-        else if ($el.attr('name') == 'usrPass'){
-            PasValido=valid;
+        } else if ($el.attr('name') == 'usrPass') {
+            PasValido = valid;
         }
     }
 });
+
 function validar() {
     if (mailValido) {
         var data = $('#login').serialize();
-        var url = baseUrl+"valida";
+        var url = baseUrl + "valida";
 
         InicioCarando();
         $.post({
@@ -39,7 +38,10 @@ function validar() {
                 if (resp.msg == null) {
                     $('#textNomCont').html('');
                     $('#textNomCont').html('Contraseña');
-                    $('#ini').html(resp.ini);
+                    if (resp.imgPerfil != null)
+                        $('#avatarImg').css('background', 'url("'+baseUrl + 'Recursos/1/img/tumbs/' + resp.imgPerfil + '.png'+'")');
+                    else
+                        $('#ini').html(resp.ini);
                     $('#nomUsr').html(resp.nombre);
                     $('#Usr').hide();
                     $('#Pass').show("slow");
@@ -47,8 +49,7 @@ function validar() {
                     $('#passForgot').show("slow");
                     $('#usrPass').focus();
                     FinCarando();
-                }
-                else {
+                } else {
                     FinCarando();
                     alertaError(resp.msg);
                 }
@@ -61,10 +62,11 @@ function validar() {
         });
     }
 }
+
 function ingresar() {
-    if(PasValido){
+    if (PasValido) {
         var data = $('#login').serialize();
-        var url = baseUrl+"ingresa";
+        var url = baseUrl + "ingresa";
         InicioCarando();
         $.post({
             url: url,
@@ -72,8 +74,7 @@ function ingresar() {
             success: function (resp) {
                 if (!resp.error) {
                     window.location.href = baseUrl + resp.msg;
-                }
-                else {
+                } else {
                     alertaError(resp.msg);
                     FinCarando();
                 }

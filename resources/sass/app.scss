@@ -1272,7 +1272,7 @@ label.error:after {
     left: 11px;
     top: 35px;
 }
-.contCampo label[for=logo_companias] {
+.contCampo label[for=logo_companias], label[for=url_ImgPerfil] {
     position: absolute;
     transition: 0.4s;
     bottom: 10px;
@@ -1283,7 +1283,7 @@ label.error:after {
     align-items: center;
     justify-content: center;
 }
-.contCampo label[for=logo_companias] strong {
+.contCampo label[for=logo_companias] strong, label[for=url_ImgPerfil] strong {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1296,10 +1296,10 @@ label.error:after {
     padding: 5px 6px;
     border-radius: 0 3px 3px 0;
 }
-.contCampo label[for=logo_companias] strong:hover {
+.contCampo label[for=logo_companias] strong:hover, label[for=url_ImgPerfil] strong:hover {
     background: #0288D1;
 }
-.contCampo label[for=logo_companias] strong i {
+.contCampo label[for=logo_companias] strong i, label[for=url_ImgPerfil] strong i {
     position: relative;
     font-size: 25px;
     line-height: 1;
@@ -1308,7 +1308,7 @@ label.error:after {
     margin-right: 7px;
 }
 
-.contCampo label[for=logo_companias] strong p {
+.contCampo label[for=logo_companias] strong p, label[for=url_ImgPerfil] strong p {
     font-size: 14px;
     color: #fff;
     z-index: 1;

@@ -10,7 +10,7 @@
     </div>
     <div class="usps-login">
         <div id="avatar" style="display: none">
-            <div class="login-Avatar">
+            <div class="login-Avatar" id="avatarImg">
                 <h1 id="ini"></h1>
             </div>
             <h2 id="nomUsr"></h2>

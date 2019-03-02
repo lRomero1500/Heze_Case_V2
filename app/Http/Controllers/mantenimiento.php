@@ -158,9 +158,17 @@ class mantenimiento extends Controller
         $order = array('(', ')', '-');
         $clbrdrs->telf_Celular_Empleado = str_replace($order, '', $clbrdrs->telf_Celular_Empleado);
         $clbrdrs->telf_Corporativo_Empleado = str_replace($order, '', $clbrdrs->telf_Corporativo_Empleado);
-        $clbrdrs->tipo_Doc_Empleado = '5';
+        /*$clbrdrs->tipo_Doc_Empleado = '5';*/
+        $img_url = "foto-colaborador-".time();
         try {
             if ($clbrdrs->cod_Empleado == '0') {
+                if (preg_match('/^data:image\/(\w+);base64,/', $request->get('base64FotPerf'), $type)) {
+                    $clbrdrs->url_ImgPerfil=$img_url;
+                    $this->cargaImagenes($request->get('base64FotPerf'),2,$img_url);
+                }
+                else{
+                    $clbrdrs->url_ImgPerfil=$request->get('base64FotPerf');
+                }
                 $clbrdrs->save();
                 if ($request->has('crearUsrHezeCase') ? true : false) {
                     $creaUsuario = $request->only('crearUsrHezeCase')['crearUsrHezeCase'];
@@ -172,14 +180,14 @@ class mantenimiento extends Controller
                             'password' => bcrypt($clave),
                             'cod_Rol' => 1
                         ]);
-                        if ($usuarioCreado->id_Usuarios != 0) {
+                        /*if ($usuarioCreado->id_Usuarios != 0) {
                             $objMail = new \stdClass();
                             $objMail->usuario = $clbrdrs->email_contacto;
                             $objMail->pass = $clave;
                             $objMail->sender = 'Heze Case';
                             $objMail->receiver = $request->only('nombre1')['nombre1'] . ' ' . $request->only('apellido1')['apellido1'];
                             Mail::to($clbrdrs->email_contacto)->send(new emailCreaUsr($objMail));
-                        }
+                        }*/
                     }
                 }
 
@@ -203,6 +211,14 @@ class mantenimiento extends Controller
                 $clbrdrsUP->cod_Companias = $clbrdrs->cod_Companias;
                 $clbrdrsUP->porc_Descuento = $clbrdrs->porc_Descuento;
                 $clbrdrsUP->porc_Ganacia = $clbrdrs->porc_Ganacia;
+                if (preg_match('/^data:image\/(\w+);base64,/', $request->get('base64FotPerf'), $type)) {
+                    $clbrdrs->url_ImgPerfil=$img_url;
+                    $this->cargaImagenes($request->get('base64FotPerf'),2,$img_url);
+                }
+                else{
+                    $clbrdrs->url_ImgPerfil=$request->get('base64FotPerf');
+                }
+                $clbrdrsUP->url_ImgPerfil=$clbrdrs->url_ImgPerfil;
                 $clbrdrsUP->save();
                 if ($request->has('crearUsrHezeCase') ? true : false) {
                     $creaUsuario = $request->only('crearUsrHezeCase')['crearUsrHezeCase'];
@@ -330,6 +346,9 @@ class mantenimiento extends Controller
                     HezEmpleado::destroy($id);
                 } else
                     HezEmpleado::destroy($id);
+                if(!empty($empleado->url)){
+                    $this->eliminaImagenes($empleado->url_ImgPerfil,2);
+                }
                 $dat = HezEmpleado::with(['hez_usuarios', 'hez_compania', 'hez_tipo_documento'])->get();
                 $nombre = (explode('/', ($empleado->first())['nombre_Empleado']))[2] . ' ' . (explode('/', ($empleado->first())['nombre_Empleado']))[0];
                 return response()->json([

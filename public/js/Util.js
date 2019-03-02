@@ -118,9 +118,14 @@ $(document).ready(function () {
             crearMask('tel');
             crearDatePick('dat');
             $('#cerrarForm').click(function (e) {
+                $('.imgCortPop').prop('src', '');
+                $('#base64FotPerf').prop('value', '');
                 destruirMask('tel');
                 destruirDatePick('dat');
-                $('#formulario').trigger("reset");
+                $('#formulario').find('input:text,select,textarea').val('');
+                $('#formulario').find('input:radio, input:checkbox').prop('checked', false);
+                if(objValidador!=undefined)
+                    objValidador.resetForm();
                 $('#formulario').css('display', 'none');
             });
         }
@@ -229,6 +234,14 @@ String.prototype.ConvertirFecha = function () {
     } else {
         var prts = this.split('-')
         return [prts[2], prts[1], prts[0]].join("/");
+    }
+}
+String.prototype.ConvertirObjFecha = function () {
+    if (this === "") {
+        return this;
+    } else {
+        var prts = this.split('-');
+        return new Date([prts[0], prts[1], prts[2]]);
     }
 }
 Date.prototype.convertir = function (fecha, formato) {

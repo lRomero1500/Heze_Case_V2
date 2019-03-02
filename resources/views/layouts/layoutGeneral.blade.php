@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="token" content="{{ csrf_token() }}">
     <base href="{!! URL::to('/').'/' !!}"/>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('css/freddy.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('css/freddy.css') }}" rel="stylesheet" type="text/css"/>
     @yield('headers')
 </head>
 <body>
@@ -34,14 +34,22 @@
                 </div>
             </div>
         </div>
-        <div class="Avatar">
-            <h1>
-                <?php
-                $ini = mb_substr((explode('/', Auth::user()->hez_empleado->nombre_Empleado))[2], 0, 1) . mb_substr((explode('/', Auth::user()->hez_empleado->nombre_Empleado))[0], 0, 1);
-                echo $ini;
-                ?>
-            </h1>
-        </div>
+        @if(!empty(Auth::user()->hez_empleado->url_ImgPerfil))
+            <div class="Avatar" style="background: url('{!! asset('Recursos/1/img/tumbs/'.Auth::user()->hez_empleado->url_ImgPerfil.'.png') !!}')">
+                <h1>
+                </h1>
+            </div>
+        @else
+            <div class="Avatar">
+                <h1>
+                    <?php
+                    $ini = mb_substr((explode('/', Auth::user()->hez_empleado->nombre_Empleado))[2], 0, 1) . mb_substr((explode('/', Auth::user()->hez_empleado->nombre_Empleado))[0], 0, 1);
+                    echo $ini;
+                    ?>
+                </h1>
+            </div>
+        @endif
+
         <div class="ContentMenuheader">
             <nav class="nav">
                 <li>

@@ -21,7 +21,7 @@ $(document).ready(function () {
 function guardar(e) {
     InicioCarando();
     form = $('#empresa');
-    form.validate(/*{
+    objValidador=form.validate(/*{
         showErrors: function (errorMap, errorList) {
             e.preventDefault();
             var errs = "";

@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Thu, 07 Feb 2019 16:30:15 +0000.
+ * Date: Fri, 01 Mar 2019 21:30:27 +0000.
  */
 
 namespace App\Models;
@@ -26,9 +26,10 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $cod_Companias
  * @property int $porc_Descuento
  * @property int $porc_Ganacia
+ * @property string $url_ImgPerfil
+ * @property int $departamento_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property int $departamento_id
  * 
  * @property \App\Models\HezCompania $hez_compania
  * @property \App\Models\HezDepartamento $hez_departamento
@@ -42,6 +43,7 @@ class HezEmpleado extends Eloquent
 	protected $primaryKey = 'cod_Empleado';
 
 	protected $casts = [
+	    'cod_Empleado',
 		'tipo_Doc_Empleado' => 'int',
 		'sexo_Empleado' => 'int',
 		'cod_Companias' => 'int',
@@ -49,9 +51,10 @@ class HezEmpleado extends Eloquent
 		'porc_Ganacia' => 'int',
 		'departamento_id' => 'int'
 	];
-	protected $dates = [
-		'fecha_Nac_Empleado'
-	];
+
+    protected $dates = [
+        'fecha_Nac_Empleado'
+    ];
 
 	protected $fillable = [
 	    'cod_Empleado',
@@ -67,6 +70,7 @@ class HezEmpleado extends Eloquent
 		'cod_Companias',
 		'porc_Descuento',
 		'porc_Ganacia',
+		'url_ImgPerfil',
 		'departamento_id'
 	];
 
@@ -90,7 +94,12 @@ class HezEmpleado extends Eloquent
 		return $this->hasOne(\App\Models\HezUsuario::class, 'cod_Empleado');
 	}
     public function setFechaNacEmpleadoAttribute($value){
-        $this->attributes['fecha_Nac_Empleado'] = Carbon::createFromFormat('d/m/Y',$value);
-    }
+	    try{
+            $this->attributes['fecha_Nac_Empleado'] = Carbon::createFromFormat('d/m/Y',$value);
+        }
+        catch (\Exception $err){
+            $this->attributes['fecha_Nac_Empleado']= new Carbon($value);
+        }
 
+    }
 }

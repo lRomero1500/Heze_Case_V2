@@ -1,8 +1,25 @@
 var form;
+var objValidador;
+$(document).ready(function () {
+    $('#cerrarForm').click(function (e) {
+        $('.imgCortPop').prop('src', '');
+        $('#base64FotPerf').prop('value', '');
+        destruirMask('tel');
+        destruirDatePick('dat');
+        $('#formulario').find('input:text,select,textarea').val('');
+        $('#formulario').find('input:radio, input:checkbox').prop('checked', false);
+        if(objValidador!=undefined)
+            objValidador.resetForm();
+        $('#formulario').css('display', 'none');
+    });
+    $('img.imgCortPop').on('load', function () {
+        $('#base64FotPerf').prop('value', this.src);
+    });
+});
 function guardar(e) {
     InicioCarando();
     form = $('#colaborador');
-    form.validate();
+    objValidador=form.validate();
     if (!form.valid()) {
         e.preventDefault();
         FinCarando();
@@ -25,7 +42,7 @@ function guardar(e) {
                         destruirDatePick('dat');
                         $('#ContenedorAltertas').append(
                             "<div id='AlertResp' class='AlertasAreaNoError'>" +
-                            "<i onclick='cerrarResp();' style='cursor: pointer;'" +
+                            "<i onclick='CerraralertaNoError(this);' style='cursor: pointer;'" +
                             " class='CerrarAlertasAreaNoError fa fa-times fa-fw' aria-hidden='true'></i>" +
                             "<p>" + resp.msg + " </p></div>"
                         );
@@ -97,7 +114,7 @@ function editColaborador(idUsuario) {
                 $('#tipo_Doc_Empleado').val(resp.tipo_Doc_Empleado);
                 $('#documentoEmpleado').val(resp.documentoEmpleado);
                 $('#sexo_Empleado').val(resp.sexo_Empleado);
-                $('#fecha_Nac_Empleado').datepicker('setDate', resp.fecha_Nac_Empleado.ConvertirFecha());
+                $('#fecha_Nac_Empleado').datepicker('setDate', resp.fecha_Nac_Empleado.ConvertirObjFecha());
                 $('#telf_Celular_Empleado').val(resp.telf_Celular_Empleado);
                 $('#telf_Corporativo_Empleado').val(resp.telf_Corporativo_Empleado);
                 $('#email_contacto').val(resp.email_contacto);
@@ -105,7 +122,9 @@ function editColaborador(idUsuario) {
                 $('#cod_Companias').val(resp.cod_Companias);
                 $('#porc_Descuento').val(resp.porc_Descuento);
                 $('#porc_Ganacia').val(resp.porc_Ganacia);
-                if(resp.usuario!=null)
+                $('.imgCortPop').prop('src', baseUrl + 'Recursos/1/img/' + resp.url_ImgPerfil + '.png');
+                $('#base64FotPerf').prop('value', resp.url_ImgPerfil);
+                if(resp.hez_usuarios!=null)
                     document.getElementById('crearUsrHezeCase').checked=true;
 
 
@@ -125,7 +144,6 @@ function editColaborador(idUsuario) {
         }
     });
 }
-
 function eliminarColaborador(idColaborador) {
     InicioCarando();
     var url = baseUrl + 'mantenimiento/delColaborador/';
@@ -152,7 +170,7 @@ function eliminarColaborador(idColaborador) {
                             if (!resp.error) {
                                 $('#ContenedorAltertas').append(
                                     "<div id='AlertResp' class='AlertasAreaNoError'>" +
-                                    "<i onclick='cerrarResp();' style='cursor: pointer;'" +
+                                    "<i onclick='CerraralertaNoError(this);' style='cursor: pointer;'" +
                                     " class='CerrarAlertasAreaNoError fa fa-times fa-fw' aria-hidden='true'></i>" +
                                     "<p>" + resp.msg + " </p></div>"
                                 );
@@ -211,7 +229,6 @@ function eliminarColaborador(idColaborador) {
         }
     });
 }
-
 function limpiarErrorFecha(obj) {
     if(obj.value!=""){
        $($(obj).siblings('label')[0]).remove();

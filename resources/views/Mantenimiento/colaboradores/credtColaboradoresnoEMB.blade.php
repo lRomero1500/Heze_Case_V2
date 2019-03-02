@@ -7,7 +7,7 @@
                 <h3>Mantenimiento/Colaboradores</h3>
             </div>
             <div class="conteedorIconoAreatrabajo">
-                <a id="AddEmpresa"><span></span><h4 class="textIcono">Añadir
+                <a id="AddColaborador"><span></span><h4 class="textIcono">Añadir
                         Nuevo</h4></a>
             </div>
         </div>
@@ -19,7 +19,7 @@
         <div id="ContenedorAltertas" class="ConetendorAlertasArea">
 
             <div id="AlertNoError" class="AlertasAreaNoError informe">
-                <div id="btnCerrarAlert" class="btnCerrar">
+                <div id="btnCerrarAlert" class="btnCerrar" onclick="CerraralertaNoError(this);">
                     <button type="button" id="btnCerrar"></button>
                 </div>
                 <p>

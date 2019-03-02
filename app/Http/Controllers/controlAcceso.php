@@ -33,15 +33,18 @@ class controlAcceso extends Controller
             if ($data != null) {
                 $nombre = (explode('/', $data['nombre_Empleado']))[2] . ' ' . (explode('/', $data['nombre_Empleado']))[0];
                 $ini = mb_substr((explode('/', $data['nombre_Empleado']))[2], 0, 1) . mb_substr((explode('/', $data['nombre_Empleado']))[0], 0, 1);
+                $imgPerfil=empty($data->url_ImgPerfil)?'':$data->url_ImgPerfil;
                 $msg = null;
             } else {
                 $nombre = null;
                 $ini = null;
+                $imgPerfil=null;
                 $msg = "Usuario No Existe";
             }
         } catch (\Exception $e) {
             $nombre = null;
             $ini = null;
+            $imgPerfil=null;
             $msg = $e->getMessage();
         }
 
@@ -49,6 +52,7 @@ class controlAcceso extends Controller
         return response()->json([
             'nombre' => $nombre,
             'ini' => $ini,
+            'imgPerfil' => $imgPerfil,
             'msg' => $msg
         ]);
     }

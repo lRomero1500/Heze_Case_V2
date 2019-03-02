@@ -1,4 +1,4 @@
-<form id="colaborador">
+<form id="colaborador" novalidate="novalidate">
     {!! csrf_field() !!}
     <div class="contentFormulario3Colomnas contFormGobal" style="padding:0px!important;margin-bottom: 0.5em;">
         <div class="tituloTabla">
@@ -123,6 +123,20 @@
                        data-rule-number="true" data-msg-number="Ingrese solo caracteres numericos"
                 />
             </div>
+            <div class="contCampo W20"><h5>Imagen de perfil</h5>
+                <input type="file" name="url_ImgPerfil" id="url_ImgPerfil" accept="image/*"
+                       style=" width: 0.1px; height: 0.1px;  opacity: 0;  overflow: hidden;  position: absolute;  z-index: -1;"
+                       class="iniCropPOPPerfil campo">
+                <div class="imgAvatarForm">
+                    <img class="imgCortPop" src=""/>
+                </div>
+                <label for="url_ImgPerfil">
+                    <strong>
+                        <i class="fa fa-upload" aria-hidden="true"></i>
+                        <p>Cargar Imagen</p>
+                    </strong>
+                </label>
+            </div>
             <div class="contCampo W20">
                 <div>
                     <input class="campo" type="checkbox" name="crearUsrHezeCase" id="crearUsrHezeCase"
@@ -145,7 +159,25 @@
     <div id="errores" style="visibility: hidden">
 
     </div>
+    <input id="base64FotPerf" name="base64FotPerf" type="hidden" value=""/>
 </form>
-
+<div class="popUpCropper">
+    <div id="popUP" class="img-container">
+        <img id="image" src="">
+    </div>
+    <div id="bototnes">
+        <div class="docs-buttons">
+            <button type="button" data-method="getCroppedCanvas"
+                    data-option="{ &quot;maxWidth&quot;: 400, &quot;maxHeight&quot;: 400 }">
+                    <span title="$().cropper(&quot;getCroppedCanvas&quot;, { maxWidth: 400, maxHeight: 400 })">
+                       <i class="fas fa-cut"></i>  Realizar Corte
+                    </span>
+            </button>
+            <button type="button" data-method="CloseCropper">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+    </div>
+</div>
 @section('scriptsEMB')
 @endsection
