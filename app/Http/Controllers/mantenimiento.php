@@ -211,15 +211,12 @@ class mantenimiento extends Controller
                 if (preg_match('/^data:image\/(\w+);base64,/', $request->get('base64FotPerf'), $type)) {
                     $clbrdrs->url_ImgPerfil=$img_url;
                     $this->cargaImagenes($request->get('base64FotPerf'),2,$img_url);
+                    $clbrdrsUP->url_ImgPerfil=$clbrdrs->url_ImgPerfil;
                 }
-                else{
-                    $clbrdrs->url_ImgPerfil=$request->get('base64FotPerf');
-                }
-                $clbrdrsUP->url_ImgPerfil=$clbrdrs->url_ImgPerfil;
                 $clbrdrsUP->save();
                 if ($request->has('crearUsrHezeCase') ? true : false) {
                     $creaUsuario = $request->only('crearUsrHezeCase')['crearUsrHezeCase'];
-                    if ($creaUsuario == 'on' && $clbrdrsUP->Usuario == null) {
+                    if ($creaUsuario == 'on' && $clbrdrsUP->hez_usuarios == null) {
                         $objMail = new \stdClass();
 
                         $objMail->demo_one = 'Demo One Value';
@@ -228,8 +225,8 @@ class mantenimiento extends Controller
                         $objMail->receiver = $request->only('nombre1')['nombre1'] . ' ' . $request->only('apellido1')['apellido1'];
 
                         Mail::to($clbrdrsUP->email_contacto)->send(new emailCreaUsr($objMail));
-                    } elseif ($creaUsuario == 'off' && $clbrdrsUP->Usuario != null) {
-                        HezUsuario::destroy($clbrdrsUP->Usuario->id_Usuarios);
+                    } elseif ($creaUsuario == 'off' && $clbrdrsUP->hez_usuarios != null) {
+                        HezUsuario::destroy($clbrdrsUP->hez_usuarios->id_Usuarios);
                     }
                 }
                 $dat = HezEmpleado::with(['hez_usuarios', 'hez_compania', 'hez_tipo_documento'])->get();
