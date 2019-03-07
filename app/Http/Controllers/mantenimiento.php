@@ -94,11 +94,8 @@ class mantenimiento extends Controller
                         $this->eliminaImagenes($CompaniasUp->logo_companias,1);
                     }
                     $this->cargaImagenes($request->get('base64FotPerf'),1,$img_url);
+                    $CompaniasUp->logo_companias = $companias->logo_companias;
                 }
-                else{
-                    $companias->logo_companias=$request->get('base64FotPerf');
-                }
-                $CompaniasUp->logo_companias = $companias->logo_companias;
                 $CompaniasUp->correo_companias = $companias->correo_companias;
                 $CompaniasUp->save();
                 $dat = HezCompania::all();

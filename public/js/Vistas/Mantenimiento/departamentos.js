@@ -2,7 +2,7 @@ var form;
 var objValidador;
 $(document).ready(function () {
     $('#cerrarForm').click(function () {
-        $('#formulario').find('input:text,select,textarea').val('');
+        $('#formulario').find('input[type=hidden][name!=_token],input:text,select,textarea').val('');
         $('#formulario').find('input:radio, input:checkbox').prop('checked', false);
         if(objValidador!=undefined)
             objValidador.resetForm();
@@ -27,10 +27,12 @@ function guardar(e) {
                 if (resp.msg != null) {
                     if (!resp.error) {
                         $(form).trigger("reset");
+                        ResetForm(form,e);
                         $('#errores').css('color', '#37474F');
                         $('#errores').html('');
                         $('#errores').css('visibility', 'none');
                         $('#formulario').css('display', 'none');
+                        $('#AlertResp').remove();
                         $('#ContenedorAltertas').append(
                             "<div id='AlertResp' class='AlertasAreaNoError'>" +
                             "<i onclick='CerraralertaNoError(this);' style='cursor: pointer;'" +
@@ -92,6 +94,7 @@ function editDepartamento(idDep) {
                     $('#formulario').css('display', '');
                 }
                 document.getElementById("departamentos").reset();
+                $('#id').prop('value',resp.id);
                 $('#departamento').val(resp.departamento);
                 $('#cod_Companias').val(resp.hez_compania.cod_Companias);
             }
@@ -134,6 +137,7 @@ function eliminarDepartamento(idDep) {
                     success: function (resp) {
                         if (resp.msg != null) {
                             if (!resp.error) {
+                                $('#AlertResp').remove();
                                 $('#ContenedorAltertas').append(
                                     "<div id='AlertResp' class='AlertasAreaNoError'>" +
                                     "<i onclick='CerraralertaNoError(this);' style='cursor: pointer;'" +

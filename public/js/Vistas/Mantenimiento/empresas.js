@@ -7,7 +7,7 @@ $(document).ready(function () {
     $('#cerrarForm').click(function (e) {
         $('.imgCortPop').prop('src', '');
         $('#base64FotPerf').prop('value', '');
-        $('#formulario').find('input:text,select,textarea').val('');
+        $('#formulario').find('input[type=hidden][name!=_token],input:text,select,textarea').val('');
         $('#formulario').find('input:radio, input:checkbox').prop('checked', false);
         if(objValidador!=undefined)
             objValidador.resetForm();
@@ -47,13 +47,14 @@ function guardar(e) {
                 if (resp.msg != null) {
                     if (!resp.error) {
                         $('.imgCortPop').prop('src', '');
-                        $('#base64FotPerf').prop('value', '');
                         ResetForm($('#empresa')[0], e);
+                        $('#base64FotPerf').prop('value', '');
                         $('#errores').css('color', '#37474F');
                         $('#errores').html('');
                         $('#errores').css('visibility', 'none');
                         $('#formulario').css('display', 'none');
                         destruirMask('tel');
+                        $('#AlertResp').remove();
                         $('#ContenedorAltertas').append(
                             "<div id='AlertResp' class='AlertasAreaNoError'>" +
                             "<i onclick='CerraralertaNoError(this);' style='cursor: pointer;'" +
@@ -169,6 +170,7 @@ function eliminarEmpresa(idEmpresa) {
                     success: function (resp) {
                         if (resp.msg != null) {
                             if (!resp.error) {
+                                $('#AlertResp').remove();
                                 $('#ContenedorAltertas').append(
                                     "<div id='AlertResp' class='AlertasAreaNoError'>" +
                                     "<i onclick='CerraralertaNoError(this);' style='cursor: pointer;'" +
