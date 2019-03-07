@@ -124,10 +124,26 @@
     </div>
     <div id="app" class="ContenedorAreaTrabajo">
         @yield('content')
+
+        <div class="contGeneralTimeLapse">
+            <div class="contIcono activo">
+                <span class="icono"></span>
+            </div>
+            <div class="contTimerTarea">
+                <span>Nombre proyecto</span><span>Nombre de tarea</span><span>00:05:45</span>
+            </div>
+            <div class="contTimeLapse">
+                <div class="contBarraTiempo">
+                    <div class="barraTiempo">
+                        <div class="tiempo">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
 </div>
-
 <footer class="FooterFrontEnd">
     <div class="ContenedorTextDerechosFooter">
         <p class="TextDerechosFooter">&copy {!! date('Y') !!} Creado por Grupo Arcia S.A.S- Prohibida su reproducción

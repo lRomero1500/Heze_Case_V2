@@ -8179,7 +8179,7 @@ p {
 }
 
 .usps-login > h6 {
-  margin-top: 10% !important;
+  margin-top: 10px;
   font-size: 20px;
   color: #515559;
 }
@@ -8190,8 +8190,11 @@ p {
 
 .login-Avatar {
   margin: auto;
-  height: 60px;
-  width: 60px;
+  height: 100px;
+  width: 100px;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  background-position: center !important;
   border-radius: 50%;
   background: linear-gradient(to top right, #0097f6 0%, #b622b5 60%);
 }
@@ -8331,11 +8334,11 @@ p {
 /*Footer****/
 .FooterFrontEnd {
   position: fixed;
-  margin-top: 5%;
+  margin-top: 30px;
   bottom: 0px;
-  background: transparent;
+  background: #F2F2F2;
   width: 100%;
-  height: 110px;
+  height: 40px;
 }
 
 /*Left*/
@@ -8375,10 +8378,12 @@ p {
 
 .ContenedorImgFooter {
   position: absolute;
-  padding: 0 10px 10px 0;
-  text-align: center;
+  padding: 6px;
   right: 0;
+  width: auto;
+  height: auto;
   bottom: 0;
+  background: #F2F2F2;
 }
 
 .ContenedorTextDerechosFooter {
@@ -8389,8 +8394,10 @@ p {
 }
 
 .imgFooterLogo {
-  opacity: 0.2;
-  height: 120px;
+  opacity: 1;
+  height: 100px;
+  display: block;
+  width: auto;
 }
 
 .ContentlogoImg {
@@ -8491,6 +8498,9 @@ p {
   width: 50px;
   border-radius: 50%;
   background-image: linear-gradient(to top right, #b622b5 10%, #0097f6 90%);
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  background-position: center !important;
 }
 
 .Avatar h1 {
@@ -8846,6 +8856,7 @@ p {
 }
 
 .ContenedorAreaTrabajo {
+  position: relative;
   width: calc(100% - 210px);
   display: inline-block;
   vertical-align: top;
@@ -9365,12 +9376,11 @@ label.error:after {
   top: 35px;
 }
 
-.contCampo label[for=logo_companias], label[for=url_ImgPerfil] {
+.contCampo label[for=logo_companias], .contCampo label[for=url_ImgPerfil] {
   position: absolute;
   transition: 0.4s;
   top: 18px;
   left: 2px;
-  padding: 0;
   width: 101px;
   display: flex;
   align-items: center;
@@ -9390,10 +9400,11 @@ label.error:after {
   color: #fff;
   padding: 5px 6px;
   border-radius: 0;
+  opacity: 0.2;
 }
 
 .contCampo label[for=logo_companias] strong:hover, label[for=url_ImgPerfil] strong:hover {
-  background: #0288D1;
+  opacity: 0.9;
 }
 
 .contCampo label[for=logo_companias] strong i, label[for=url_ImgPerfil] strong i {
@@ -9998,7 +10009,7 @@ input[type=number] {
   padding: 0 8px 0 16px;
 }
 
-input[type=checkbox].campo, input[type=radio].compo {
+input[type=checkbox].campo, input[type=radio].campo {
   width: 0.1px;
   height: 0.1px;
   display: none;
@@ -10330,6 +10341,20 @@ div.subServicio p span[name=Eliminar]:after {
   margin: 5px 20px 5px 10px;
 }
 
+td div.imgAvatarForm {
+  border: transparent;
+  border-radius: 50%;
+  width: 50px;
+  height: auto;
+}
+
+td div.imgAvatarForm img {
+  border-radius: 50%;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 div#popUP.img-container {
   position: absolute;
   background: rgba(150, 50, 20, 0.9);
@@ -10376,3 +10401,219 @@ div#bototnes {
 }
 
 /*Fin Estilos Cropper*/
+/*Time lapse*/
+div.contGeneralTimeLapse {
+  background: #414549;
+  background: linear-gradient(45deg, #414549 0%, #212529 100%);
+  position: absolute;
+  width: calc(100% - 50px);
+  bottom: 0px;
+  height: auto;
+  padding: 5px;
+}
+
+div.contIcono {
+  position: absolute;
+  border: 2px solid #0097F6;
+  background: #c8dcf0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  top: -20px;
+  right: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+}
+
+div.contIcono:before {
+  content: "";
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  background: #212529;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+div.contIcono span.icono {
+  display: block;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+  -webkit-animation: rotarReloj 5s ease infinite;
+  animation: rotarReloj 5s ease infinite;
+}
+
+div.contIcono:hover span.icono {
+  -webkit-animation: none;
+  animation: none;
+}
+
+div.contIcono.activo span.icono:before {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  top: 6px;
+  background: rgba(250, 250, 250, 0);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(0deg);
+  transition: 0.4s;
+  border: 2px solid #f5f5f5;
+  border-radius: 1px 1px 50% 50%;
+  -webkit-animation: llenarReloj 5s ease infinite;
+  animation: llenarReloj 5s ease infinite;
+}
+
+div.contIcono.activo span.icono:after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #fafafa;
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+  top: 15px;
+  transition: 0.4s;
+  border: 2px solid #f5f5f5;
+  border-radius: 50% 50% 1px 1px;
+  -webkit-animation: vaciarReloj 5s ease infinite;
+  animation: vaciarReloj 5s ease infinite;
+}
+
+div.contIcono.activo:hover span.icono:before {
+  -webkit-animation: none !important;
+  animation: none !important;
+  border: 0px;
+  height: 2px;
+  background: #fafafa;
+  top: auto;
+  -webkit-animation: none;
+  animation: none;
+  left: 9px;
+  width: 10px;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+div.contIcono.activo:hover span.icono:after {
+  border: 0px;
+  height: 2px;
+  width: 10px;
+  background: #fafafa;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  top: auto;
+  -webkit-animation: none;
+  animation: none;
+  right: 8px;
+}
+
+@-webkit-keyframes rotarReloj {
+  0%, 20%, 80%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  35%, 65% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
+}
+
+@keyframes rotarReloj {
+  0%, 20%, 80%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  35%, 65% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
+}
+@-webkit-keyframes llenarReloj {
+  0%, 35%, 100% {
+    background: rgba(250, 250, 250, 0);
+  }
+  60%, 90% {
+    background: #fafafa;
+  }
+}
+@keyframes llenarReloj {
+  0%, 35%, 100% {
+    background: rgba(250, 250, 250, 0);
+  }
+  60%, 90% {
+    background: #fafafa;
+  }
+}
+@-webkit-keyframes vaciarReloj {
+  0%, 35%, 100% {
+    background: #fafafa;
+  }
+  60%, 90% {
+    background: rgba(250, 250, 250, 0);
+  }
+}
+@keyframes vaciarReloj {
+  0%, 35%, 100% {
+    background: #fafafa;
+  }
+  60%, 90% {
+    background: rgba(250, 250, 250, 0);
+  }
+}
+div.contTimerTarea {
+  position: absolute;
+  top: -18px;
+  right: 47px;
+}
+
+div.contTimerTarea span {
+  margin: 0 10px;
+  font-weight: 600;
+  font-size: 17px;
+  color: #313539;
+}
+
+div.contTimeLapse {
+  width: calc(100% - 50px);
+  height: auto;
+  background: #515559;
+  padding: 4px 8px;
+  border-radius: 20px;
+}
+
+div.contBarraTiempo {
+  width: 100%;
+  height: 2px;
+  background: #0097F6;
+  border-bottom: 2px solid #515559;
+  border-top: 2px solid #515559;
+  border-radius: 3px;
+}
+
+div.barraTiempo {
+  width: 50%;
+  height: 100%;
+  background: yellowgreen;
+  position: relative;
+  border-radius: 3px 0 0 3px;
+}
+
+div.barraTiempo:after {
+  content: "";
+  position: absolute;
+  background: #ffffff;
+  width: 1px;
+  height: 10px;
+  right: -1px;
+  top: -4px;
+}
+
+/*fin time lapse*/
