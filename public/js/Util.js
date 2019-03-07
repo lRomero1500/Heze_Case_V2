@@ -107,7 +107,8 @@ $(document).ready(function () {
             crearMask('tel');
             $('#cerrarForm').click(function (e) {
                 destruirMask('tel');
-                $('#formulario').trigger("reset");
+                $('#formulario').find('input[type=hidden][name!=_token],input:text,select,textarea').val('');
+                $('#formulario').find('input:radio, input:checkbox').prop('checked', false);
                 $('#formulario').css('display', 'none');
             });
         }
@@ -134,7 +135,8 @@ $(document).ready(function () {
         if ($('#formulario').css('display') == 'none') {
             $('#formulario').css('display', '');
             $('#cerrarForm').click(function (e) {
-                $('#formulario').trigger("reset");
+                $('#formulario').find('input[type=hidden][name!=_token],input:text,select,textarea').val('');
+                $('#formulario').find('input:radio, input:checkbox').prop('checked', false);
                 $('#formulario').css('display', 'none');
             });
         }
@@ -399,6 +401,11 @@ function ResetForm(form, e) {
                     item.setAttribute('style', 'background-color: #fff;');
                     if (item.checked != false) {
                         item.checked = false;
+                    }
+                }else if (item.type == 'hidden') {
+                    item.setAttribute('style', 'background-color: #fff;');
+                    if (item.value!="0" && item.name!="_token") {
+                        item.value = "0";
                     }
                 }
             } else if (item.tagName == 'SELECT') {

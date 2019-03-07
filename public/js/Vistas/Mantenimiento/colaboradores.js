@@ -6,7 +6,7 @@ $(document).ready(function () {
         $('#base64FotPerf').prop('value', '');
         destruirMask('tel');
         destruirDatePick('dat');
-        $('#formulario').find('input:text,select,textarea').val('');
+        $('#formulario').find('input[type=hidden][name!=_token],input:text,select,textarea').val('');
         $('#formulario').find('input:radio, input:checkbox').prop('checked', false);
         if(objValidador!=undefined)
             objValidador.resetForm();
@@ -34,12 +34,14 @@ function guardar(e) {
                 if (resp.msg != null) {
                     if (!resp.error) {
                         $(form).trigger("reset");
+                        ResetForm(form,e);
                         $('#errores').css('color', '#37474F');
                         $('#errores').html('');
                         $('#errores').css('visibility', 'none');
                         $('#formulario').css('display', 'none');
                         destruirMask('tel');
                         destruirDatePick('dat');
+                        $('#AlertResp').remove();
                         $('#ContenedorAltertas').append(
                             "<div id='AlertResp' class='AlertasAreaNoError'>" +
                             "<i onclick='CerraralertaNoError(this);' style='cursor: pointer;'" +
@@ -168,6 +170,7 @@ function eliminarColaborador(idColaborador) {
                     success: function (resp) {
                         if (resp.msg != null) {
                             if (!resp.error) {
+                                $('#AlertResp').remove();
                                 $('#ContenedorAltertas').append(
                                     "<div id='AlertResp' class='AlertasAreaNoError'>" +
                                     "<i onclick='CerraralertaNoError(this);' style='cursor: pointer;'" +
