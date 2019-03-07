@@ -826,5 +826,11 @@ function setImagePerfilClosePOp(imagenCortada) {
     $('#image').cropper('destroy').attr('src', '');
     $('.popUpCropper').removeClass('activo');
 }
+$('#btnAbriCerrarTimeLapse').click(function () {
+    if ($('#contGeneralTimeLapse').hasClass('abierto')){
+        $('#contGeneralTimeLapse').removeClass('abierto')
+    } else ($('#contGeneralTimeLapse').addClass('abierto'))
+
+})
 
 //endregion

@@ -125,12 +125,29 @@
     <div id="app" class="ContenedorAreaTrabajo">
         @yield('content')
 
-        <div class="contGeneralTimeLapse">
-            <div class="contIcono activo">
+        <div class="contGeneralTimeLapse" id="contGeneralTimeLapse">
+            <div class="contIcono activo" id="btnAbriCerrarTimeLapse">
                 <span class="icono"></span>
             </div>
             <div class="contTimerTarea">
                 <span>Nombre proyecto</span><span>Nombre de tarea</span><span>00:05:45</span>
+            </div>
+            <div class="contenidoTimeLapse">
+                <h1 class="titulo">Time lapse</h1>
+                <div class="contTarea">
+                    <label>Proyecto:</label><select title="Seleccione un empresa" name="cod_Companias" id="cod_Companias" required="required" data-rule-required="true" data-msg-required="Seleccione la empresa del departamento" class="Btn-GrupoOpciones">
+                        <option value="">--Seleccione un proyecto--</option> <option value="1">Proyecto 1</option> <option value="2">fdsfsdfds</option> <option value="21">rwerwer</option></select>
+                </div>
+                <div class="contTarea">
+                    <label>Tarea:</label><select title="Seleccione un empresa" name="cod_Companias" id="cod_Companias" required="required" data-rule-required="true" data-msg-required="Seleccione la empresa del departamento" class="Btn-GrupoOpciones">
+                        <option value="">--Seleccione una tarea--</option> <option value="1">Tarea 1</option> <option value="2">fdsfsdfds</option> <option value="21">rwerwer</option></select>
+                </div>
+            </div>
+            <div class="contControlesTimeLapse">
+                <div>
+                    <span class="play"></span>
+                    <span class="Stop"></span>
+                </div>
             </div>
             <div class="contTimeLapse">
                 <div class="contBarraTiempo">

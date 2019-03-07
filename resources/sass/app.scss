@@ -330,7 +330,7 @@ p {
 
 .imgFooterLogo {
     opacity: 1;
-    height: 100px;
+    height: 85px;
     display: block;
     width: auto;
 }
@@ -789,14 +789,14 @@ p {
     vertical-align: top;
     font-size: initial;
     overflow: auto;
-    height: calc(100vh - 103px);
+    height: calc(100vh - 160px);
 }
 
 /*
 /------------------------------------------Fin_Distribucion_Contenido---------------------------------------------/
 /------------------------------------------Seccion_Area_Trabajo---------------------------------------------------/*/
 .AreaTrabajo {
-    padding: 20px 10px 10px 20px;
+    padding: 20px 20px 10px 20px;
     position: relative;
 }
 .ContenedorAreaTop {
@@ -2211,14 +2211,22 @@ div#bototnes {
 /*Time lapse*/
 div.contGeneralTimeLapse {
     background: #414549;
-    background: -moz-linear-gradient(45deg, #414549 0%, #212529 100%);
-    background: -webkit-linear-gradient(45deg, #414549 0%,#212529 100%);
-    background: linear-gradient(45deg, #414549 0%,#212529 100%);
-    position: absolute;
-    width: calc(100% - 50px);
-    bottom: 0px;
+    background: -moz-linear-gradient(45deg, #515559 0%, #212529 100%);
+    background: -webkit-linear-gradient(45deg, #515559 0%, #212529 100%);
+    background: linear-gradient(45deg, #515559 0%, #212529 100%);
+    position: fixed;
+    width: calc(100% - 304px);
+    bottom: 42px;
     height: auto;
     padding: 5px;
+    transition: .4s;
+    z-index: 9;
+    margin-left: 20px;
+    border-radius: 3px 3px 11px 0;
+    box-shadow: -3px 3px 4px rgba(0,0,0,.3);
+}
+div.contGeneralTimeLapse.abierto {
+    width: calc(100% - 267px);
 }
 div.contIcono {
     position: absolute;
@@ -2227,12 +2235,17 @@ div.contIcono {
     width: 34px;
     height: 34px;
     border-radius: 50%;
-    top: -20px;
-    right: 15px;
+    top: -6px;
+    right: -24px;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: 0.4s;
+    z-index: 3;
+}
+div.contGeneralTimeLapse.abierto div.contIcono {
+    top: -17px;
+    right: 5px;
 }
 div.contIcono:before {
     content: "";
@@ -2289,7 +2302,7 @@ div.contIcono.activo span.icono:after {
     -webkit-animation: vaciarReloj 5s ease infinite;
     animation: vaciarReloj 5s ease infinite;
 }
-div.contIcono.activo:hover span.icono:before {
+div.contIcono:hover span.icono:before {
     -webkit-animation: none !important;
     animation: none !important;
     border: 0px;
@@ -2303,13 +2316,39 @@ div.contIcono.activo:hover span.icono:before {
     -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
 }
-div.contIcono.activo:hover span.icono:after {
+div.contIcono:hover span.icono:after {
     border: 0px;
     height: 2px;
     width: 10px;
     background: #fafafa;
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
+    top: auto;
+    -webkit-animation: none;
+    animation: none;
+    right: 8px;
+}
+div.contGeneralTimeLapse.abierto div.contIcono:hover span.icono:before {
+    -webkit-animation: none !important;
+    animation: none !important;
+    border: 0px;
+    height: 2px;
+    background: #fafafa;
+    top: auto;
+    -webkit-animation: none;
+    animation: none;
+    left: 9px;
+    width: 10px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+div.contGeneralTimeLapse.abierto div.contIcono:hover span.icono:after {
+    border: 0px;
+    height: 2px;
+    width: 10px;
+    background: #fafafa;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
     top: auto;
     -webkit-animation: none;
     animation: none;
@@ -2342,20 +2381,31 @@ div.contIcono.activo:hover span.icono:after {
 div.contTimerTarea {
     position: absolute;
     top: -18px;
-    right: 47px;
+    right: 6px;
+    opacity: 1;
+    transition: 0.4s;
+    z-index: 0;
+}
+div.contGeneralTimeLapse.abierto div.contTimerTarea {
+    opacity: 0;
+    top: 0;
+    z-index: -1;
 }
 div.contTimerTarea span {
     margin: 0 10px;
     font-weight: 600;
-    font-size: 17px;
+    font-size: 15px;
     color: #313539;
 }
 div.contTimeLapse {
-    width: calc(100% - 50px);
+    width: calc(100% - 21px);
     height: auto;
     background: #515559;
     padding: 4px 8px;
     border-radius: 20px;
+    position: relative;
+    z-index: 1;
+    margin-left: 5px;
 }
 div.contBarraTiempo {
     width: 100%;
@@ -2381,5 +2431,130 @@ div.barraTiempo:after {
     right: -1px;
     top: -4px;
 }
+div.contenidoTimeLapse{
+    max-height: 0px;
+    overflow: hidden;
+    transition: .4s;
+}
+div.contGeneralTimeLapse.abierto div.contenidoTimeLapse{
+    max-height: 200px;
+    padding-bottom: 25px;
+}
+div.contenidoTimeLapse h1.titulo {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 100;
+    line-height: 1;
+    padding: 2px 6px 6px;
+}
+div.contTarea {
+    padding: 6px;
+    display: inline-flex;
+    vertical-align: middle;
+}
+div.contTarea label {
+    color: #fff;
+    cursor: pointer;
+    border-radius: 2px;
+    line-height: 1;
+    display: inline-flex;
+    padding: 0;
+    vertical-align: middle;
+    padding: 8px;
+}
 
+div.contControlesTimeLapse {
+    position: absolute;
+    border: 2px solid #AA00FF;
+    background: #c8dcf0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50px;
+    bottom: -6px;
+    left: -20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+    z-index: 3;
+}
+div.contControlesTimeLapse:before {
+    content: '';
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    background: #212529;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.4s;
+}
+div.contControlesTimeLapse div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+div.contControlesTimeLapse .play {
+    width: 2px;
+    height: 16px;
+    display: block;
+    left: 11px;
+    background: #ffffff;
+    position: absolute;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+div.contControlesTimeLapse .play:before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 2px;
+    background: #ffffff;
+    transform: rotate(30deg);
+    top: 3px;
+    border-radius: 2px;
+    left: 0;
+    transition: .4s;
+}
+div.contControlesTimeLapse .play:after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 2px;
+    background: #ffffff;
+    transform: rotate(-30deg);
+    bottom: 3px;
+    border-radius: 2px;
+    left: 0;
+    transition: .4s;
+}
+div.contControlesTimeLapse .Stop {
+    width: 20px;
+    height: 20px;
+    background: #AA00FF;
+    position: absolute;
+    border-radius: 50px;
+    top: -9px;
+    z-index: -1;
+    left: 29px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div.contControlesTimeLapse .Stop:before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+div.contControlesTimeLapse .Stop:after {
+    content: '';
+    background: #fff;
+    width: 6px;
+    height: 6px;
+    position: absolute;
+}
 /*fin time lapse*/
