@@ -47,7 +47,7 @@
             </div>
             <div class="contCampo W20"><h5>Nro. Documento*</h5>
                 <input class="campo" id="documentoEmpleado" name="documentoEmpleado" type="text" value="" placeholder=""
-                       title="Ingrese documento de identidad del colaborador"
+                       maxlength="10" title="Ingrese documento de identidad del colaborador"
                        data-rule-minlength="6" data-msg-minlength="ingrese minimo 6 caracteres"
                        data-rule-number="true" data-msg-number="Ingrese solo caracteres numericos"
                        required data-rule-required="true" data-msg-required="Ingrese documento de identidad del colaborador"
