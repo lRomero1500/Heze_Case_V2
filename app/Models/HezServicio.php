@@ -34,6 +34,7 @@ class HezServicio extends Eloquent
 	];
 
 	protected $fillable = [
+	    'id',
 		'cod_Companias',
 		'nomb-servicio',
 		'tipocost_id',

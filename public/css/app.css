@@ -9424,6 +9424,14 @@ label.error:after {
   padding: 5px 0px;
 }
 
+.contCampo.W20.activo {
+  display: inline-block;
+}
+
+.contCampo.W20.inactivo {
+  display: none;
+}
+
 .contenedorDeCampos h5 {
   padding: 10px 0 0px 10px;
   margin-bottom: -5px;
@@ -9656,6 +9664,57 @@ div.btnCerrar button#btnCerrar:hover:before {
 }
 
 div.btnCerrar button#btnCerrar:hover:after {
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+  height: 2px;
+}
+
+div.btnCerrar button#btnEliminarSubServ {
+  height: 26px;
+  width: 26px;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div.contCamposIndividuales div.btnCerrar button#btnEliminarSubServ {
+  width: 22px;
+  height: 22px;
+}
+
+div.btnCerrar button#btnEliminarSubServ:before {
+  content: "";
+  background: #ffffff;
+  height: 4px;
+  width: 14px;
+  position: absolute;
+  border-radius: 2px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  transition: 0.4s;
+}
+
+div.btnCerrar button#btnEliminarSubServ:after {
+  content: "";
+  background: #ffffff;
+  height: 4px;
+  width: 14px;
+  position: absolute;
+  border-radius: 2px;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  transition: 0.4s;
+}
+
+div.btnCerrar button#btnEliminarSubServ:hover:before {
+  -webkit-transform: rotate(225deg);
+          transform: rotate(225deg);
+  height: 2px;
+}
+
+div.btnCerrar button#btnEliminarSubServ:hover:after {
   -webkit-transform: rotate(135deg);
           transform: rotate(135deg);
   height: 2px;

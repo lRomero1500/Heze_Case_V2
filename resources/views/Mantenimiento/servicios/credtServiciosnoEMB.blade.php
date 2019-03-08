@@ -11,7 +11,7 @@
                 <h3>Mantenimiento/Servicios</h3>
             </div>
             <div class="conteedorIconoAreatrabajo">
-                <a id="AddEmpresa"><span></span><h4 class="textIcono">Añadir
+                <a id="AddServicios"><span></span><h4 class="textIcono">Añadir
                         Nuevo</h4></a>
             </div>
         </div>
@@ -22,7 +22,7 @@
         </div>
         <div id="ContenedorAltertas" class="ConetendorAlertasArea">
             <div id="AlertNoError" class="AlertasAreaNoError informe">
-                <div id="btnCerrarAlert" class="btnCerrar">
+                <div id="btnCerrarAlert" class="btnCerrar" onclick="CerraralertaNoError(this);">
                     <button type="button" id="btnCerrar"></button>
                 </div>
                 <p>
@@ -89,7 +89,7 @@
                     <th width="19%">Empresa</th>
                 </tr>
                 </thead>
-                <tbody id="tbDepatamentos">
+                <tbody id="tbServicios">
                 @if ($servicios->count()>0)
                     @foreach($servicios as $departamento)
                         <tr>

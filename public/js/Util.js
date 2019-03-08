@@ -123,10 +123,22 @@ $(document).ready(function () {
                 $('#base64FotPerf').prop('value', '');
                 destruirMask('tel');
                 destruirDatePick('dat');
-                $('#formulario').find('input:text,select,textarea').val('');
+                $('#formulario').find('input[type=hidden][name!=_token],input:text,select,textarea').val('');
                 $('#formulario').find('input:radio, input:checkbox').prop('checked', false);
-                if(objValidador!=undefined)
+                if (objValidador != undefined)
                     objValidador.resetForm();
+                $('#formulario').css('display', 'none');
+            });
+        }
+    });
+    $('#AddServicios').click(function (e) {
+        if ($('#formulario').css('display') == 'none') {
+            $('#formulario').css('display', '');
+            crearMaskMoney('money');
+            $('#cerrarForm').click(function (e) {
+                destruirMaskMoney('money');
+                $('#formulario').find('input[type=hidden][name!=_token],input:text,select,textarea').val('');
+                $('#formulario').find('input:radio, input:checkbox').prop('checked', false);
                 $('#formulario').css('display', 'none');
             });
         }
@@ -283,7 +295,7 @@ function ValidarCero(numero) {
         numero.value = 1;
 };
 
-function validaFloat(txt, sepDecimal) {//Valida para una caja de texto que solamente se digiten numeros ó el separador decimal ó el sumbolo menos
+function validaFloat(txt, sepDecimal, event) {//Valida para una caja de texto que solamente se digiten numeros ó el separador decimal ó el sumbolo menos
     if (isNaN(String.fromCharCode(event.keyCode)) && !(String.fromCharCode(event.keyCode) == sepDecimal && txt.value.indexOf(sepDecimal) < 0) && !(String.fromCharCode(event.keyCode) == "-" && txt.value.indexOf("-") < 0))
         return false;
     if (String.fromCharCode(event.keyCode) == "-") {
@@ -402,9 +414,9 @@ function ResetForm(form, e) {
                     if (item.checked != false) {
                         item.checked = false;
                     }
-                }else if (item.type == 'hidden') {
+                } else if (item.type == 'hidden') {
                     item.setAttribute('style', 'background-color: #fff;');
-                    if (item.value!="0" && item.name!="_token") {
+                    if (item.value != "0" && item.name != "_token") {
                         item.value = "0";
                     }
                 }
@@ -438,6 +450,15 @@ function crearMask(cls) {
 
 function destruirMask(cls) {
     $('.' + cls + '').inputmask('remove');
+}
+
+function crearMaskMoney(cls) {
+
+    $('.' + cls + '').maskMoney({thousands: '.', decimal: ','});
+}
+
+function destruirMaskMoney(cls) {
+    $('.' + cls + '').maskMoney('destroy');
 }
 
 function crearDatePick(cls) {
@@ -517,8 +538,9 @@ function menuActivo(obj, t) {
             break;
     }
 }
-function CerraralertaNoError(btn){
-    var padre=$(btn).parent('div')[0];
+
+function CerraralertaNoError(btn) {
+    var padre = $(btn).parent('div')[0];
     $(padre).remove();
 }
 
@@ -833,8 +855,9 @@ function setImagePerfilClosePOp(imagenCortada) {
     $('#image').cropper('destroy').attr('src', '');
     $('.popUpCropper').removeClass('activo');
 }
+
 $('#btnAbriCerrarTimeLapse').click(function () {
-    if ($('#contGeneralTimeLapse').hasClass('abierto')){
+    if ($('#contGeneralTimeLapse').hasClass('abierto')) {
         $('#contGeneralTimeLapse').removeClass('abierto')
     } else ($('#contGeneralTimeLapse').addClass('abierto'))
 

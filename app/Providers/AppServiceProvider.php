@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Companias;
 use App\Models\HezCompania;
+use App\Models\HezTipocost;
 use App\Models\HezTipoDocumento;
 use App\Models\TipoDocumento;
 use Illuminate\Support\Facades\Route;
@@ -20,9 +21,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer(['Mantenimiento.colaboradores.credtColaboradoresnoEMB','Mantenimiento.departamentos.credtDepartamentosEMB'], function ($view) {
+        view()->composer(['Mantenimiento.colaboradores.credtColaboradoresnoEMB', 'Mantenimiento.departamentos.credtDepartamentosEMB', 'Mantenimiento.servicios.credtServiciosEMB'], function ($view) {
             $view->with('companias', HezCompania::all());
             $view->with('tiposDoc', HezTipoDocumento::all());
+            $view->with('tipCost', HezTipocost::all());
         });
         view()->composer('*', function ($view) {
             $ruta = Route::getFacadeRoot()->current()->uri();
@@ -34,10 +36,10 @@ class AppServiceProvider extends ServiceProvider
                     $menPadAnt = $menuSelect->cod_menu_padre;
                     do {
                         $menuPadreReal = $menu->where('cod_menu', $menPadAnt)->first();
-                        $menPadAnt =$menuPadreReal ->cod_menu_padre;
+                        $menPadAnt = $menuPadreReal->cod_menu_padre;
                     } while ($menuPadreReal->cod_menu_padre !== 0);
                     $menuFiltrado = $menu->where('pos_menu', 1)
-                        ->where('cod_menu_padre', $menuPadreReal ->cod_menu);
+                        ->where('cod_menu_padre', $menuPadreReal->cod_menu);
                     $menAdicionales = $menu->whereIn('cod_menu_padre', $menu->where('cod_menu_padre', $menuPadreReal->cod_menu)->pluck('cod_menu'));
 
                     $view->with('menuOpciones', $menuFiltrado);
@@ -53,6 +55,7 @@ class AppServiceProvider extends ServiceProvider
                 }
             }
         });
+
     }
 
     /**

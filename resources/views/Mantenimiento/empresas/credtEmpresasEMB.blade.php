@@ -8,8 +8,7 @@
             <input id="idcompanias" name="cod_Companias" type="hidden" value="0"/>
             <div class="contCampo W25"><h5>Razón social</h5>
                 <input class="campo" id="nomb_Companias" name="nomb_Companias" type="text" value="" placeholder=""
-                       style="" required data-rule-required="true" data-msg-required="Ingrese el nombre de la compañia"
-                       onkeypress="return validaTexto();">
+                       style="" required data-rule-required="true" data-msg-required="Ingrese el nombre de la compañia">
             </div>
             <div class="contCampo W25"><h5>Nit</h5>
                 <input class="campo" id="nit_Companias" name="nit_Companias" type="text" value="" placeholder=""
