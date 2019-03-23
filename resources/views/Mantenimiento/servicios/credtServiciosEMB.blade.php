@@ -6,11 +6,10 @@
         </div>
         <div class="contenedorDeCampos">
             <input id="id" name="id" type="hidden" value="0"/>
-            <input id="subServ" name="subServ" type="hidden"  value="false"/>
             <input id="CantsubServ" name="CantsubServ" type="hidden"  value="0"/>
             <div class="contCamposIndividuales principal">
                 <div class="contCampo W20"><h5>Nombre Servicio</h5>
-                    <input class="campo" id="nomb-servicio" name="nomb-servicio" title="Ingrese el nombre del servicio"
+                    <input class="campo" id="nomb_servicio" name="nomb_servicio" title="Ingrese el nombre del servicio"
                            type="text" value="" placeholder=""
                            style="" required data-rule-required="true"
                            data-msg-required="Ingrese el nombre del servicio"
@@ -28,16 +27,15 @@
                     </select>
                 </div>
                 <div class="contCampo W20 activo"><h5>Valor</h5>
-                    <input class="campo money" id="cost-servicio" name="cost-servicio" title="Ingrese el costo del servicio"
-                           type="text" value="" placeholder="3.000,00"
+                    <input class="campo money" id="cost_servicio" name="cost_servicio" title="Ingrese el costo del servicio"
+                           type="text" value="" placeholder="3.000"
                            style="" required data-rule-required="true" data-msg-required="Ingrese el costo del servicio">
                     <span class="iconoMoneda">$</span>
-
                 </div>
                 <div class="contCampo W20 activo"><h5>por:</h5>
                     <div class="inlineBlock W50">
                         <input class="campo" type="radio" name="tipocost_id" id="valorStotal"
-                               value="3" required data-rule-required="true"
+                               value="3" required data-rule-required="false"
                                data-msg-required="Seleccione un tipo de costo"/>
                         <label for="valorStotal" class="textCheckbox"
                                title="Seleccione esta opcion en caso de que el costo sea el total del servicio">

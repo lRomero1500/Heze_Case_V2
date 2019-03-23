@@ -7,6 +7,7 @@ use App\Models\HezCompania;
 use App\Models\HezDepartamento;
 use App\Models\HezEmpleado;
 use App\Models\HezServicio;
+use App\Models\HezSubServicio;
 use App\Models\HezUsuario;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -52,7 +53,7 @@ class mantenimiento extends Controller
     }
     public function serviciosIndex(){
         $title_page = 'Mantenimiento de Servicios';
-        $servicios= HezServicio::all();
+        $servicios= HezServicio::with(['hez_compania','hez_tipocost','hez_sub_servicios'])->get();
         return view('Mantenimiento.servicios.credtServiciosnoEMB')->with([
             'title_page' => $title_page,
             'servicios'=>$servicios
@@ -135,6 +136,54 @@ class mantenimiento extends Controller
                     'error' => false,
                     'table' => $dat
                 ]);
+            }
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'msg' => 'Error: ' . $e,
+                'error' => true
+            ]);
+        }
+    }
+    public function creaEditServicios(Request $request){
+        $servicio= new HezServicio();
+        $servicio->fill($request->all());
+        try {
+            if ($servicio->id == '0') {
+                if($servicio['cost_servicio']===null) {
+                    $servicio['cost_servicio'] = 'N/A';
+                    $servicio->tipocost_id=1;
+                }
+                $servicio->save();
+                $CantsubServ=(int)$request->get('CantsubServ');
+                if($CantsubServ>0){
+                    for($x=1;$x<=$CantsubServ;$x++){
+                        if($request->get('nomb_subservicio_'.$x)!==null){
+                            $subServicio= new HezSubServicio();
+                            $subServicio->servicios_id=$servicio->id;
+                            $subServicio['nomb_subservicio']=$request->get('nomb_subservicio_'.$x);
+                            $subServicio->tipocost_id=(int)$request->get('tipocost_id_'.$x);
+                            $subServicio['cost_servicio']=$request->get('cost_servicio_'.$x);
+                            $subServicio->save();
+                        }
+                    }
+                }
+                $dat = HezServicio::with(['hez_compania','hez_tipocost','hez_sub_servicios'])->get();
+                return response()->json([
+                    'msg' => 'El departamento ' . $servicio->nomb_servicio . ' se creo  exitosamente!',
+                    'error' => false,
+                    'table' => $dat
+                ]);
+            } else {
+                /*$departamentoUP = HezDepartamento::find($departamento->id);
+                $departamentoUP->departamento = $departamento->departamento;
+                $departamentoUP->save();
+                $dat = HezDepartamento::with('hez_compania')->get();
+                return response()->json([
+                    'msg' => 'El departamento ' . $departamento->departamento . ' se modifico  exitosamente!',
+                    'error' => false,
+                    'table' => $dat
+                ]);*/
             }
 
         } catch (\Exception $e) {

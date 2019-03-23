@@ -6,25 +6,39 @@ $(document).ready(function () {
         destruirMaskMoney('money');
         $('#formulario').find('input[type=hidden][name!=_token],input:text,select,textarea').val('');
         $('#formulario').find('input:radio, input:checkbox').prop('checked', false);
+        $('div:not(".principal").contCamposIndividuales').remove();
+        var cmpsCosto=$('.contCampo.W20.inactivo');
+        $.each(cmpsCosto,function (index,item) {
+            $(item).removeClass('inactivo').addClass('activo')
+        });
+        contCantSubServ=0;
         $('#formulario').css('display', 'none');
     });
 });
+//region Logica dibujo Subservicios
 function agregaSubServicios() {
     var cmpsCosto=$('.contCampo.W20.activo');
     $.each(cmpsCosto,function (index,item) {
-        $(item).removeClass('activo').addClass('inactivo')
+        $(item).find('input[name="tipocost_id"]').prop('checked', false);
+        $(item).find('#cost_servicio').val('');
+        $(item).removeClass('activo').addClass('inactivo');
+        $(item).find('#valorStotal').removeAttr('required');
     });
+    if(objValidador!=undefined){
+        objValidador.resetForm();
+        objValidador=undefined;
+    }
     contCantSubServ++;
     var html='<div class="contCamposIndividuales">' +
         '<div class="contCampo W40"><h5>Nombre Sub-Servicio '+contCantSubServ+'</h5>' +
-        '<input class="campo" id="nomb-subservicio_'+contCantSubServ+'" name="nomb-subservicio_'+contCantSubServ+'" type="text" value="" placeholder=""' +
+        '<input class="campo" id="nomb_subservicio_'+contCantSubServ+'" name="nomb_subservicio_'+contCantSubServ+'" type="text" value="" placeholder=""' +
         '       style="" required data-rule-required="true"' +
         '       data-msg-required="Ingrese el nombre del Sub-servicio"' +
         '       data-rule-lettersonly="true" data-msg-lettersonly="Ingres solo caracteres alfabeticos y espacios">' +
         '</div>'+
         '<div class="contCampo W20"><h5>Valor</h5>' +
-        '<input class="campo" id="cost-servicio_'+contCantSubServ+'" name="cost-servicio_'+contCantSubServ+'" type="text" value="" placeholder=""' +
-        '       type="text" value="" placeholder="3.000,00"' +
+        '<input class="campo" id="cost_servicio_'+contCantSubServ+'" name="cost_servicio_'+contCantSubServ+'" type="text" value="" placeholder=""' +
+        '       type="text" value="" placeholder="3.000"' +
         '       style="" required data-rule-required="true" data-msg-required="Ingrese el costo del Sub-servicio"><span class="iconoMoneda">$</span>' +
         '</div>' +
         '<div class="contCampo W40"><h5>por:</h5>' +
@@ -38,6 +52,8 @@ function agregaSubServicios() {
         '<button type="button" id="btnEliminarSubServ" onclick="eliminaSubServici(this);"></button>' +
         '</div></div>';
     $('#contSubServ').append(html);
+    $('#CantsubServ').prop('value',contCantSubServ);
+    crearMaskMoneyID('cost_servicio_'+contCantSubServ+'');
 }
 function eliminaSubServici(btn) {
     var padre=$(btn).parents('.contCamposIndividuales')[0];
@@ -46,21 +62,27 @@ function eliminaSubServici(btn) {
         contCantSubServ=0;
         var cmpsCosto=$('.contCampo.W20.inactivo');
         $.each(cmpsCosto,function (index,item) {
-            $(item).removeClass('inactivo').addClass('activo')
+            $(item).removeClass('inactivo').addClass('activo');
+            $(item).find('#valorStotal').attr('required','required');
         });
+        if(objValidador!=undefined){
+            objValidador.resetForm();
+            objValidador=undefined;
+        }
     }
 }
+//endregion
 function guardar(e) {
     InicioCarando();
     form = $('#servicios');
-    objValidador=form.validate();
+    objValidador=form.validate({ignore: ':hidden:not(:radio)',});
     if (!form.valid()) {
         e.preventDefault();
         FinCarando();
     }
     else {
-        /*var data = $('#colaborador').serialize();
-        var url = baseUrl + 'mantenimiento/creaEditColaboradores';
+        var data = $('#servicios').serialize();
+        var url = baseUrl + 'mantenimiento/creaEditServicios';
         $.post({
             url: url,
             data: data,
@@ -77,27 +99,26 @@ function guardar(e) {
                         destruirDatePick('dat');
                         $('#AlertResp').remove();
                         $('#ContenedorAltertas').append(
-                            "<div id='AlertResp' class='AlertasAreaNoError'>" +
+                            "<div id='AlertResp' class='AlertasAreaNoError exito'>" +
                             "<i onclick='CerraralertaNoError(this);' style='cursor: pointer;'" +
                             " class='CerrarAlertasAreaNoError fa fa-times fa-fw' aria-hidden='true'></i>" +
                             "<p>" + resp.msg + " </p></div>"
                         );
-                        $('#tbColaboradores').html('');
+                        $('#tbServicios').html('');
                         var tb = "";
                         $.each(resp.table, function (index, item) {
-                            var arrNombre=item.nombre_Empleado.split('/');
                             tb += '<tr>' +
-                                '<td><input type="checkbox"/></td>\n' +
-                                '<td>' +arrNombre[2]+' '+arrNombre[3]+' '+arrNombre[0]+' '+arrNombre[1]+
+                                '<td><input type="checkbox"/></td>' +
+                                '<td>'+item.nomb_servicio+'' +
                                 '<div class="OpcionesTabla">' +
-                                '<a onclick="editColaborador('+item.cod_Empleado+');">Editar</a><span class="SeparadorOpcionesTablas">|</span>' +
-                                '<a onclick="eliminarColaborador('+item.cod_Empleado+');">Eliminar</a></div>' +
-                                '</td>'+
+                                '<a onclick="editEmpresa('+item.id+',event );">Editar</a>' +
+                                '<span class="SeparadorOpcionesTablas">|</span>' +
+                                '<a onclick="eliminarEmpresa('+item.id+');">Eliminar</a>' +
+                                '</div></td>' +
                                 '<td>'+item.hez_compania.nomb_Companias+'</td>' +
-                                '<td>Desarrollo Web</td>' +
                                 '</tr>';
                         });
-                        $('#tbColaboradores').html(tb);
+                        $('#tbServicios').html(tb);
                         FinCarando();
                     }
                     else {
@@ -123,8 +144,7 @@ function guardar(e) {
                 $('#errores').html('');
                 $('#errores').html('Error' + resp.msg);
             }
-        });*/
-        FinCarando();
+        });
     }
 
 }

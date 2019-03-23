@@ -139,6 +139,12 @@ $(document).ready(function () {
                 destruirMaskMoney('money');
                 $('#formulario').find('input[type=hidden][name!=_token],input:text,select,textarea').val('');
                 $('#formulario').find('input:radio, input:checkbox').prop('checked', false);
+                $('div:not(".principal").contCamposIndividuales').remove();
+                var cmpsCosto=$('.contCampo.W20.inactivo');
+                $.each(cmpsCosto,function (index,item) {
+                    $(item).removeClass('inactivo').addClass('activo')
+                });
+                contCantSubServ=0;
                 $('#formulario').css('display', 'none');
             });
         }
@@ -454,11 +460,18 @@ function destruirMask(cls) {
 
 function crearMaskMoney(cls) {
 
-    $('.' + cls + '').maskMoney({thousands: '.', decimal: ','});
+    $('.' + cls + '').maskMoney({thousands: '.', decimal: ',',precision:0});
+}
+function crearMaskMoneyID(id) {
+
+    $('#' + id + '').maskMoney({thousands: '.', decimal: ',',precision:0});
 }
 
 function destruirMaskMoney(cls) {
     $('.' + cls + '').maskMoney('destroy');
+}
+function destruirMaskMoneyID(id) {
+    $('#' + id + '').maskMoney('destroy');
 }
 
 function crearDatePick(cls) {

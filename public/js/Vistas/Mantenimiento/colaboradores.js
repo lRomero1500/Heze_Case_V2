@@ -43,7 +43,7 @@ function guardar(e) {
                         destruirDatePick('dat');
                         $('#AlertResp').remove();
                         $('#ContenedorAltertas').append(
-                            "<div id='AlertResp' class='AlertasAreaNoError'>" +
+                            "<div id='AlertResp' class='AlertasAreaNoError exito'>" +
                             "<i onclick='CerraralertaNoError(this);' style='cursor: pointer;'" +
                             " class='CerrarAlertasAreaNoError fa fa-times fa-fw' aria-hidden='true'></i>" +
                             "<p>" + resp.msg + " </p></div>"

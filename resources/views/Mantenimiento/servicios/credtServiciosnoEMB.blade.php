@@ -26,23 +26,31 @@
                     <button type="button" id="btnCerrar"></button>
                 </div>
                 <p>
-                    En este espacio podrás agregar, editar y eliminar los servicios y Sub-servicios de tu empresa; para crear o editar un servicio de forma correcta es necesario que diligencies todos los campos de manera correcta, Recuerda que los Sub-servicios dependen de la creación de Servicios. para mayor información acerca de <b>cómo crear un Servicio o Sub-servicio</b> visita la wiki de <b>Hezecase <a href="#">Aquí</a> </b> y conoce todo el potencial que tiene Hececaze para ti y tu empresa
+                    En este espacio podrás agregar, editar y eliminar los servicios y Sub-servicios de tu empresa; para
+                    crear o editar un servicio de forma correcta es necesario que diligencies todos los campos de manera
+                    correcta, Recuerda que los Sub-servicios dependen de la creación de Servicios. para mayor
+                    información acerca de <b>cómo crear un Servicio o Sub-servicio</b> visita la wiki de <b>Hezecase <a
+                                href="#">Aquí</a> </b> y conoce todo el potencial que tiene Hececaze para ti y tu
+                    empresa
                 </p>
             </div>
-            <div class="AlertasAreaError" style="display: ">
-                <table>
-                    <tr>
-                        <td style="background-color:#FF5012;text-align: center; vertical-align: middle;width: 30px">
-                            <span style="color:#FFF" class="fa fa-exclamation fa-2x" aria-hidden="true"></span>
-                        </td>
-                        <td style="padding: 20px;text-align: justify;vertical-align: middle">
-                            <p style="text-wrap: none">
-                                No tienes servicios creados
-                            </p>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+            @if (!($servicios->count()>0))
+                <div class="AlertasAreaError" style="display: ">
+                    <table>
+                        <tr>
+                            <td style="background-color:#FF5012;text-align: center; vertical-align: middle;width: 30px">
+                                <span style="color:#FFF" class="fa fa-exclamation fa-2x" aria-hidden="true"></span>
+                            </td>
+                            <td style="padding: 20px;text-align: justify;vertical-align: middle">
+                                <p style="text-wrap: none">
+                                    No tienes servicios creados
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            @endif
+
         </div>
         <div class="ContenedorOpcionesFIltroArea">
             <div class="GrupoAcciones">
@@ -91,17 +99,17 @@
                 </thead>
                 <tbody id="tbServicios">
                 @if ($servicios->count()>0)
-                    @foreach($servicios as $departamento)
+                    @foreach($servicios as $servicio)
                         <tr>
                             <td><input type="checkbox"/></td>
-                            <td>{!! $compania->nomb_Companias !!}
+                            <td>{!! $servicio['nomb_servicio'] !!}
                                 <div class="OpcionesTabla"><a
-                                            onclick="editEmpresa({!! $compania->cod_Companias.',event' !!});">Editar</a>
+                                            onclick="editEmpresa({!! $servicio->id.',event' !!});">Editar</a>
                                     <span class="SeparadorOpcionesTablas">|</span>
-                                    <a onclick="eliminarEmpresa({!! $compania->cod_Companias !!});">Eliminar</a>
+                                    <a onclick="eliminarEmpresa({!! $servicio->id !!});">Eliminar</a>
                                 </div>
                             </td>
-                            <td>{!! $compania->nit_Companias !!}</td>
+                            <td>{!! $servicio->hez_compania->nomb_Companias  !!}</td>
                         </tr>
                     @endforeach
                 @else

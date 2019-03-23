@@ -41,12 +41,15 @@ Route::get('mantenimiento/servicios','mantenimiento@serviciosIndex')->middleware
 Route::get('mantenimiento/colaboradores','mantenimiento@colaboradoresIndex')->middleware('auth');
 Route::get('mantenimiento/getEmpresa/{id}','mantenimiento@getEmpresa');
 Route::get('mantenimiento/getDepartamento/{id}','mantenimiento@getDepartamento');
+Route::get('mantenimiento/getServicio/{id}','mantenimiento@getServicio');
 Route::get('mantenimiento/getColaborador/{id}','mantenimiento@getColaborador');
 Route::post('mantenimiento/creaEditEmpresas','mantenimiento@creaEditEmpresas');
 Route::post('mantenimiento/creaEditDepartamentos','mantenimiento@creaEditDepartamentos');
+Route::post('mantenimiento/creaEditServicios','mantenimiento@creaEditServicios');
 Route::post('mantenimiento/creaEditColaboradores', 'mantenimiento@creaEditColaboradores');
 Route::post('mantenimiento/delEmpresa/{id}','mantenimiento@delEmpresa');
 Route::post('mantenimiento/delDepartamento/{id}','mantenimiento@delDepartamento');
+Route::post('mantenimiento/delServicio/{id}','mantenimiento@delServicio');
 Route::post('mantenimiento/delColaborador/{id}','mantenimiento@delColaborador');
 //endregion
 //region Pmlite

@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Fri, 15 Feb 2019 16:52:16 +0000.
+ * Date: Sat, 23 Mar 2019 17:19:07 +0000.
  */
 
 namespace App\Models;
@@ -14,9 +14,9 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * 
  * @property int $id
  * @property int $servicios_id
- * @property string $nomb-subservicio
+ * @property string $nomb_subservicio
  * @property int $tipocost_id
- * @property string $cost-servicio
+ * @property string $cost_servicio
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * 
@@ -33,10 +33,11 @@ class HezSubServicio extends Eloquent
 	];
 
 	protected $fillable = [
+	    'id',
 		'servicios_id',
-		'nomb-subservicio',
+		'nomb_subservicio',
 		'tipocost_id',
-		'cost-servicio'
+		'cost_servicio'
 	];
 
 	public function hez_servicio()
