@@ -80,6 +80,7 @@
     </div>
 </div>
 @section('scriptsEMB')
+    <script src="{{asset('js/Vistas/Mantenimiento/empresas.js')}}"></script>
 @endsection
 
 

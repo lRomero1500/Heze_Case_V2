@@ -37,5 +37,5 @@
     </div>
 </form>
 @section('scriptsEMB')
-
+    <script src="{{asset('js/Vistas/Mantenimiento/departamentos.js')}}"></script>
 @endsection

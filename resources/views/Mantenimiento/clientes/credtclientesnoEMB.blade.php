@@ -1,43 +1,56 @@
 @extends('layouts.layoutGeneral')
 
+@section('headers')
+
+@endsection
 
 @section('content')
     <div class="AreaTrabajo">
         <div class="ContenedorAreaTop">
             <div class="tituloAreaTrabajo">
-                <h3>Matenimiento/Clientes</h3>
+                <h3>Mantenimiento/Clientes</h3>
             </div>
             <div class="conteedorIconoAreatrabajo">
-                <a id="AddCliente" style="cursor: pointer;"><i class="iconoAreatrabajo fa fa-plus fa-fw" aria-hidden="true"></i><h4 class="textIcono">Añadir Nuevo</h4></a>
+                <a id="AddClientes"><span></span><h4 class="textIcono">Añadir
+                        Nuevo</h4></a>
             </div>
         </div>
         <div id="formulario" class="contenedorFormsEditCrea" style="display: none">
             <div class="formsCreaEdit">
-                @include('clientes.credtclientesEMB')
+                @include('Mantenimiento.clientes.credtclientesEMB')
             </div>
         </div>
-        <div class="ConetendorAlertasArea" style="">
-            <div id="AlertNoError" class="AlertasAreaNoError">
-                <i id="btnCerrarAlert" style="cursor: pointer;" class="CerrarAlertasAreaNoError fa fa-times fa-fw" aria-hidden="true"></i>
+        <div id="ContenedorAltertas" class="ConetendorAlertasArea">
+            <div id="AlertNoError" class="AlertasAreaNoError informe">
+                <div id="btnCerrarAlert" class="btnCerrar" onclick="CerraralertaNoError(this);">
+                    <button type="button" id="btnCerrar"></button>
+                </div>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Superiores tres erant, quae esse possent, quarum est una sola defensa, eaque vehementer. Omnia contraria, quos etiam insanos esse vultis. Non autem hoc: igitur ne illud quidem. Istam voluptatem, inquit, Epicurus ignorat? Ergo instituto veterum, quo etiam Stoici utuntur.
+                    En este espacio podrás agregar, editar y eliminar los clientes de tu empresa; para
+                    crear o editar un cliente de forma correcta es necesario que diligencies todos los campos de manera
+                    correcta. para mayor información acerca de <b>cómo crear un Cliente</b> visita la wiki de <b>Hezecase
+                        <a
+                                href="#">Aquí</a> </b> y conoce todo el potencial que tiene Hececaze para ti y tu
+                    empresa
                 </p>
             </div>
-            <div class="AlertasAreaError">
-                <table>
-                    <tr>
-                        <td style="background-color:#FF5012;text-align: center; vertical-align: middle;width: 3%">
-                            <span style="color:#FFF" class="fa fa-exclamation fa-2x" aria-hidden="true"></span>
-                        </td>
-                        <td style="padding: 20px;text-align: justify;vertical-align: middle">
-                            <p style="text-wrap: none">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Superiores tres erant, quae esse possent, quarum est una sola defensa, eaque vehementer. Omnia contraria, quos etiam insanos esse vultis. Non autem hoc: igitur ne illud quidem. Istam voluptatem, inquit, Epicurus ignorat? Ergo instituto veterum, quo etiam Stoici utuntur.
-                            </p>
-                        </td>
-                    </tr>
-                </table>
+            @if (!($clientes->count()>0))
+                <div class="AlertasAreaError" style="display: ">
+                    <table>
+                        <tr>
+                            <td style="background-color:#FF5012;text-align: center; vertical-align: middle;width: 30px">
+                                <span style="color:#FFF" class="fa fa-exclamation fa-2x" aria-hidden="true"></span>
+                            </td>
+                            <td style="padding: 20px;text-align: justify;vertical-align: middle">
+                                <p style="text-wrap: none">
+                                    No tienes clientes creados
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            @endif
 
-            </div>
         </div>
         <div class="ContenedorOpcionesFIltroArea">
             <div class="GrupoAcciones">
@@ -51,7 +64,7 @@
             </div>
             <div class="GrupoOpcionesFiltro">
                 <select class="ControlesOpciones">
-                    <option>Todas las Empresas</option>
+                    <option>Todas los Departamentos</option>
                     <option>2</option>
                     <option>3</option>
                     <option>4</option>
@@ -74,52 +87,64 @@
                 <input type="text" class="ControlesOpciones"/>
                 <button class="Btn-GrupoOpciones">Buscar Cliente</button>
             </div>
-
         </div>
         <div class="ContenedorTablaArea">
             <table class="TablasArea">
                 <thead>
                 <tr>
-                    <th width="2%"><input type="checkbox" /></th>
-                    <th>Cliente</th>
-                    <th>Empresa</th>
-                    <th>Colaborador</th>
-                    <th>Servicio</th>
+                    <th width="2%"><input type="checkbox"/></th>
+                    @if(\Illuminate\Support\Facades\Auth::user()->hez_role->cod_Rol===1)
+                        <th width="49%">Empresa</th>
+                    @endif
+                    <th width="49%">Cliente</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr >
-                    <td><input type="checkbox" /></td>
-                    <td>Freddy Arcia <div class="OpcionesTabla"><a href="#">Editar</a> <span class="SeparadorOpcionesTablas">|</span> <a href="#">Eliminar</a></div></td>
-                    <td>Grupo Arcia S.A.S</td>
-                    <td>Luis Romero</td>
-                    <td>Desarrollo Web</td>
-                </tr>
-                <tr >
-                    <td><input type="checkbox" /></td>
-                    <td>Freddy Arcia <div class="OpcionesTabla"><a href="#">Editar</a> <span class="SeparadorOpcionesTablas">|</span> <a href="#">Eliminar</a></div></td>
-                    <td>Grupo Arcia S.A.S</td>
-                    <td>Luis Romero</td>
-                    <td>Desarrollo Web</td>
-                </tr>
+                <tbody id="tbClientes">
+                @if ($clientes->count()>0)
+                    @if(\Illuminate\Support\Facades\Auth::user()->hez_role->cod_Rol===1)
+                        @foreach($clientes as $cliente)
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td>{!! $cliente->hez_compania->nomb_Companias !!}
+                                    <div class="OpcionesTabla"><a
+                                                disabled="disabled">Editar</a>
+                                        <span class="SeparadorOpcionesTablas">|</span>
+                                        <a onclick="">Eliminar</a>
+                                    </div>
+                                </td>
+                                <td>{!! $cliente->hez_compania_cliente->nomb_Companias  !!}</td>
+                            </tr>
+                        @endforeach
+                    @else
+                        @foreach($clientes as $cliente)
+                            {{--<tr>
+                                <td><input type="checkbox"/></td>
+                                <td>{!! $servicio['nomb_servicio'] !!}
+                                    <div class="OpcionesTabla"><a
+                                                onclick="editEmpresa({!! $servicio->id.',event' !!});">Editar</a>
+                                        <span class="SeparadorOpcionesTablas">|</span>
+                                        <a onclick="eliminarEmpresa({!! $servicio->id !!});">Eliminar</a>
+                                    </div>
+                                </td>
+                                <td>{!! $servicio->hez_compania->nomb_Companias  !!}</td>
+                            </tr>--}}
+                        @endforeach
+                    @endif
+                @else
+                    <tr>
+                        <td colspan="3">No se encontraron registros</td>
+                    </tr>
+                @endif
                 </tbody>
             </table>
         </div>
     </div>
 @endsection
-@section('scripts')
-    <script>
-        $(document).ready(function(){
-            $('#btnCerrarAlert').click(function () {
-                $('#AlertNoError').css('display','none');
-            });
-            $('#AddCliente').click(function (e) {
-                if($('#formulario').css('display') == 'none'){
-                    $('#formulario').css('display','');
-                }
-            })
 
-        });
-    </script>
+@section('scripts')
+
+@endsection
+
+@section('scriptsEMB')
 
 @endsection

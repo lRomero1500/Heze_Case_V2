@@ -130,5 +130,5 @@
     </div>
 @endsection
 @section('scripts')
-    <script src="{{asset('js/Vistas/Mantenimiento/empresas.js')}}"></script>
+
 @endsection

@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer(['Mantenimiento.colaboradores.credtColaboradoresnoEMB', 'Mantenimiento.departamentos.credtDepartamentosEMB', 'Mantenimiento.servicios.credtServiciosEMB'], function ($view) {
+        view()->composer(['Mantenimiento.colaboradores.credtColaboradoresnoEMB', 'Mantenimiento.departamentos.credtDepartamentosEMB', 'Mantenimiento.servicios.credtServiciosEMB', 'Mantenimiento.clientes.credtclientesnoEMB'], function ($view) {
             $view->with('companias', HezCompania::all());
             $view->with('tiposDoc', HezTipoDocumento::all());
             $view->with('tipCost', HezTipocost::all());

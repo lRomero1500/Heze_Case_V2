@@ -31,6 +31,7 @@ class HezRole extends Eloquent
 	];
 
 	protected $fillable = [
+	    'cod_Rol',
 		'nom_Rol',
 		'cod_Companias'
 	];

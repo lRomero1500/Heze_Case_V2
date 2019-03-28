@@ -39,6 +39,7 @@ Route::get('mantenimiento/empresas','mantenimiento@empresasIndex')->middleware('
 Route::get('mantenimiento/departamentos','mantenimiento@departamentosIndex')->middleware('auth');
 Route::get('mantenimiento/servicios','mantenimiento@serviciosIndex')->middleware('auth');
 Route::get('mantenimiento/colaboradores','mantenimiento@colaboradoresIndex')->middleware('auth');
+Route::get('mantenimiento/clientes','mantenimiento@clientesIndex')->middleware('auth');
 Route::get('mantenimiento/getEmpresa/{id}','mantenimiento@getEmpresa');
 Route::get('mantenimiento/getDepartamento/{id}','mantenimiento@getDepartamento');
 Route::get('mantenimiento/getServicio/{id}','mantenimiento@getServicio');
@@ -47,6 +48,7 @@ Route::post('mantenimiento/creaEditEmpresas','mantenimiento@creaEditEmpresas');
 Route::post('mantenimiento/creaEditDepartamentos','mantenimiento@creaEditDepartamentos');
 Route::post('mantenimiento/creaEditServicios','mantenimiento@creaEditServicios');
 Route::post('mantenimiento/creaEditColaboradores', 'mantenimiento@creaEditColaboradores');
+Route::post('mantenimiento/creaEditClientes', 'mantenimiento@creaEditClientes');
 Route::post('mantenimiento/delEmpresa/{id}','mantenimiento@delEmpresa');
 Route::post('mantenimiento/delDepartamento/{id}','mantenimiento@delDepartamento');
 Route::post('mantenimiento/delServicio/{id}','mantenimiento@delServicio');

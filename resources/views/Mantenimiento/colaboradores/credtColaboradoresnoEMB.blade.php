@@ -107,5 +107,5 @@
     </div>
 @endsection
 @section('scripts')
-    <script src="{{asset('js/Vistas/Mantenimiento/colaboradores.js')}}"></script>
+
 @endsection

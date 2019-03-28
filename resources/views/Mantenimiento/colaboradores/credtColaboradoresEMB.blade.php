@@ -180,4 +180,5 @@
     </div>
 </div>
 @section('scriptsEMB')
+    <script src="{{asset('js/Vistas/Mantenimiento/colaboradores.js')}}"></script>
 @endsection

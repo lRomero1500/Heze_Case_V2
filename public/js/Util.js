@@ -159,6 +159,16 @@ $(document).ready(function () {
             });
         }
     });
+    $('#AddClientes').click(function (e) {
+        if ($('#formulario').css('display') == 'none') {
+            $('#formulario').css('display', '');
+            $('#cerrarForm').click(function (e) {
+                $('#formulario').find('input[type=hidden][name!=_token],input:text,select,textarea').val('');
+                $('#formulario').find('input:radio, input:checkbox').prop('checked', false);
+                $('#formulario').css('display', 'none');
+            });
+        }
+    });
 });
 //endregion
 //region Funciones Prototipo
