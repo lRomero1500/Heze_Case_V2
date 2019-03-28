@@ -5,7 +5,7 @@
             <h2>Asociacion de clientes</h2>
         </div>
         <div class="contenedorDeCampos">
-            @if(\Illuminate\Support\Facades\Auth::user()->hez_role->cod_Rol===1)
+            @if($rol===1)
                 <div class="contCampo W20"><h5>Compania</h5>
                     <select title="Seleccione un Cliente" name="compania_id" id="compania_id"
                             title="Seleccione la empresa que tendra un nuevo cliente"

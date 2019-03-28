@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+    {!!$rol=\Illuminate\Support\Facades\Auth::user()->hez_role->cod_Rol;!!}
     <div class="AreaTrabajo">
         <div class="ContenedorAreaTop">
             <div class="tituloAreaTrabajo">
@@ -93,7 +94,7 @@
                 <thead>
                 <tr>
                     <th width="2%"><input type="checkbox"/></th>
-                    @if(\Illuminate\Support\Facades\Auth::user()->hez_role->cod_Rol===1)
+                    @if($rol===1)
                         <th width="49%">Empresa</th>
                     @endif
                     <th width="49%">Cliente</th>
@@ -101,7 +102,7 @@
                 </thead>
                 <tbody id="tbClientes">
                 @if ($clientes->count()>0)
-                    @if(\Illuminate\Support\Facades\Auth::user()->hez_role->cod_Rol===1)
+                    @if($rol===1)
                         @foreach($clientes as $cliente)
                             <tr>
                                 <td><input type="checkbox"/></td>
@@ -117,17 +118,16 @@
                         @endforeach
                     @else
                         @foreach($clientes as $cliente)
-                            {{--<tr>
+                            <tr>
                                 <td><input type="checkbox"/></td>
-                                <td>{!! $servicio['nomb_servicio'] !!}
+                                <td>{!! $cliente->hez_compania_cliente->nomb_Companias !!}
                                     <div class="OpcionesTabla"><a
-                                                onclick="editEmpresa({!! $servicio->id.',event' !!});">Editar</a>
+                                                disabled="disabled">Editar</a>
                                         <span class="SeparadorOpcionesTablas">|</span>
-                                        <a onclick="eliminarEmpresa({!! $servicio->id !!});">Eliminar</a>
+                                        <a onclick="">Eliminar</a>
                                     </div>
                                 </td>
-                                <td>{!! $servicio->hez_compania->nomb_Companias  !!}</td>
-                            </tr>--}}
+                            </tr>
                         @endforeach
                     @endif
                 @else
