@@ -53,6 +53,7 @@ Route::post('mantenimiento/delEmpresa/{id}','mantenimiento@delEmpresa');
 Route::post('mantenimiento/delDepartamento/{id}','mantenimiento@delDepartamento');
 Route::post('mantenimiento/delServicio/{id}','mantenimiento@delServicio');
 Route::post('mantenimiento/delColaborador/{id}','mantenimiento@delColaborador');
+Route::post('mantenimiento/delCliente/{id}','mantenimiento@delCliente');
 //endregion
 //region Pmlite
 Route::get('pmlite','pmlite@index')->middleware('auth');

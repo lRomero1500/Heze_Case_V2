@@ -9174,8 +9174,14 @@ div.conteedorIconoAreatrabajo a {
   bottom: 0;
 }
 
-.OpcionesTabla > a:hover {
+.OpcionesTabla > a {
   cursor: pointer;
+}
+
+.OpcionesTabla > a[disabled=disabled]:hover {
+  cursor: not-allowed !important;
+  color: #FE5012 !important;
+  background: transparent !important;
 }
 
 .SeparadorOpcionesTablas {

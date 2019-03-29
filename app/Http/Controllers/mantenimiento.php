@@ -10,10 +10,12 @@ use App\Models\HezEmpleado;
 use App\Models\HezServicio;
 use App\Models\HezSubServicio;
 use App\Models\HezUsuario;
+use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use PDOException;
 
 class mantenimiento extends Controller
 {
@@ -328,8 +330,18 @@ class mantenimiento extends Controller
             return response()->json([
                 'msg' => 'El Cliente se asocio exitosamente!',
                 'error' => false,
-                'table' => $dat
+                'table' => $dat,
+                'rol'=>Auth::user()->hez_role->cod_Rol
             ]);
+        } catch (PDOException $e) {
+            $errorCode = $e->errorInfo[1];
+            if($errorCode == 1062){
+                return response()->json([
+                    'msg' => 'Error: Registro duplicado',
+                    'error' => true,
+                    'PDO'=>true
+                ]);
+            }
         } catch (\Exception $e) {
             return response()->json([
                 'msg' => 'Error: ' . $e,
@@ -426,7 +438,62 @@ class mantenimiento extends Controller
 
         }
     }
+/*    public function delDepartamento($id)
+    {
+        try {
+            $departamento = HezDepartamento::where('id', $id)->first();
+            if ($departamento) {
+                HezDepartamento::destroy($id);
+                $dat = HezDepartamento::with('hez_compania')->get();
+                return response()->json([
+                    'msg' => 'El Departamento ' . $departamento->departamento . ' se eliminó correctamente!',
+                    'error' => false,
+                    'table' => $dat
+                ]);
+            } else {
+                return response()->json([
+                    'msg' => 'El departamento seleccionado no existe',
+                    'error' => true
+                ]);
+            }
 
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'msg' => 'Error! ' . $e->getMessage(),
+                'error' => true
+            ]);
+
+        }
+    }*/
+    public function delCliente($id)
+    {
+        try {
+            $cliente = HezClientesemp::with(['hez_compania','hez_compania_cliente'])->where('id', $id)->first();
+            if ($cliente) {
+                HezClientesemp::destroy($id);
+                $dat = HezClientesemp::with(['hez_compania','hez_compania_cliente'])->get();
+                return response()->json([
+                    'msg' => 'El Cliente ' . $cliente->hez_compania_cliente-> nomb_Companias. ' se eliminó correctamente!',
+                    'error' => false,
+                    'table' => $dat
+                ]);
+            } else {
+                return response()->json([
+                    'msg' => 'El departamento seleccionado no existe',
+                    'error' => true
+                ]);
+            }
+
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'msg' => 'Error! ' . $e->getMessage(),
+                'error' => true
+            ]);
+
+        }
+    }
     public function delColaborador($id)
     {
         try {

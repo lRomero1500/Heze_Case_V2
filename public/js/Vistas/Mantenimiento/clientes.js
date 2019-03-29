@@ -4,20 +4,20 @@ $(document).ready(function () {
     $('#cerrarForm').click(function (e) {
         $('#formulario').find('input[type=hidden][name!=_token],input:text,select,textarea').val('');
         $('#formulario').find('input:radio, input:checkbox').prop('checked', false);
-        if(objValidador!=undefined)
+        if (objValidador != undefined)
             objValidador.resetForm();
         $('#formulario').css('display', 'none');
     });
 });
+
 function guardar(e) {
     InicioCarando();
     form = $('#clientes');
-    objValidador= form.validate();
+    objValidador = form.validate();
     if (!form.valid()) {
         e.preventDefault();
         FinCarando();
-    }
-    else {
+    } else {
         var data = $('#clientes').serialize();
         var url = baseUrl + 'mantenimiento/creaEditClientes';
         $.post({
@@ -27,7 +27,7 @@ function guardar(e) {
                 if (resp.msg != null) {
                     if (!resp.error) {
                         $(form).trigger("reset");
-                        ResetForm(form,e);
+                        ResetForm(form, e);
                         $('#errores').css('color', '#37474F');
                         $('#errores').html('');
                         $('#errores').css('visibility', 'none');
@@ -41,28 +41,49 @@ function guardar(e) {
                         );
                         $('#tbClientes').html('');
                         var tb = "";
-                        $.each(resp.table, function (index, item) {
-                            /*tb += '<tr>' +
-                                '<td><input type="checkbox"/></td>\n' +
-                                '<td>' +item.departamento+
-                                '<div class="OpcionesTabla">' +
-                                '<a disabled="disabled">Editar</a><span class="SeparadorOpcionesTablas">|</span>' +
-                                '<a onclick="eliminarDepartamento('+item.id+');">Eliminar</a></div>' +
-                                '</td>';*/
-                        });
+                        if (resp.rol === 1) {
+                            $.each(resp.table, function (index, item) {
+                                tb += '<tr>' +
+                                    '<td><input type="checkbox"/></td>\n' +
+                                    '<td>' + item.hez_compania.nomb_Companias +
+                                    '<div class="OpcionesTabla">' +
+                                    '<a disabled="disabled">Editar</a><span class="SeparadorOpcionesTablas">|</span>' +
+                                    '<a onclick="eliminarCliente(' + item.id + ');">Eliminar</a></div></td>' +
+                                    '<td>item.hez_compania_cliente.nomb_Companias</td>';
+                            });
+                        } else {
+                            $.each(resp.table, function (index, item) {
+                                $.each(resp.table, function (index, item) {
+                                    tb += '<tr>' +
+                                        '<td><input type="checkbox"/></td>\n' +
+                                        '<td>' + item.hez_compania.nomb_Companias +
+                                        '<div class="OpcionesTabla">' +
+                                        '<a disabled="disabled">Editar</a><span class="SeparadorOpcionesTablas">|</span>' +
+                                        '<a onclick="eliminarCliente(' + item.id + ');">Eliminar</a></div></td>';
+                                });
+                            });
+                        }
+
                         $('#tbClientes').html(tb);
                         FinCarando();
-                    }
-                    else {
-                        $('#errores').css('visibility', '');
-                        $('#errores').css('color', 'red');
+                    } else {
+                        $(form).trigger("reset");
+                        ResetForm(form, e);
+                        $('#errores').css('color', '#37474F');
                         $('#errores').html('');
-                        $('#errores').html(resp.msg);
+                        $('#errores').css('visibility', 'none');
+                        $('#formulario').css('display', 'none');
+                        $('#AlertResp').remove();
+                        $('#ContenedorAltertas').append(
+                            "<div id='AlertResp' class='AlertasAreaNoError eliminado'>" +
+                            "<i onclick='CerraralertaNoError(this);' style='cursor: pointer;'" +
+                            " class='CerrarAlertasAreaNoError fa fa-times fa-fw' aria-hidden='true'></i>" +
+                            "<p>" + resp.msg + " </p></div>"
+                        );
                     }
 
                     FinCarando();
-                }
-                else {
+                } else {
                     FinCarando();
                     $('#errores').css('visibility', '');
                     $('#errores').html('');
@@ -80,10 +101,10 @@ function guardar(e) {
     }
 
 }
-/*
-function eliminarDepartamento(idDep) {
+
+function eliminarCliente(idDep) {
     InicioCarando();
-    var url = baseUrl + 'mantenimiento/delDepartamento/';
+    var url = baseUrl + 'mantenimiento/delCliente/';
     var parametros = {id: idDep};
     $.confirm({
         title: 'Confirmación!',
@@ -107,28 +128,46 @@ function eliminarDepartamento(idDep) {
                             if (!resp.error) {
                                 $('#AlertResp').remove();
                                 $('#ContenedorAltertas').append(
-                                    "<div id='AlertResp' class='AlertasAreaNoError'>" +
+                                    "<div id='AlertResp' class='AlertasAreaNoError eliminado'>" +
                                     "<i onclick='CerraralertaNoError(this);' style='cursor: pointer;'" +
                                     " class='CerrarAlertasAreaNoError fa fa-times fa-fw' aria-hidden='true'></i>" +
                                     "<p>" + resp.msg + " </p></div>"
                                 );
-                                $('#tbDepatamentos').html('');
+                                $('#tbClientes').html('');
                                 var tb = "";
-                                $.each(resp.table, function (index, item) {
-                                    tb += '<tr>' +
-                                        '<td><input type="checkbox"/></td>\n' +
-                                        '<td>' +item.departamento+
-                                        '<div class="OpcionesTabla">' +
-                                        '<a onclick="editDepartamento('+item.id+');">Editar</a><span class="SeparadorOpcionesTablas">|</span>' +
-                                        '<a onclick="eliminarDepartamento('+item.id+');">Eliminar</a></div>' +
-                                        '</td>'+
-                                        '<td>'+item.hez_compania.nomb_Companias+'</td>' +
-                                        '</tr>';
-                                });
-                                $('#tbDepatamentos').html(tb);
+                                if (resp.rol === 1) {
+                                    if (resp.table.length > 0) {
+                                        $.each(resp.table, function (index, item) {
+                                            tb += '<tr>' +
+                                                '<td><input type="checkbox"/></td>\n' +
+                                                '<td>' + item.hez_compania.nomb_Companias +
+                                                '<div class="OpcionesTabla">' +
+                                                '<a disabled="disabled">Editar</a><span class="SeparadorOpcionesTablas">|</span>' +
+                                                '<a onclick="eliminarCliente(' + item.id + ');">Eliminar</a></div></td>' +
+                                                '<td>item.hez_compania_cliente.nomb_Companias</td>';
+                                        });
+                                    } else {
+                                        tb += '<tr><td colspan="3">No se encontraron registros</td></tr>';
+                                    }
+                                } else {
+                                    if (resp.table.length > 0) {
+                                        $.each(resp.table, function (index, item) {
+                                            $.each(resp.table, function (index, item) {
+                                                tb += '<tr>' +
+                                                    '<td><input type="checkbox"/></td>\n' +
+                                                    '<td>' + item.hez_compania.nomb_Companias +
+                                                    '<div class="OpcionesTabla">' +
+                                                    '<a disabled="disabled">Editar</a><span class="SeparadorOpcionesTablas">|</span>' +
+                                                    '<a onclick="eliminarCliente(' + item.id + ');">Eliminar</a></div></td>';
+                                            });
+                                        });
+                                    } else {
+                                        tb += '<tr><td colspan="2">No se encontraron registros</td></tr>';
+                                    }
+                                }
+                                $('#tbClientes').html(tb);
                                 FinCarando();
-                            }
-                            else {
+                            } else {
                                 $('#ContenedorAltertas').append(
                                     '<div class="AlertasAreaError" >' +
                                     '<table><tr>' +
@@ -164,4 +203,4 @@ function eliminarDepartamento(idDep) {
             }
         }
     });
-}*/
+}

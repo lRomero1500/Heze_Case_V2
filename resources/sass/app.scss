@@ -1085,10 +1085,15 @@ div.conteedorIconoAreatrabajo a {
     position: relative;
     bottom: 0;
 }
-
-.OpcionesTabla > a:hover {
-    cursor: pointer;
+.OpcionesTabla > a {
+  cursor: pointer;
 }
+.OpcionesTabla > a[disabled="disabled"]:hover{
+    cursor: not-allowed !important;
+    color: #FE5012 !important;
+    background: transparent !important;
+}
+
 
 .SeparadorOpcionesTablas {
     color: #313539;

@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    {!!$rol=\Illuminate\Support\Facades\Auth::user()->hez_role->cod_Rol;!!}
+    <?php $rol = \Illuminate\Support\Facades\Auth::user()->hez_role->cod_Rol; ?>
     <div class="AreaTrabajo">
         <div class="ContenedorAreaTop">
             <div class="tituloAreaTrabajo">
@@ -36,7 +36,7 @@
                 </p>
             </div>
             @if (!($clientes->count()>0))
-                <div class="AlertasAreaError" style="display: ">
+                <div class="AlertasAreaError" style="">
                     <table>
                         <tr>
                             <td style="background-color:#FF5012;text-align: center; vertical-align: middle;width: 30px">
@@ -110,7 +110,7 @@
                                     <div class="OpcionesTabla"><a
                                                 disabled="disabled">Editar</a>
                                         <span class="SeparadorOpcionesTablas">|</span>
-                                        <a onclick="">Eliminar</a>
+                                        <a onclick="eliminarCliente({{$cliente->id}})">Eliminar</a>
                                     </div>
                                 </td>
                                 <td>{!! $cliente->hez_compania_cliente->nomb_Companias  !!}</td>
@@ -124,16 +124,23 @@
                                     <div class="OpcionesTabla"><a
                                                 disabled="disabled">Editar</a>
                                         <span class="SeparadorOpcionesTablas">|</span>
-                                        <a onclick="">Eliminar</a>
+                                        <a onclick="eliminarCliente({{$cliente->id}})">Eliminar</a>
                                     </div>
                                 </td>
                             </tr>
                         @endforeach
                     @endif
                 @else
-                    <tr>
-                        <td colspan="3">No se encontraron registros</td>
-                    </tr>
+                    @if($rol===1)
+                        <tr>
+                            <td colspan="3">No se encontraron registros</td>
+                        </tr>
+                    @else
+                        <tr>
+                            <td colspan="2">No se encontraron registros</td>
+                        </tr>
+                    @endif
+
                 @endif
                 </tbody>
             </table>
