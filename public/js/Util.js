@@ -92,6 +92,26 @@ $(document).ready(function () {
         },
         "Please enter a date in the format!"
     );
+    jQuery.validator.addMethod("mayorQue",
+        function (value, element, params) {
+            if(value=='')
+                return true;
+
+            if (!/Invalid|NaN/.test(new Date(value))) {
+                return new Date(value) > new Date($(params).val());
+            }
+
+            return isNaN(value) && isNaN($(params).val())
+                || (Number(value) > Number($(params).val()));
+        }, 'debe ser mayour que {0}.');
+    jQuery.validator.addMethod("validaFechaInicio",
+        function (value, element, params) {
+            if ($(params).val()!='')
+                return value!='';
+            else
+                return true;
+        },
+        "ingrese una fecha fin");
     $('#iconoMenuTop').mouseover(function () {
         $('#menuTop').attr('class', '');
         $('#menuTop').attr('class', 'ContentNavheaderActivo');

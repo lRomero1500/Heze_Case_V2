@@ -54,6 +54,7 @@
 
         <!-- Contenedor generan -->
         <form id="proyectoWZ" novalidate="novalidate">
+            <input id="id" name="id" value="0" type="hidden"/>
             {!! csrf_field() !!}
             <div class="contGeneralWizard">
                 <div class="contBtnWizard" id="contBtnWizard"></div>
@@ -89,6 +90,28 @@
                                         <option value="{!! $import->id !!}">{!! $import->importancia !!}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                            <div class="contCampo W25"><h5>Fecha Estimada de Inicio*</h5>
+                                <input type="text" value="" placeholder=""
+                                       title="Seleccione fecha de inicio del proyecto" name="fecha_est_inicio"
+                                       id="fecha_est_inicio"
+                                       required data-rule-required="true"
+                                       data-msg-required="Seleccione fecha de inicio del proyecto"
+                                       data-rule-dateCustom="true" data-msg-dateCustom="Ingrese una fecha valida" class="dat campo"
+                                       onchange="limpiarErrorFecha(this)"/>
+                            </div>
+                            <div class="contCampo W25"><h5>Fecha Estimada de Finalización*</h5>
+                                <input type="text" value="" placeholder=""
+                                       title="Seleccione fecha de finalizacion del proyecto" name="fecha_est_fin"
+                                       id="fecha_est_fin"
+                                       required data-rule-required="true"
+                                       aria-mayorQue="true"
+                                       data-rule-mayorQue="#fecha_est_inicio"
+                                       data-msg-mayorQue="debe ser mayor a la fecha inicial"
+                                       data-msg-required="Seleccione fecha de finalizacion del proyecto"
+                                       data-rule-validaFechaInicio="#fecha_est_inicio"
+                                       data-rule-dateCustom="true" data-msg-dateCustom="Ingrese una fecha valida" class="dat campo"
+                                       onchange="limpiarErrorFecha(this)"/>
                             </div>
                             <div class="contCampo W100 H60">
                                 <label>Observaciones</label>

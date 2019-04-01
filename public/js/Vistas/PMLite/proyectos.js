@@ -58,8 +58,8 @@ function irAtras() {
 }
 
 function guardar() {
-        /*var data = $('#colaborador').serialize();
-        var url = baseUrl + 'mantenimiento/creaEditColaboradores';
+        /*var data = $('#proyectoWZ').serialize();
+        var url = baseUrl + 'pmlite/creaEditProyecto';
         $.post({
             url: url,
             data: data,
@@ -74,6 +74,7 @@ function guardar() {
                         $('#errores').css('color', 'red');
                         $('#errores').html('');
                         $('#errores').html(resp.msg);
+                        return false;
                     }
 
                     FinCarando();
@@ -83,6 +84,7 @@ function guardar() {
                     $('#errores').css('visibility', '');
                     $('#errores').html('');
                     $('#errores').html(resp.msg);
+                    return false;
                 }
 
             },
@@ -91,6 +93,7 @@ function guardar() {
                 $('#errores').css('visibility', '');
                 $('#errores').html('');
                 $('#errores').html('Error' + resp.msg);
+                return false;
             }
         });*/
         return true;
@@ -235,9 +238,10 @@ function eliminarColaborador(idColaborador) {
         }
     });
 }
+*/
 function limpiarErrorFecha(obj) {
     if(obj.value!=""){
         $($(obj).siblings('label')[0]).remove();
         $(obj).removeClass('error');
     }
-}*/
+}

@@ -61,6 +61,7 @@ Route::get('pmlite/proyectos/ver','pmlite@proyectoVer')->middleware('auth');
 Route::get('pmlite/proyectos/crear','pmlite@proyectoCrear')->middleware('auth');
 Route::get('pmlite/tareas/ver','pmlite@tareaVer')->middleware('auth');
 Route::get('pmlite/tareas/crear','pmlite@tareaCrear')->middleware('auth');
+Route::post('pmlite/creaEditProyecto','pmlite@creaEditProyecto');
 //endregion
 //region Error
 Route::get('error','ErrorController@index');
