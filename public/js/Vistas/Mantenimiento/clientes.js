@@ -49,7 +49,7 @@ function guardar(e) {
                                     '<div class="OpcionesTabla">' +
                                     '<a disabled="disabled">Editar</a><span class="SeparadorOpcionesTablas">|</span>' +
                                     '<a onclick="eliminarCliente(' + item.id + ');">Eliminar</a></div></td>' +
-                                    '<td>item.hez_compania_cliente.nomb_Companias</td>';
+                                    '<td>'+item.hez_compania_cliente.nomb_Companias+'</td>';
                             });
                         } else {
                             $.each(resp.table, function (index, item) {
@@ -144,7 +144,7 @@ function eliminarCliente(idDep) {
                                                 '<div class="OpcionesTabla">' +
                                                 '<a disabled="disabled">Editar</a><span class="SeparadorOpcionesTablas">|</span>' +
                                                 '<a onclick="eliminarCliente(' + item.id + ');">Eliminar</a></div></td>' +
-                                                '<td>item.hez_compania_cliente.nomb_Companias</td>';
+                                                '<td>'+item.hez_compania_cliente.nomb_Companias+'</td>';
                                         });
                                     } else {
                                         tb += '<tr><td colspan="3">No se encontraron registros</td></tr>';

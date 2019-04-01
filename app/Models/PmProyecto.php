@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Fri, 21 Dec 2018 19:32:59 +0000.
+ * Date: Mon, 01 Apr 2019 16:14:43 +0000.
  */
 
 namespace App\Models;
@@ -15,18 +15,25 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $id
  * @property string $nombre_proyecto
  * @property int $usuario_id
+ * @property int $estado_proyecto_id
+ * @property int $clienteemp_id
  * @property \Carbon\Carbon $fecha_est_inicio
  * @property \Carbon\Carbon $fecha_est_fin
  * @property int $cant_horas_total_asig
  * @property int $cant_horas_total_consum
+ * @property string $observaciones
+ * @property int $usuario_resp_id
+ * @property string $lider_resp_nombre
  * @property bool $activo
- * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property int $estado_proyecto_id
+ * @property \Carbon\Carbon $created_at
+ * @property int $importancia_proyecto_id
  * 
- * @property \App\Models\TrEstadosProyecto $tr_estados_proyecto
- * @property \App\Models\CotzUsuario $cotz_usuario
- * @property \Illuminate\Database\Eloquent\Collection $tr_tareas
+ * @property \App\Models\HezClientesemp $hez_clientesemp
+ * @property \App\Models\PmImportanciaProyecto $pm_importancia_proyecto
+ * @property \App\Models\PmEstadosProyecto $pm_estados_proyecto
+ * @property \App\Models\HezUsuario $hez_usuario
+ * @property \Illuminate\Database\Eloquent\Collection $pm_tareas
  *
  * @package App\Models
  */
@@ -34,10 +41,13 @@ class PmProyecto extends Eloquent
 {
 	protected $casts = [
 		'usuario_id' => 'int',
+		'estado_proyecto_id' => 'int',
+		'clienteemp_id' => 'int',
 		'cant_horas_total_asig' => 'int',
 		'cant_horas_total_consum' => 'int',
+		'usuario_resp_id' => 'int',
 		'activo' => 'bool',
-		'estado_proyecto_id' => 'int'
+		'importancia_proyecto_id' => 'int'
 	];
 
 	protected $dates = [
@@ -46,27 +56,43 @@ class PmProyecto extends Eloquent
 	];
 
 	protected $fillable = [
+	    'id',
 		'nombre_proyecto',
 		'usuario_id',
+		'estado_proyecto_id',
+		'clienteemp_id',
 		'fecha_est_inicio',
 		'fecha_est_fin',
 		'cant_horas_total_asig',
 		'cant_horas_total_consum',
+		'observaciones',
+		'usuario_resp_id',
+		'lider_resp_nombre',
 		'activo',
-		'estado_proyecto_id'
+		'importancia_proyecto_id'
 	];
 
-	public function tr_estados_proyecto()
+	public function hez_clientesemp()
 	{
-		return $this->belongsTo(\App\Models\TrEstadosProyecto::class, 'estado_proyecto_id');
+		return $this->belongsTo(\App\Models\HezClientesemp::class, 'clienteemp_id');
 	}
 
-	public function cotz_usuario()
+	public function pm_importancia_proyecto()
 	{
-		return $this->belongsTo(\App\Models\CotzUsuario::class, 'usuario_id');
+		return $this->belongsTo(\App\Models\PmImportanciaProyecto::class, 'importancia_proyecto_id');
 	}
 
-	public function tr_tareas()
+	public function pm_estados_proyecto()
+	{
+		return $this->belongsTo(\App\Models\PmEstadosProyecto::class, 'estado_proyecto_id');
+	}
+
+	public function hez_usuario()
+	{
+		return $this->belongsTo(\App\Models\HezUsuario::class, 'usuario_id');
+	}
+
+	public function pm_tareas()
 	{
 		return $this->hasMany(\App\Models\PmTarea::class, 'proyecto_id');
 	}

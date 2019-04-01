@@ -3,10 +3,13 @@
 namespace App\Providers;
 
 use App\Models\Companias;
+use App\Models\HezClientesemp;
 use App\Models\HezCompania;
 use App\Models\HezTipocost;
 use App\Models\HezTipoDocumento;
+use App\Models\PmImportanciaProyecto;
 use App\Models\TipoDocumento;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
@@ -25,6 +28,15 @@ class AppServiceProvider extends ServiceProvider
             $view->with('companias', HezCompania::all());
             $view->with('tiposDoc', HezTipoDocumento::all());
             $view->with('tipCost', HezTipocost::all());
+        });
+        view()->composer(['PMlite.Proyectos.crear'], function ($view) {
+            $user = Auth::user();
+            if ($user->cod_Rol === 1) {
+                $view->with('clientes', HezClientesemp::with(['hez_compania', 'hez_compania_cliente'])->get());
+            }else {
+                $view->with('clientes', HezClientesemp::with(['hez_compania', 'hez_compania_cliente'])->where('compania_id', '=', $user->hez_empleado->cod_Companias)->get());
+            }
+            $view->with('nivelimport', PmImportanciaProyecto::all());
         });
         view()->composer('*', function ($view) {
             $ruta = Route::getFacadeRoot()->current()->uri();
