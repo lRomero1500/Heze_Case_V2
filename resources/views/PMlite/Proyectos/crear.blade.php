@@ -65,11 +65,11 @@
                             <a href="">Aquí</a></h6>
                         <div class="contFormGobal contFormWizard">
                             <div class="contCampo W25">
-                                <label>Nombre del proyecto</label>
+                                <label>Nombre del proyecto*</label>
                                 <input id="nombre_proyecto" name="nombre_proyecto" class="campo" type="text" placeholder="" required data-rule-required="true" data-msg-required="Ingrese un nombre para este proyecto">
                             </div>
                             <div class="contCampo W25">
-                                <label>Cliente</label>
+                                <label>Cliente*</label>
                                 <select id="clienteemp_id" name="clienteemp_id" class="campo" type="text" required data-rule-required="true" data-msg-required="Seleccione un cliente para el proyecto">
                                     <option value="">Seleccione un Cliente</option>
                                     @foreach($clientes as $cliente)
@@ -78,12 +78,12 @@
                                 </select>
                             </div>
                             <div class="contCampo W25">
-                                <label>Líder / Responsable</label>
+                                <label>Líder / Responsable*</label>
                                 <input id="lider_resp_nombre" name="lider_resp_nombre" class="campo" type="text" placeholder="" required data-rule-required="true" data-msg-required="Seleccione un cliente para el proyecto"
                                        data-rule-lettersonly="true" data-msg-lettersonly="Ingres solo caracteres alfabeticos y espacios" data-rule-minlength="2" data-msg-minlength="ingrese minimo 2 caracteres">
                             </div>
                             <div class="contCampo W25">
-                                <label>Nivel de importancia</label>
+                                <label>Nivel de importancia*</label>
                                 <select id="importancia_proyecto_id" name="importancia_proyecto_id" class="campo" type="text" required data-rule-required="true" data-msg-required="Seleccione una importancia para el proyecto">
                                     <option value="">Seleccione importancia</option>
                                     @foreach($nivelimport as $import)
@@ -91,7 +91,8 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="contCampo W25"><h5>Fecha Estimada de Inicio*</h5>
+                            <div class="contCampo W25">
+                                <label>Fecha Estimada de Inicio*</label>
                                 <input type="text" value="" placeholder=""
                                        title="Seleccione fecha de inicio del proyecto" name="fecha_est_inicio"
                                        id="fecha_est_inicio"
@@ -100,7 +101,8 @@
                                        data-rule-dateCustom="true" data-msg-dateCustom="Ingrese una fecha valida" class="dat campo"
                                        onchange="limpiarErrorFecha(this)"/>
                             </div>
-                            <div class="contCampo W25"><h5>Fecha Estimada de Finalización*</h5>
+                            <div class="contCampo W25">
+                                <label>Fecha Estimada de Finalización*</label>
                                 <input type="text" value="" placeholder=""
                                        title="Seleccione fecha de finalizacion del proyecto" name="fecha_est_fin"
                                        id="fecha_est_fin"
@@ -145,10 +147,6 @@
                                     <p>Window Phone <span name="Eliminar"></span></p></div>
                             </div>
                         </div>
-                    </div>
-                    <div class="cantenidoWizard" name="cantenidoWizard">
-                        <h1>Contenido 3</h1>
-                        <div name="otroNombre"> otro nombre</div>
                     </div>
                     <div class="cantenidoWizard" name="cantenidoWizard">
                         <h1>Contenido 4</h1>

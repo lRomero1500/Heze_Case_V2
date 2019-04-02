@@ -56,7 +56,9 @@ function irAtras() {
     indice -= 1;
 
 }
-
+$(document).ready(function () {
+    crearDatePick('dat');
+});
 function guardar() {
         /*var data = $('#proyectoWZ').serialize();
         var url = baseUrl + 'pmlite/creaEditProyecto';
@@ -241,7 +243,7 @@ function eliminarColaborador(idColaborador) {
 */
 function limpiarErrorFecha(obj) {
     if(obj.value!=""){
-        $($(obj).siblings('label')[0]).remove();
+        $($(obj).siblings('label')[1]).remove();
         $(obj).removeClass('error');
     }
 }
