@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="logo-login">
-        <img src="Img/Logo_Hezecase_login.png">
+        <img src="{{asset('img/Logo_Hezecase_login.png')}}">
     </div>
     <div class="usps-login">
         <div id="avatar" style="display: none">

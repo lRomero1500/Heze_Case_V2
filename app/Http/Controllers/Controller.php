@@ -34,11 +34,11 @@ class Controller extends BaseController
                     $imgPNGTumb = Image::make($decoded_image)->encode('png');
                     $imgPNGTumb->resize(100, 100);
                     $imgPNGTumb->save($pathTumb . '.png');
-                    $imgWEBP = Image::make($decoded_image)->encode('webp', 75);
+                    /*$imgWEBP = Image::make($decoded_image)->encode('webp', 75);
                     $imgWEBP->save($path . '.webp');
                     $imgWEBPTumb = Image::make($decoded_image)->encode('webp');
                     $imgWEBPTumb->resize(100, 100);
-                    $imgWEBPTumb->save($pathTumb . '.webp');
+                    $imgWEBPTumb->save($pathTumb . '.webp');*/
                 }
                 break;
                 case 2:/*carga de imagenes mantenimiento de Colaboradores*/
@@ -58,11 +58,11 @@ class Controller extends BaseController
                     $imgPNGTumb = Image::make($decoded_image)->encode('png');
                     $imgPNGTumb->resize(100, 100);
                     $imgPNGTumb->save($pathTumb . '.png');
-                    $imgWEBP = Image::make($decoded_image)->encode('webp', 75);
+                   /* $imgWEBP = Image::make($decoded_image)->encode('webp', 75);
                     $imgWEBP->save($path . '.webp');
                     $imgWEBPTumb = Image::make($decoded_image)->encode('webp');
                     $imgWEBPTumb->resize(100, 100);
-                    $imgWEBPTumb->save($pathTumb . '.webp');
+                    $imgWEBPTumb->save($pathTumb . '.webp');*/
                 }
                 break;
         }

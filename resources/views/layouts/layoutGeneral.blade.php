@@ -13,7 +13,7 @@
 <body>
 <header class="headerFrontEnd">
     <div class="ContentLeftlogo">
-        <img class="ContentlogoImg" src="Img/Logo_Header_arcia.png">
+        <img class="ContentlogoImg" src="{{asset('img/Logo_Header_arcia.png')}}">
         <div class="contInBox">
             <i class="fas fa-envelope"></i>
         </div>
@@ -167,7 +167,7 @@
             total o parcial | <a href="https://arciait.com" class="red">Arciait</a></p>
     </div>
     <div class="ContenedorImgFooter">
-        <img class="imgFooterLogo" src="Img/Logo_Lateral_hezecase.png">
+        <img class="imgFooterLogo" src="{{asset('img/Logo_Lateral_hezecase.png')}}">
     </div>
 </footer>
 </body>
